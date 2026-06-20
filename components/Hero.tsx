@@ -161,6 +161,20 @@ export default function Hero() {
             </a>
           </div>
         </Reveal>
+
+        {/* proof strip — credibility above the fold (CRO P6/P7) */}
+        <Reveal delay={0.32} y={14}>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+            {h.proof.map((p, i) => (
+              <span key={i} className="inline-flex items-baseline gap-1.5">
+                <span className="font-display font-bold tabular-nums" style={{ color: "var(--accent)" }}>
+                  {p.value}
+                </span>
+                <span className="text-muted">{p[lang]}</span>
+              </span>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

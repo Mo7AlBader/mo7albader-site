@@ -23,17 +23,24 @@ export const content = {
 
   // ===== Hero =====
   hero: {
-    available: { ar: "متاح للتعاون", en: "Open to collaborate" },
+    available: { ar: "متاح لفرص ومشاريع", en: "Open to roles & projects" },
     location: { ar: "الرياض، السعودية", en: "Riyadh, Saudi Arabia" },
     greeting: { ar: "أنا محمد البدر،", en: "I'm Mohammed AlBader," },
     line: {
-      ar: "أبني منتجات تنمو، وأمشي نحو CPO 2030.",
-      en: "I build products that grow, on the road to CPO 2030.",
+      ar: "مدير منتج. أبني وأطلق منتجات تنمو، على طريق CPO 2030.",
+      en: "Product Manager. I build and ship products that grow, on the road to CPO 2030.",
     },
     cta: { ar: "تواصل معي", en: "Get in touch" },
     ctaHref: "#contact",
     work: { ar: "شوف أعمالي", en: "View my work" },
     workHref: "#projects",
+    // proof above the fold (CRO P6/P7)
+    proof: [
+      { value: "+2M", ar: "مستخدم", en: "users" },
+      { value: "+300K", ar: "طالب", en: "students" },
+      { value: "+6M", ar: "مشاهدة", en: "views" },
+      { value: "+8", ar: "سنوات بناء", en: "yrs building" },
+    ],
   },
 
   // ===== Tickers (marquee bands) =====
@@ -375,8 +382,8 @@ export const content = {
     eyebrow: { ar: "تواصل", en: "Get in touch" },
     title: { ar: "خلنا نبني شي", en: "Let's build something" },
     note: {
-      ar: "مفتوح للنقاش حول المنتجات، الاكتساب، أو أي فكرة تستاهل.",
-      en: "Open to talk products, acquisition, or any idea worth it.",
+      ar: "مفتوح لفرص إدارة المنتجات بدوام كامل، وللاستشارات والمشاريع الجانبية اللي لها أثر. أرد بسرعة.",
+      en: "Open to full-time product roles, plus consulting and side projects with real impact. I reply fast.",
     },
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },

@@ -26,6 +26,22 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* CRO: tighten mobile scroll — less vertical space per section, cleaner rhythm */
+@media (max-width: 639px) {
+  .frame > section {
+    padding-top: 2.75rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+  /* leave room for the sticky mobile CTA */
+  body {
+    padding-bottom: 4.5rem;
+  }
+}
+
 html,
 body {
   margin: 0;

@@ -12,13 +12,13 @@ import Expertise from "@/components/Expertise";
 import Strengths from "@/components/Strengths";
 import TechStack from "@/components/TechStack";
 import Partners from "@/components/Partners";
-import Testimonials from "@/components/Testimonials";
 import Credentials from "@/components/Credentials";
 import WorkProcess from "@/components/WorkProcess";
 import Goal2028 from "@/components/Goal2028";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import MobileCTA from "@/components/MobileCTA";
 
 export default function Page() {
   return (
@@ -26,6 +26,7 @@ export default function Page() {
       <LangToggle />
       <Sidebar />
       <MobileNav />
+      <MobileCTA />
       <main>
         <div className="frame">
           <Hero />
@@ -39,7 +40,6 @@ export default function Page() {
           <Strengths />
           <TechStack />
           <Partners />
-          <Testimonials />
           <Credentials />
           <WorkProcess />
           <Goal2028 />
