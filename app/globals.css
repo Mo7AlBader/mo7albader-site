@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ===== Color tokens — Electric Indigo identity ===== */
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --surface-2: #1a1a24;
+  --accent: #6366f1;
+  --accent-2: #818cf8;
+  --mint: #34d399;
+  --white: #ffffff;
+  --muted: rgba(255, 255, 255, 0.55);
+  --faint: #71717a;
+  --line: rgba(255, 255, 255, 0.08);
+
+  /* glass shadow used on cards */
+  --glass: inset 0 1px 12px rgba(99, 102, 241, 0.08);
+
+  /* motion */
+  --ease: cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* container rhythm from the reference: 850px content inside wide frame */
+.container {
+  width: 100%;
+  max-width: 850px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* glass card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--glass);
+}
+
+/* eyebrow label with dot */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* accessible focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* hide scrollbar on the drawer */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
