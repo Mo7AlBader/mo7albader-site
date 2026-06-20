@@ -27,7 +27,7 @@ export default function Credentials() {
             </h3>
             <p className="mt-1 text-muted">{c.education.school[lang]}</p>
             <p className="mt-3 font-display text-sm tabular-nums" style={{ color: "var(--accent)" }}>
-              {c.education.period}
+              {c.education.period[lang]}
             </p>
           </div>
         </Reveal>

@@ -78,7 +78,7 @@ export default function Journey() {
         {j.roles.map((r, i) => {
           const featured = i === 0;
           const ongoing = !r.end;
-          const period = `${fmtMonth(r.start, lang)} — ${r.end ? fmtMonth(r.end, lang) : present}`;
+          const period = `${fmtMonth(r.start, lang)} → ${r.end ? fmtMonth(r.end, lang) : present}`;
           const dur = durationLabel(r.start, r.end, lang);
           return (
             <Reveal key={i} delay={i * 0.06} y={28} className={featured ? "sm:col-span-2" : ""}>
@@ -99,7 +99,7 @@ export default function Journey() {
                       {r.company[lang]}
                     </span>
                   </div>
-                  <span className="shrink-0 rounded-full border border-line px-3 py-1 text-xs text-muted tabular-nums">
+                  <span dir="ltr" className="shrink-0 rounded-full border border-line px-3 py-1 text-xs text-muted tabular-nums">
                     {period}
                   </span>
                 </div>

@@ -80,7 +80,7 @@ export default function Footer() {
         </div>
 
         <p className="mt-10 text-sm text-faint">
-          © {new Date().getFullYear()} — {content.footer[lang]}
+          © {new Date().getFullYear()} · {content.footer[lang]}
         </p>
       </div>
     </footer>

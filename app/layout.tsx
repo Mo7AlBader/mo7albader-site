@@ -29,7 +29,7 @@ const signature = Waterfall({
 });
 
 export const metadata: Metadata = {
-  title: "Mohammed AlBader — Product Manager",
+  title: "Mohammed AlBader · Product Manager",
   description:
     "Product Manager · Builder · Founder. Building products that grow, on the road to CPO 2030.",
 };

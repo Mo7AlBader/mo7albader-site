@@ -62,12 +62,12 @@ export const content = {
     },
     paragraphs: [
       {
-        ar: "مهندس برمجيات تحوّل لمدير منتجات. أبني وأطلق منذ كان عمري 17 — بدأت بمنصة AbdihQT التعليمية بدون تمويل خارجي، ووصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
-        en: "A software engineer turned product manager. I've been building and shipping since I was 17 — starting with AbdihQT, a bootstrapped education platform that reached 300K+ students and 6M+ views.",
+        ar: "مهندس برمجيات تحوّل لمدير منتجات. أبني وأطلق من وأنا عمري 17، وبدأت بمنصة AbdihQT التعليمية بدون تمويل خارجي، ووصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
+        en: "A software engineer turned product manager. I've been building and shipping since I was 17. It started with AbdihQT, a bootstrapped education platform that reached 300K+ students and 6M+ views.",
       },
       {
-        ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية — نمو قائم على البيانات وقرارات تخدم التاجر. فلسفتي: التنفيذ أهم من التخطيط، والإشارة أهم من الضجيج.",
-        en: "Today I drive acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform — data-driven growth and merchant-first decisions. My philosophy: execution over planning, signal over noise.",
+        ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية. شغلي نمو قائم على البيانات وقرارات تخدم التاجر، وفلسفتي بسيطة: التنفيذ قبل التخطيط، والإشارة قبل الضجيج.",
+        en: "Today I drive acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform. Data-driven growth and merchant-first decisions. My philosophy is simple: execution over planning, signal over noise.",
       },
     ],
     tags: ["Product Management", "Growth & Acquisition", "SaaS", "UI/UX", "Web Dev", "Content & SEO"],
@@ -78,8 +78,8 @@ export const content = {
     eyebrow: { ar: "حالياً أشتغل على", en: "Currently working on" },
     items: [
       {
-        ar: "مدير منتج في سلة — أملك الاكتساب، استراتيجية الموقع، والمحتوى.",
-        en: "Product Manager at Salla — owning Acquisition, Website Strategy & Content.",
+        ar: "مدير منتج في سلة، أملك الاكتساب واستراتيجية الموقع والمحتوى.",
+        en: "Product Manager at Salla, owning acquisition, website strategy and content.",
       },
       {
         ar: "أطوّر منصة AbdihQT التعليمية لأكثر من 300 ألف طالب.",
@@ -100,13 +100,13 @@ export const content = {
       {
         name: "AbdihQT",
         logo: "/logos/abdihqt.png",
-        ar: "منصة تعليمية ذاتية التمويل بدأتها في سن 17 — أكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
-        en: "Bootstrapped education platform I started at 17 — 300K+ students and 6M+ YouTube views.",
+        ar: "منصة تعليمية ذاتية التمويل بدأتها في سن 17، فيها أكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
+        en: "Bootstrapped education platform I started at 17, now with 300K+ students and 6M+ YouTube views.",
         tags: ["EdTech", "Founder", "Since 2018"],
         href: "https://abdihqt.com",
       },
       {
-        name: "Salla — Acquisition",
+        name: "Salla Acquisition",
         logo: "/logos/salla.svg",
         ar: "أقود استراتيجية الموقع والاكتساب العضوي (SEO/GEO + PLG)؛ من إطلاق «سوق الجملة» إلى صفحات هبوط عالية التحويل.",
         en: "Leading website strategy & organic acquisition (SEO/GEO + PLG); from the “Wholesale Market” launch to high-converting landing pages.",
@@ -116,22 +116,22 @@ export const content = {
       {
         name: "Ameen",
         logo: "/logos/ameen.svg",
-        ar: "متطوّع كمدير منتج — تطبيق تجاوز مليوني مستخدم و+14 ألف تقييم، وتصدّر متجر التطبيقات.",
-        en: "Volunteer PM — an app that surpassed 2M users with 14K+ ratings and topped the App Store.",
+        ar: "متطوّع كمدير منتج. التطبيق تجاوز مليوني مستخدم و+14 ألف تقييم، وتصدّر متجر التطبيقات.",
+        en: "Volunteer PM. The app surpassed 2M users with 14K+ ratings and topped the App Store.",
         tags: ["Volunteer PM", "1M users", "#1 App Store"],
       },
       {
         name: "SalahBreak",
         logo: "/logos/salahbreak.svg",
-        ar: "تطبيق يعيد تعريف الصلاة كـ«استراحة صلاة» في بيئة العمل — تكامل مع iOS، Slack، Apple Watch وغيرها.",
-        en: "An app reframing prayer as a workplace “prayer break” — integrations across iOS, Slack, Apple Watch & more.",
+        ar: "تطبيق يعيد تعريف الصلاة كـ«استراحة صلاة» في بيئة العمل، مع تكامل عبر iOS وSlack وApple Watch وغيرها.",
+        en: "An app that reframes prayer as a workplace “prayer break,” with integrations across iOS, Slack, Apple Watch and more.",
         tags: ["iOS", "Product", "Building"],
         href: "https://salahbreak.com",
       },
       {
         name: "50 Tools Challenge",
-        ar: "تحدٍّ شخصي لبناء 50 أداة منتج عبر Claude API — استكشاف حدود الـ Vibe Coding.",
-        en: "A personal challenge to build 50 product tools with the Claude API — exploring the edges of Vibe Coding.",
+        ar: "تحدٍّ شخصي لبناء 50 أداة منتج عبر Claude API، أستكشف فيه حدود الـ Vibe Coding.",
+        en: "A personal challenge to build 50 product tools with the Claude API, exploring the edges of Vibe Coding.",
         tags: ["Claude API", "Builder", "Ongoing"],
       },
     ],
@@ -163,7 +163,7 @@ export const content = {
         impact: null,
         stores: false,
         ar: "احتياجي للاستعداد للقدرات والتحصيلي خلّاني أبني مجتمعاً، تحوّل إلى منتج، ثم إلى منظومة وكيان استفاد منه +300 ألف طالب و+6 مليون مشاهدة على يوتيوب.",
-        en: "My own need to prep for Qudurat & Tahsili led me to build a community — that became a product, then a full system used by 300K+ students with 6M+ YouTube views.",
+        en: "My own need to prep for Qudurat & Tahsili led me to build a community that became a product, then a full system used by 300K+ students with 6M+ YouTube views.",
       },
       {
         title: { ar: "مدير منتج (متطوّع)", en: "Product Manager (Volunteer)" },
@@ -173,8 +173,8 @@ export const content = {
         end: null,
         impact: { ar: "+2 مليون مستخدم · +14 ألف تقييم", en: "2M+ users · 14K+ ratings" },
         stores: true,
-        ar: "بنيت الأذكار، المصحف، الرئيسية واختصاراتها، والخدمات — مفهوماً ونظاماً ومنتجاً وتجربة مستخدم.",
-        en: "Built Athkar, the Mushaf, the Home & its shortcuts, and Services — as concept, system, product and UX.",
+        ar: "بنيت الأذكار والمصحف والرئيسية واختصاراتها والخدمات، تصوّراً ونظاماً ومنتجاً وتجربة استخدام.",
+        en: "Built Athkar, the Mushaf, the Home and its shortcuts, and Services, owning the concept, the system, the product and the UX.",
       },
       {
         title: { ar: "مستشار نمو", en: "Growth Consultant" },
@@ -185,7 +185,7 @@ export const content = {
         impact: null,
         stores: false,
         ar: "دعم نمو وتوسّع وإعادة تموضع الحلول والخدمات داخلياً، مع تقييم كل المشاريع وتحسين خطط إطلاقها (لفترة محدودة). أبرز المخرجات: Tecno Mobile، bxstore، بندر بطاطا، دافور.",
-        en: "Supported internal growth, expansion & repositioning of solutions and services — evaluating projects and improving launch plans (fixed term). Highlights: Tecno Mobile, bxstore, Bandar Batata, Dafoor.",
+        en: "Supported internal growth, expansion and repositioning of solutions and services, evaluating projects and improving their launch plans (fixed term). Highlights: Tecno Mobile, bxstore, Bandar Batata, Dafoor.",
       },
     ],
   },
@@ -210,8 +210,8 @@ export const content = {
       {
         ar: "المحتوى والسرد",
         en: "Content & Narrative",
-        arDesc: "رسائل ومحتوى يحوّل — من صفحات الهبوط إلى قصص النجاح.",
-        enDesc: "Messaging and content that converts — from landing pages to success stories.",
+        arDesc: "رسائل ومحتوى يحوّل، من صفحات الهبوط إلى قصص النجاح.",
+        enDesc: "Messaging and content that converts, from landing pages to success stories.",
       },
       {
         ar: "البناء السريع",
@@ -238,8 +238,8 @@ export const content = {
       { name: "Ideation", domain: "strategic", ar: "مفتون بالأفكار، وأربط بين ظواهر تبدو غير مترابطة.", en: "Fascinated by ideas; I connect seemingly disparate dots." },
       { name: "Input", domain: "strategic", ar: "أجمع وأؤرشف المعرفة والأفكار باستمرار.", en: "I constantly collect and archive knowledge and ideas." },
       { name: "Arranger", domain: "executing", ar: "أنظّم الناس والموارد لأقصى إنتاجية ومرونة.", en: "I organize people and resources for maximum productivity." },
-      { name: "Activator", domain: "influencing", ar: "أحوّل الأفكار إلى فعل — التنفيذ أهم من التخطيط.", en: "I turn ideas into action — execution over planning." },
-      { name: "Futuristic", domain: "strategic", ar: "تُلهمني صورة المستقبل وأرسم الطريق نحوها.", en: "Inspired by what could be — I paint the future." },
+      { name: "Activator", domain: "influencing", ar: "أحوّل الأفكار إلى فعل، والتنفيذ عندي قبل التخطيط.", en: "I turn ideas into action. Execution over planning." },
+      { name: "Futuristic", domain: "strategic", ar: "تُلهمني صورة المستقبل وأرسم الطريق نحوها.", en: "Inspired by what could be, and I sketch the path toward it." },
     ],
     more: [
       { rank: 6, name: "Empathy", domain: "relationship" },
@@ -274,7 +274,7 @@ export const content = {
     ],
   },
 
-  // ===== Testimonials (placeholder — replace with real quotes) =====
+  // ===== Testimonials (placeholder, replace with real quotes) =====
   testimonials: {
     eyebrow: { ar: "آراء", en: "Testimonial" },
     items: [
@@ -306,7 +306,7 @@ export const content = {
     education: {
       school: { ar: "جامعة حفر الباطن", en: "University of Hafr AlBatin" },
       degree: { ar: "بكالوريوس هندسة البرمجيات", en: "BSc, Computer Software Engineering" },
-      period: "أغسطس 2019 — يونيو 2024",
+      period: { ar: "أغسطس 2019 إلى يونيو 2024", en: "Aug 2019 → Jun 2024" },
     },
     certs: [
       {
@@ -324,17 +324,14 @@ export const content = {
   // ===== Goal 2028 (signature block) =====
   goal: {
     eyebrow: { ar: "الهدف الشخصي", en: "Personal goal" },
-    title: { ar: "Range Rover · 2028", en: "Range Rover · 2028" },
+    title: { ar: "رينج روفر", en: "Range Rover" },
+    year: "2028",
+    image: "/range-rover.jpg",
     note: {
-      ar: "كل ترقية خطوة أقرب. مربوط بالمسار المهني — لا حظ، نظام.",
-      en: "Every promotion is one step closer. Tied to the career track — no luck, system.",
+      ar: "هدف واحد واضح أشتغل له بنظام، خطوة خطوة. لسه في أول الطريق، بس ماشي.",
+      en: "One clear target I'm working toward on a system, step by step. Still early, but it's moving.",
     },
-    // career ladder that drives the progress bar
-    steps: [
-      { year: "2026", ar: "مدير منتج أول", en: "Senior PM", done: true },
-      { year: "2027", ar: "قائد منتج", en: "Lead PM", done: false },
-      { year: "2028", ar: "رئيس منتج", en: "Head of Product", done: false, target: true },
-    ],
+    progress: 15,
     progressLabel: { ar: "التقدّم نحو الهدف", en: "Progress to goal" },
   },
 
@@ -343,9 +340,9 @@ export const content = {
     eyebrow: { ar: "طريقة العمل", en: "Work process" },
     title: { ar: "من المشكلة إلى الأثر", en: "From problem to impact" },
     steps: [
-      { ar: "اكتشاف المشكلة", en: "Discover", arDesc: "أفهم الهدف والمستخدم قبل أي حل — بالبيانات والإشارات.", enDesc: "Understand the goal and user before any solution — data and signal first." },
+      { ar: "اكتشاف المشكلة", en: "Discover", arDesc: "أفهم الهدف والمستخدم قبل أي حل، بالبيانات والإشارات.", enDesc: "Understand the goal and user before any solution. Data and signal first." },
       { ar: "التحقق والتأطير", en: "Validate & frame", arDesc: "أصيغ المشكلة وأحدّد المقاييس التي تحرّك القرار.", enDesc: "Frame the problem and define the metrics that drive the decision." },
-      { ar: "البناء السريع", en: "Build fast", arDesc: "نماذج وإطلاق سريع عبر Vibe Coding بدون هدر.", enDesc: "Prototypes and fast shipping with Vibe Coding — no waste." },
+      { ar: "البناء السريع", en: "Build fast", arDesc: "نماذج وإطلاق سريع عبر Vibe Coding بدون هدر.", enDesc: "Prototypes and fast shipping with Vibe Coding, no waste." },
       { ar: "القياس والتكرار", en: "Measure & iterate", arDesc: "أتتبّع الأثر على الأرقام وأكرّر بحلقات قصيرة.", enDesc: "Track impact on the numbers and iterate in tight loops." },
     ],
   },
@@ -356,15 +353,15 @@ export const content = {
     items: [
       {
         q: { ar: "وش تشتغل عليه بالضبط؟", en: "What do you actually work on?" },
-        a: { ar: "إدارة المنتجات والاكتساب واستراتيجية الموقع في سلة، وأبني منتجات وأدوات شخصية على الجنب.", en: "Product management, acquisition & website strategy at Salla — plus building personal products and tools." },
+        a: { ar: "إدارة المنتجات والاكتساب واستراتيجية الموقع في سلة، وأبني منتجات وأدوات شخصية على الجنب.", en: "Product management, acquisition and website strategy at Salla, plus building personal products and tools." },
       },
       {
         q: { ar: "تاخذ مشاريع جانبية؟", en: "Do you take side projects?" },
-        a: { ar: "بشكل محدود — مشاريع منتج أو نمو لها أثر واضح.", en: "Selectively — product or growth work with clear impact." },
+        a: { ar: "بشكل محدود، على مشاريع منتج أو نمو لها أثر واضح.", en: "Selectively, on product or growth work with clear impact." },
       },
       {
         q: { ar: "كيف أتواصل معك؟", en: "How do I reach you?" },
-        a: { ar: "عبر LinkedIn أو الإيميل تحت، أرد بأسرع وقت.", en: "Via LinkedIn or the email below — I reply fast." },
+        a: { ar: "عبر LinkedIn أو الإيميل تحت، وأرد بأسرع وقت.", en: "Via LinkedIn or the email below, and I reply fast." },
       },
       {
         q: { ar: "وش هدفك المهني؟", en: "What's your career goal?" },
