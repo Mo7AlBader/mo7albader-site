@@ -3,13 +3,16 @@
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
+import HeroBackground from "./HeroBackground";
 
 export default function Hero() {
   const { lang } = useLang();
   const h = content.hero;
 
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center container py-28">
+    <section id="home" className="relative min-h-screen flex flex-col justify-center py-28 overflow-hidden">
+      <HeroBackground />
+      <div className="container relative">
       {/* status row */}
       <Reveal y={0} x={lang === "ar" ? 30 : -30}>
         <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -49,6 +52,7 @@ export default function Hero() {
           </svg>
         </a>
       </Reveal>
+      </div>
     </section>
   );
 }

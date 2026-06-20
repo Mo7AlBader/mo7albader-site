@@ -5,7 +5,9 @@ import { useLang } from "./LangContext";
 
 const icons: Record<string, string> = {
   home: "M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5",
+  about: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21a8 8 0 0 1 16 0",
   now: "M12 7v5l3 2M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z",
+  projects: "M3 7l9-4 9 4-9 4-9-4Zm0 5 9 4 9-4m-18 5 9 4 9-4",
   journey: "M6 3v12m0 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm12-6v12m0 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM6 9h9a3 3 0 0 1 3 3",
   goal: "M12 3v18M3 12h18M12 3a9 9 0 0 1 0 18 9 9 0 0 1 0-18Z",
   contact: "M4 6h16v12H4zM4 7l8 6 8-6",

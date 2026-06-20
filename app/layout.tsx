@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Rajdhani, Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Rajdhani, Poppins, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import { LangProvider } from "@/components/LangContext";
 
@@ -9,7 +9,7 @@ const display = Rajdhani({
   variable: "--font-display",
 });
 
-const body = Inter({
+const body = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-body",

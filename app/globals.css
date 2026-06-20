@@ -3,20 +3,20 @@
 @tailwind utilities;
 
 :root {
-  /* ===== Color tokens — Electric Indigo identity ===== */
-  --bg: #0a0a0f;
-  --surface: #13131a;
-  --surface-2: #1a1a24;
-  --accent: #6366f1;
-  --accent-2: #818cf8;
-  --mint: #34d399;
+  /* ===== Color tokens — Black & Orange identity ===== */
+  --bg: #000000;
+  --surface: #111111;
+  --surface-2: #191919;
+  --accent: #f3500f;
+  --accent-2: #ff6a2b;
+  --mint: #1ef482;
   --white: #ffffff;
-  --muted: rgba(255, 255, 255, 0.55);
-  --faint: #71717a;
-  --line: rgba(255, 255, 255, 0.08);
+  --muted: rgba(255, 255, 255, 0.6);
+  --faint: #666666;
+  --line: rgba(255, 255, 255, 0.1);
 
   /* glass shadow used on cards */
-  --glass: inset 0 1px 12px rgba(99, 102, 241, 0.08);
+  --glass: inset 0 1px 10px rgba(255, 255, 255, 0.1);
 
   /* motion */
   --ease: cubic-bezier(0.44, 0, 0.56, 1);
@@ -34,6 +34,16 @@ body {
   color: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Latin body uses Poppins in English mode; Arabic font stays for RTL */
+html[lang="en"] body {
+  font-family: var(--font-body), sans-serif;
+}
+
+/* tighter, condensed display headings (Rajdhani) per identity */
+.font-display {
+  letter-spacing: -0.02em;
 }
 
 /* container rhythm from the reference: 850px content inside wide frame */
@@ -90,4 +100,66 @@ body {
 /* hide scrollbar on the drawer */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ===== Marquee / ticker ===== */
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  animation: ticker-scroll 24s linear infinite;
+  will-change: transform;
+}
+.ticker:hover .ticker__track {
+  animation-play-state: paused;
+}
+.ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding-inline-end: 28px;
+}
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== 3D flip card ===== */
+.flip {
+  perspective: 1200px;
+}
+.flip__inner {
+  position: relative;
+  transition: transform 0.6s var(--ease);
+  transform-style: preserve-3d;
+  height: 100%;
+}
+@media (hover: hover) {
+  .flip:hover .flip__inner {
+    transform: rotateY(180deg);
+  }
+}
+.flip__face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip__back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track {
+    animation: none;
+  }
+  .flip:hover .flip__inner {
+    transform: none;
+  }
 }
