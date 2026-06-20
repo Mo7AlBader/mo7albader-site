@@ -16,7 +16,7 @@ export const content = {
     { id: "about", ar: "عنّي", en: "About" },
     { id: "now", ar: "حالياً", en: "Now" },
     { id: "projects", ar: "المشاريع", en: "Work" },
-    { id: "journey", ar: "المسار", en: "Journey" },
+    { id: "journey", ar: "الخبرة", en: "Experience" },
     { id: "goal", ar: "الهدف", en: "Goal" },
     { id: "contact", ar: "تواصل", en: "Contact" },
   ],
@@ -32,6 +32,8 @@ export const content = {
     },
     cta: { ar: "تواصل معي", en: "Get in touch" },
     ctaHref: "#contact",
+    work: { ar: "شوف أعمالي", en: "View my work" },
+    workHref: "#projects",
   },
 
   // ===== Tickers (marquee bands) =====
@@ -42,6 +44,7 @@ export const content = {
 
   // ===== Stats (impact band) =====
   stats: {
+    ready: { ar: "جاهز لمشاريع عالمية", en: "Ready for global projects" },
     items: [
       { value: "+1M", ar: "مستخدم وصلهم آمين", en: "users reached · Ameen" },
       { value: "+300K", ar: "طالب في AbdihQT", en: "AbdihQT students" },
@@ -67,7 +70,7 @@ export const content = {
         en: "Today I drive acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform — data-driven growth and merchant-first decisions. My philosophy: execution over planning, signal over noise.",
       },
     ],
-    tags: ["Product Management", "Growth & Acquisition", "SEO / GEO", "Vibe Coding"],
+    tags: ["Product Management", "Growth & Acquisition", "SaaS", "UI/UX", "Web Dev", "Content & SEO"],
   },
 
   // ===== Now =====
@@ -136,33 +139,28 @@ export const content = {
 
   // ===== Journey (timeline) =====
   journey: {
-    eyebrow: { ar: "المسار", en: "The journey" },
-    title: { ar: "من فكرة إلى مسار واضح", en: "From a spark to a clear path" },
+    eyebrow: { ar: "الخبرة المهنية", en: "Experience" },
+    title: { ar: "وين اشتغلت وبنيت", en: "Where I've worked & built" },
     milestones: [
       {
-        year: "2018",
-        ar: "أسّست AbdihQT وعمري 17",
-        en: "Founded AbdihQT at 17",
+        year: "2024–",
+        ar: "إدارة المنتج والتسويق · سلة",
+        en: "Associate Product & Marketing Manager · Salla",
       },
       {
-        year: "2021",
-        ar: "بنيت +100 متجر على سلة كمزوّد خدمة",
-        en: "Built 100+ Salla stores as a service provider",
+        year: "2018–",
+        ar: "مؤسس · AbdihQT (قدرات وتحصيلي)",
+        en: "Founder · AbdihQT",
       },
       {
-        year: "2023",
-        ar: "مدير منتج متطوّع في آمين — #1 على App Store",
-        en: "Volunteer PM at Ameen — #1 on the App Store",
+        year: "2025–",
+        ar: "مدير منتج متطوّع · آمين",
+        en: "Volunteer Product Manager · Ameen",
       },
       {
-        year: "2024",
-        ar: "تخرّجت في هندسة البرمجيات وانضممت لسلة مديرَ منتج",
-        en: "Graduated in Software Engineering & joined Salla as PM",
-      },
-      {
-        year: "2025",
-        ar: "آمين يتجاوز مليون مستخدم · شهادة Product Analytics",
-        en: "Ameen passes 1M users · Product Analytics certification",
+        year: "2025–26",
+        ar: "مستشار نمو · Doolab",
+        en: "Growth Consultant · Doolab",
       },
       {
         year: "2030",
@@ -205,14 +203,63 @@ export const content = {
     ],
   },
 
+  // ===== Tech stack =====
+  techStack: {
+    eyebrow: { ar: "أدواتي", en: "Tech stack" },
+    title: { ar: "اللي أبني فيه", en: "What I build with" },
+    items: [
+      { name: "Claude API", ar: "توليد المحتوى والأدوات بالذكاء الاصطناعي", en: "AI content & tooling" },
+      { name: "Next.js", ar: "تطبيقات React سريعة وقابلة للتوسّع", en: "Fast, scalable React apps" },
+      { name: "Figma", ar: "تصميم الواجهات وأنظمة التصميم", en: "UI & design systems" },
+      { name: "Framer", ar: "بناء ونشر مواقع تفاعلية", en: "Ship interactive sites" },
+    ],
+  },
+
+  // ===== Partners / trusted by =====
+  partners: {
+    eyebrow: { ar: "موثوق من", en: "Trusted by" },
+    title: { ar: "بنيتُ لعلامات ومنصّات", en: "Built for brands & platforms" },
+    logos: [
+      { name: "Salla", src: "/logos/salla.svg" },
+      { name: "Ameen", src: "/logos/ameen.svg" },
+      { name: "AbdihQT", src: "/logos/abdihqt.png" },
+      { name: "SalahBreak", src: "/logos/salahbreak.svg" },
+    ],
+  },
+
+  // ===== Testimonials (placeholder — replace with real quotes) =====
+  testimonials: {
+    eyebrow: { ar: "آراء", en: "Testimonial" },
+    items: [
+      {
+        ar: "محمد يفهم مساحة المشكلة قبل ما يقفز للحل، وينفّذ بسرعة. أثره يبان على الأرقام.",
+        en: "Mohammed understands the problem space before jumping to a solution, and ships fast. His impact shows in the numbers.",
+        name: { ar: "اسم العميل", en: "Client name" },
+        role: { ar: "مؤسس · شركة", en: "Founder · Company" },
+      },
+      {
+        ar: "تعاون احترافي ونتائج تفوق التوقّع. واضح، سريع، ومركّز على المستخدم.",
+        en: "Professional to work with and results beyond expectation. Clear, fast, user-focused.",
+        name: { ar: "اسم العميل", en: "Client name" },
+        role: { ar: "قائد منتج · منصة", en: "Product Lead · Platform" },
+      },
+      {
+        ar: "من الفكرة للإطلاق في وقت قياسي وبجودة عالية. أنصح فيه بقوة.",
+        en: "From idea to launch in record time, at high quality. Highly recommended.",
+        name: { ar: "اسم العميل", en: "Client name" },
+        role: { ar: "مهندس · فريق", en: "Engineer · Team" },
+      },
+    ],
+  },
+
   // ===== Education & Credentials =====
   credentials: {
     eyebrow: { ar: "التعليم والشهادات", en: "Education & Credentials" },
     title: { ar: "الأساس", en: "The foundation" },
     education: {
       school: { ar: "جامعة حفر الباطن", en: "University of Hafr AlBatin" },
-      degree: { ar: "بكالوريوس هندسة برمجيات", en: "BSc, Software Engineering" },
-      period: "2019 — 2024",
+      degree: { ar: "بكالوريوس هندسة البرمجيات", en: "BSc, Computer Software Engineering" },
+      period: "أغسطس 2019 — يونيو 2024",
     },
     certs: [
       {
@@ -242,6 +289,41 @@ export const content = {
       { year: "2028", ar: "رئيس منتج", en: "Head of Product", done: false, target: true },
     ],
     progressLabel: { ar: "التقدّم نحو الهدف", en: "Progress to goal" },
+  },
+
+  // ===== Work process =====
+  process: {
+    eyebrow: { ar: "طريقة العمل", en: "Work process" },
+    title: { ar: "من المشكلة إلى الأثر", en: "From problem to impact" },
+    steps: [
+      { ar: "اكتشاف المشكلة", en: "Discover", arDesc: "أفهم الهدف والمستخدم قبل أي حل — بالبيانات والإشارات.", enDesc: "Understand the goal and user before any solution — data and signal first." },
+      { ar: "التحقق والتأطير", en: "Validate & frame", arDesc: "أصيغ المشكلة وأحدّد المقاييس التي تحرّك القرار.", enDesc: "Frame the problem and define the metrics that drive the decision." },
+      { ar: "البناء السريع", en: "Build fast", arDesc: "نماذج وإطلاق سريع عبر Vibe Coding بدون هدر.", enDesc: "Prototypes and fast shipping with Vibe Coding — no waste." },
+      { ar: "القياس والتكرار", en: "Measure & iterate", arDesc: "أتتبّع الأثر على الأرقام وأكرّر بحلقات قصيرة.", enDesc: "Track impact on the numbers and iterate in tight loops." },
+    ],
+  },
+
+  // ===== FAQ =====
+  faq: {
+    eyebrow: { ar: "أسئلة شائعة", en: "FAQs" },
+    items: [
+      {
+        q: { ar: "وش تشتغل عليه بالضبط؟", en: "What do you actually work on?" },
+        a: { ar: "إدارة المنتجات والاكتساب واستراتيجية الموقع في سلة، وأبني منتجات وأدوات شخصية على الجنب.", en: "Product management, acquisition & website strategy at Salla — plus building personal products and tools." },
+      },
+      {
+        q: { ar: "تاخذ مشاريع جانبية؟", en: "Do you take side projects?" },
+        a: { ar: "بشكل محدود — مشاريع منتج أو نمو لها أثر واضح.", en: "Selectively — product or growth work with clear impact." },
+      },
+      {
+        q: { ar: "كيف أتواصل معك؟", en: "How do I reach you?" },
+        a: { ar: "عبر LinkedIn أو الإيميل تحت، أرد بأسرع وقت.", en: "Via LinkedIn or the email below — I reply fast." },
+      },
+      {
+        q: { ar: "وش هدفك المهني؟", en: "What's your career goal?" },
+        a: { ar: "CPO بحلول 2030، بمسار واضح خطوة خطوة.", en: "CPO by 2030, on a clear step-by-step track." },
+      },
+    ],
   },
 
   // ===== Contact =====

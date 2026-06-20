@@ -163,3 +163,55 @@ html[lang="en"] body {
     transform: none;
   }
 }
+
+/* ===== Framed content column (the reference's signature skeleton) ===== */
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 850px;
+  margin-inline: auto;
+  border-inline: 1px solid var(--line);
+}
+/* horizontal hairline under every framed section */
+.frame > section {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+/* small corner dots straddling the vertical rules at each section's top */
+.frame > section::before,
+.frame > section::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  background: var(--faint);
+  z-index: 3;
+  pointer-events: none;
+}
+.frame > section::before {
+  inset-inline-start: -3px;
+}
+.frame > section::after {
+  inset-inline-end: -3px;
+}
+
+/* ===== Cursive signature mark (latin) ===== */
+.signature {
+  font-family: var(--font-signature), cursive;
+  font-weight: 400;
+  line-height: 0.85;
+}
+
+/* ===== Status pill ===== */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: var(--muted);
+}

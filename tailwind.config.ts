@@ -22,6 +22,7 @@ const config: Config = {
         display: ["var(--font-display)", "sans-serif"],
         body: ["var(--font-body)", "sans-serif"],
         ar: ["var(--font-ar)", "sans-serif"],
+        signature: ["var(--font-signature)", "cursive"],
       },
     },
   },

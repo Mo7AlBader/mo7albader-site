@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Rajdhani, Poppins, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Rajdhani, Poppins, IBM_Plex_Sans_Arabic, Waterfall } from "next/font/google";
 import "./globals.css";
 import { LangProvider } from "@/components/LangContext";
 
@@ -21,6 +21,13 @@ const arabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ar",
 });
 
+// cursive signature mark used on the hero portrait (latin only)
+const signature = Waterfall({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-signature",
+});
+
 export const metadata: Metadata = {
   title: "Mohammed AlBader — Product Manager",
   description:
@@ -29,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className={`${display.variable} ${body.variable} ${arabic.variable}`}>
+    <html lang="ar" dir="rtl" className={`${display.variable} ${body.variable} ${arabic.variable} ${signature.variable}`}>
       <body className="font-ar">
         <LangProvider>{children}</LangProvider>
       </body>

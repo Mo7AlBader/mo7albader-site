@@ -1,66 +1,85 @@
 "use client";
 
+import { useState } from "react";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
 
+// one minimal icon per area (strategy, growth, content, build)
+const icons = [
+  "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z",
+  "M3 17l6-6 4 4 8-8M15 7h6v6",
+  "M6 3h9l4 4v14H6zM9 9h6M9 13h6M9 17h4",
+  "M13 2 4 14h6l-1 8 9-12h-6z",
+];
+
 export default function Expertise() {
   const { lang } = useLang();
   const e = content.expertise;
+  const [open, setOpen] = useState(0);
 
   return (
-    <section id="expertise" className="container py-24">
+    <section id="expertise" className="container py-20 md:py-24">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{e.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl md:text-5xl font-bold tracking-tight">
-          {e.title[lang]}
-        </h2>
+        <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{e.title[lang]}</h2>
       </Reveal>
 
-      <ol className="mt-10 grid sm:grid-cols-2 gap-4">
-        {e.areas.map((area, i) => (
-          <Reveal key={i} delay={i * 0.07} y={28}>
-            <li className="flip h-full min-h-[200px]">
-              <div className="flip__inner">
-                {/* front — full info */}
-                <div className="flip__face card h-full p-7">
+      <div className="mt-10 flex flex-col gap-3">
+        {e.areas.map((area, i) => {
+          const active = open === i;
+          return (
+            <Reveal key={i} delay={i * 0.06} y={20}>
+              <button
+                type="button"
+                onClick={() => setOpen(i)}
+                aria-expanded={active}
+                className="card w-full p-6 text-start transition-colors md:p-7"
+              >
+                <div className="flex items-center gap-4">
                   <span
-                    className="font-display text-sm font-bold tabular-nums"
-                    style={{ color: "var(--accent)" }}
+                    className="grid h-12 w-12 shrink-0 place-items-center rounded-xl transition-all"
+                    style={{
+                      background: active
+                        ? "linear-gradient(135deg, #000 0%, #8a2d09 50%, var(--accent) 100%)"
+                        : "rgba(255,255,255,0.04)",
+                    }}
                   >
-                    {String(i + 1).padStart(2, "0")}
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-5 w-5"
+                      fill="none"
+                      stroke={active ? "#fff" : "var(--faint)"}
+                      strokeWidth="1.7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d={icons[i % icons.length]} />
+                    </svg>
                   </span>
-                  <h3 className="font-display mt-2 text-2xl font-bold tracking-tight">
+                  <h3
+                    className="font-display text-2xl font-bold tracking-tight transition-colors md:text-3xl"
+                    style={{ color: active ? "var(--white)" : "rgba(255,255,255,0.4)" }}
+                  >
                     {area[lang]}
                   </h3>
-                  <p className="mt-2 text-muted leading-relaxed">
+                  <span
+                    className="ms-auto font-display text-sm font-bold tabular-nums"
+                    style={{ color: active ? "var(--accent)" : "rgba(255,255,255,0.3)" }}
+                  >
+                    [{String(i + 1).padStart(2, "0")}]
+                  </span>
+                </div>
+                {active && (
+                  <p className="mt-4 leading-relaxed text-muted ltr:pl-16 rtl:pr-16">
                     {lang === "ar" ? area.arDesc : area.enDesc}
                   </p>
-                </div>
-
-                {/* back — orange flourish */}
-                <div
-                  className="flip__face flip__back card flex h-full flex-col justify-between p-7"
-                  style={{ background: "var(--accent)", borderColor: "transparent" }}
-                >
-                  <span className="font-display text-sm font-bold tabular-nums text-black/70">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="flex items-end justify-between gap-3">
-                    <h3 className="font-display text-3xl font-bold leading-tight tracking-tight text-black">
-                      {area[lang]}
-                    </h3>
-                    <svg width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                         strokeWidth="2.2" className="shrink-0 text-black">
-                      <path d="M4 12 12 4M6 4h6v6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </Reveal>
-        ))}
-      </ol>
+                )}
+              </button>
+            </Reveal>
+          );
+        })}
+      </div>
     </section>
   );
 }

@@ -4,63 +4,76 @@ import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
 
+// distinct-but-cohesive placeholder "covers" (swap for real screenshots later)
+const covers = [
+  "radial-gradient(90% 90% at 25% 15%, hsla(20,95%,55%,0.55), transparent 60%)",
+  "radial-gradient(90% 90% at 25% 15%, hsla(162,80%,45%,0.45), transparent 60%)",
+  "radial-gradient(90% 90% at 25% 15%, hsla(265,75%,60%,0.45), transparent 60%)",
+  "radial-gradient(90% 90% at 25% 15%, hsla(205,85%,55%,0.45), transparent 60%)",
+  "radial-gradient(90% 90% at 25% 15%, hsla(38,95%,55%,0.45), transparent 60%)",
+];
+
 export default function Projects() {
   const { lang } = useLang();
   const p = content.projects;
 
   return (
-    <section id="projects" className="container py-24">
+    <section id="projects" className="container py-20 md:py-24">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{p.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl md:text-5xl font-bold tracking-tight">
-          {p.title[lang]}
-        </h2>
+        <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{p.title[lang]}</h2>
       </Reveal>
 
-      <div className="mt-10 grid sm:grid-cols-2 gap-4">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2">
         {p.items.map((item, i) => {
           const href = "href" in item ? (item.href as string) : undefined;
+          const logo = "logo" in item ? (item.logo as string) : undefined;
           const Wrapper = href ? "a" : "div";
+          const featured = i === 0;
           return (
-            <Reveal key={i} delay={i * 0.07} y={28}>
+            <Reveal key={i} delay={i * 0.06} y={28} className={featured ? "sm:col-span-2" : ""}>
               <Wrapper
                 {...(href ? { href, target: "_blank", rel: "noopener" } : {})}
-                className="card group block h-full p-7 transition-colors hover:border-accent/60"
+                className={`group relative block w-full overflow-hidden rounded-[24px] border border-line transition-colors hover:border-accent/60 ${
+                  featured ? "min-h-[320px]" : "min-h-[260px]"
+                }`}
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3.5 min-w-0">
-                    {"logo" in item && item.logo && (
-                      <span className="grid place-items-center w-12 h-12 shrink-0 rounded-xl bg-white p-2">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={item.logo as string}
-                          alt={`${item.name} logo`}
-                          className="max-w-full max-h-full object-contain"
-                        />
-                      </span>
-                    )}
-                    <h3 className="font-display text-2xl font-bold tracking-tight truncate">{item.name}</h3>
+                {/* placeholder cover */}
+                <div
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                  style={{ background: `${covers[i % covers.length]}, #0c0c0c` }}
+                />
+                {/* faint logo watermark */}
+                {logo && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={logo}
+                    alt=""
+                    aria-hidden
+                    className="pointer-events-none absolute left-1/2 top-[42%] w-24 max-w-[38%] -translate-x-1/2 -translate-y-1/2 opacity-20"
+                  />
+                )}
+                {/* category / date chip */}
+                <span className="absolute top-4 rounded-full border border-line bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur ltr:left-4 rtl:right-4">
+                  {item.tags[item.tags.length - 1]}
+                </span>
+                {/* bottom panel */}
+                <div
+                  className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5"
+                  style={{ background: "linear-gradient(transparent, rgba(0,0,0,0.85))" }}
+                >
+                  <div className="min-w-0">
+                    <p className="text-sm text-muted">{item.tags[0]}</p>
+                    <h3 className="font-display text-2xl font-bold tracking-tight md:text-3xl">{item.name}</h3>
+                    <p className="mt-1 line-clamp-2 max-w-md text-sm text-white/55">{item[lang]}</p>
                   </div>
                   {href && (
-                    <svg
-                      width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor"
-                      strokeWidth="2"
-                      className="mt-1 shrink-0 text-muted transition-all group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    >
-                      <path d="M4 12 12 4M6 4h6v6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  )}
-                </div>
-                <p className="mt-3 text-muted leading-relaxed">{item[lang]}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {item.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-md border border-line px-2.5 py-1 text-xs text-white/70"
-                    >
-                      {t}
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-white text-black transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:rotate-90">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M4 12 12 4M6 4h6v6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                     </span>
-                  ))}
+                  )}
                 </div>
               </Wrapper>
             </Reveal>
