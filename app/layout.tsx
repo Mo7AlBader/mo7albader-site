@@ -31,7 +31,7 @@ const signature = Waterfall({
 export const metadata: Metadata = {
   title: "Mohammed AlBader · Product Manager",
   description:
-    "Product Manager · Builder · Founder. Building products that grow, on the road to CPO 2030.",
+    "Product Manager · Builder · Founder. I build and ship products that grow.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
