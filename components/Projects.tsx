@@ -28,7 +28,19 @@ export default function Projects() {
                 className="card group block h-full p-7 transition-colors hover:border-accent/60"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-display text-2xl font-bold tracking-tight">{item.name}</h3>
+                  <div className="flex items-center gap-3.5 min-w-0">
+                    {"logo" in item && item.logo && (
+                      <span className="grid place-items-center w-12 h-12 shrink-0 rounded-xl bg-white p-2">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={item.logo as string}
+                          alt={`${item.name} logo`}
+                          className="max-w-full max-h-full object-contain"
+                        />
+                      </span>
+                    )}
+                    <h3 className="font-display text-2xl font-bold tracking-tight truncate">{item.name}</h3>
+                  </div>
                   {href && (
                     <svg
                       width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor"

@@ -96,6 +96,7 @@ export const content = {
     items: [
       {
         name: "AbdihQT",
+        logo: "/logos/abdihqt.png",
         ar: "منصة تعليمية ذاتية التمويل بدأتها في سن 17 — أكثر من 300 ألف طالب و5 مليون مشاهدة على يوتيوب.",
         en: "Bootstrapped education platform I started at 17 — 300K+ students and 5M+ YouTube views.",
         tags: ["EdTech", "Founder", "Since 2018"],
@@ -103,21 +104,26 @@ export const content = {
       },
       {
         name: "Salla — Acquisition",
+        logo: "/logos/salla.svg",
         ar: "أقود استراتيجية الموقع والاكتساب العضوي (SEO/GEO + PLG)؛ من إطلاق «سوق الجملة» إلى صفحات هبوط عالية التحويل.",
         en: "Leading website strategy & organic acquisition (SEO/GEO + PLG); from the “Wholesale Market” launch to high-converting landing pages.",
         tags: ["PLG", "Acquisition", "2024 →"],
+        href: "https://salla.com",
       },
       {
         name: "Ameen",
+        logo: "/logos/ameen.svg",
         ar: "متطوّع كمدير منتج — تطبيق وصل لمليون مستخدم في رمضان 2025 وتصدّر متجر التطبيقات.",
         en: "Volunteer PM — an app that reached 1M users in Ramadan 2025 and topped the App Store.",
         tags: ["Volunteer PM", "1M users", "#1 App Store"],
       },
       {
         name: "SalahBreak",
+        logo: "/logos/salahbreak.svg",
         ar: "تطبيق يعيد تعريف الصلاة كـ«استراحة صلاة» في بيئة العمل — تكامل مع iOS، Slack، Apple Watch وغيرها.",
         en: "An app reframing prayer as a workplace “prayer break” — integrations across iOS, Slack, Apple Watch & more.",
         tags: ["iOS", "Product", "Building"],
+        href: "https://salahbreak.com",
       },
       {
         name: "50 Tools Challenge",
