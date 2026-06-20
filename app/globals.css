@@ -28,6 +28,12 @@
 
 html {
   scroll-behavior: smooth;
+  /* block the tiny horizontal drag on mobile (RTL sub-pixel overflow); vertical scroll stays intact */
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 /* CRO: tighten mobile scroll — less vertical space per section, cleaner rhythm */
@@ -36,9 +42,9 @@ html {
     padding-top: 2.75rem !important;
     padding-bottom: 2.75rem !important;
   }
-  /* leave room for the sticky mobile CTA */
-  body {
-    padding-bottom: 4.5rem;
+  /* clear the fixed hamburger from the hero status row (location text) */
+  #home {
+    padding-top: 5rem !important;
   }
 }
 

@@ -27,8 +27,8 @@ export const content = {
     location: { ar: "الرياض، السعودية", en: "Riyadh, Saudi Arabia" },
     greeting: { ar: "أنا محمد البدر،", en: "I'm Mohammed AlBader," },
     line: {
-      ar: "مدير منتج. أبني وأطلق منتجات تنمو، على طريق CPO 2030.",
-      en: "Product Manager. I build and ship products that grow, on the road to CPO 2030.",
+      ar: "مدير منتج. أبني وأطلق منتجات تنمو.",
+      en: "Product Manager. I build and ship products that grow.",
     },
     cta: { ar: "تواصل معي", en: "Get in touch" },
     ctaHref: "#contact",
@@ -113,11 +113,11 @@ export const content = {
         href: "https://abdihqt.com",
       },
       {
-        name: "Salla Acquisition",
+        name: "Salla",
         logo: "/logos/salla.svg",
-        ar: "أقود استراتيجية الموقع والاكتساب العضوي (SEO/GEO + PLG)؛ من إطلاق «سوق الجملة» إلى صفحات هبوط عالية التحويل.",
-        en: "Leading website strategy & organic acquisition (SEO/GEO + PLG); from the “Wholesale Market” launch to high-converting landing pages.",
-        tags: ["PLG", "Acquisition", "2024 →"],
+        ar: "إدارة منتج وتسويق للمنتجات الرقمية في سلة: أطلقت «سوق الجملة» و«كاشير سلة»، وأقود توجّه الاكتساب حالياً.",
+        en: "Product & product-marketing for Salla's digital products: launched the Wholesale Market and Salla Cashier, now leading Acquisition.",
+        tags: ["Product", "Acquisition", "2024 →"],
         href: "https://salla.com",
       },
       {
@@ -372,7 +372,7 @@ export const content = {
       },
       {
         q: { ar: "وش هدفك المهني؟", en: "What's your career goal?" },
-        a: { ar: "CPO بحلول 2030، بمسار واضح خطوة خطوة.", en: "CPO by 2030, on a clear step-by-step track." },
+        a: { ar: "الطموح أكون CPO، بمسار واضح خطوة بخطوة.", en: "Becoming a CPO, on a clear step-by-step track." },
       },
     ],
   },
