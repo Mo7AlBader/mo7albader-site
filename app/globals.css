@@ -128,21 +128,27 @@ html[lang="en"] body {
 .ticker {
   overflow: hidden;
   white-space: nowrap;
+  /* normalize marquee math regardless of the page's RTL (Arabic text still shapes RTL) */
+  direction: ltr;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 .ticker__track {
-  display: inline-flex;
+  display: flex;
+  width: max-content;
   align-items: center;
   gap: 0;
   animation: ticker-scroll 24s linear infinite;
   will-change: transform;
 }
-.ticker:hover .ticker__track {
-  animation-play-state: paused;
+/* pause only on real pointer devices — avoids the stuck :hover that froze it on touch */
+@media (hover: hover) {
+  .ticker:hover .ticker__track {
+    animation-play-state: paused;
+  }
 }
 .ticker__item {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 28px;
   padding-inline-end: 28px;
