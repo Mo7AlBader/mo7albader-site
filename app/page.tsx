@@ -9,6 +9,7 @@ import TickerBand from "@/components/TickerBand";
 import Projects from "@/components/Projects";
 import Journey from "@/components/Journey";
 import Expertise from "@/components/Expertise";
+import Strengths from "@/components/Strengths";
 import TechStack from "@/components/TechStack";
 import Partners from "@/components/Partners";
 import Testimonials from "@/components/Testimonials";
@@ -35,6 +36,7 @@ export default function Page() {
           <Projects />
           <Journey />
           <Expertise />
+          <Strengths />
           <TechStack />
           <Partners />
           <Testimonials />

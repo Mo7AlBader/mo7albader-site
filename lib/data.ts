@@ -46,9 +46,9 @@ export const content = {
   stats: {
     ready: { ar: "جاهز لمشاريع عالمية", en: "Ready for global projects" },
     items: [
-      { value: "+1M", ar: "مستخدم وصلهم آمين", en: "users reached · Ameen" },
+      { value: "+2M", ar: "مستخدم وصلهم آمين", en: "users reached · Ameen" },
       { value: "+300K", ar: "طالب في AbdihQT", en: "AbdihQT students" },
-      { value: "+5M", ar: "مشاهدة على يوتيوب", en: "YouTube views" },
+      { value: "+6M", ar: "مشاهدة على يوتيوب", en: "YouTube views" },
       { value: "+100", ar: "متجر مبني على سلة", en: "Salla stores built" },
     ],
   },
@@ -62,8 +62,8 @@ export const content = {
     },
     paragraphs: [
       {
-        ar: "مهندس برمجيات تحوّل لمدير منتجات. أبني وأطلق منذ كان عمري 17 — بدأت بمنصة AbdihQT التعليمية بدون تمويل خارجي، ووصلت لأكثر من 300 ألف طالب و5 مليون مشاهدة على يوتيوب.",
-        en: "A software engineer turned product manager. I've been building and shipping since I was 17 — starting with AbdihQT, a bootstrapped education platform that reached 300K+ students and 5M+ views.",
+        ar: "مهندس برمجيات تحوّل لمدير منتجات. أبني وأطلق منذ كان عمري 17 — بدأت بمنصة AbdihQT التعليمية بدون تمويل خارجي، ووصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
+        en: "A software engineer turned product manager. I've been building and shipping since I was 17 — starting with AbdihQT, a bootstrapped education platform that reached 300K+ students and 6M+ views.",
       },
       {
         ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية — نمو قائم على البيانات وقرارات تخدم التاجر. فلسفتي: التنفيذ أهم من التخطيط، والإشارة أهم من الضجيج.",
@@ -100,8 +100,8 @@ export const content = {
       {
         name: "AbdihQT",
         logo: "/logos/abdihqt.png",
-        ar: "منصة تعليمية ذاتية التمويل بدأتها في سن 17 — أكثر من 300 ألف طالب و5 مليون مشاهدة على يوتيوب.",
-        en: "Bootstrapped education platform I started at 17 — 300K+ students and 5M+ YouTube views.",
+        ar: "منصة تعليمية ذاتية التمويل بدأتها في سن 17 — أكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
+        en: "Bootstrapped education platform I started at 17 — 300K+ students and 6M+ YouTube views.",
         tags: ["EdTech", "Founder", "Since 2018"],
         href: "https://abdihqt.com",
       },
@@ -116,8 +116,8 @@ export const content = {
       {
         name: "Ameen",
         logo: "/logos/ameen.svg",
-        ar: "متطوّع كمدير منتج — تطبيق وصل لمليون مستخدم في رمضان 2025 وتصدّر متجر التطبيقات.",
-        en: "Volunteer PM — an app that reached 1M users in Ramadan 2025 and topped the App Store.",
+        ar: "متطوّع كمدير منتج — تطبيق تجاوز مليوني مستخدم و+14 ألف تقييم، وتصدّر متجر التطبيقات.",
+        en: "Volunteer PM — an app that surpassed 2M users with 14K+ ratings and topped the App Store.",
         tags: ["Volunteer PM", "1M users", "#1 App Store"],
       },
       {
@@ -141,32 +141,51 @@ export const content = {
   journey: {
     eyebrow: { ar: "الخبرة المهنية", en: "Experience" },
     title: { ar: "وين اشتغلت وبنيت", en: "Where I've worked & built" },
-    milestones: [
+    // start/end as YYYY-MM (end null = ongoing); duration is computed from these
+    roles: [
       {
-        year: "2024–",
-        ar: "إدارة المنتج والتسويق · سلة",
-        en: "Associate Product & Marketing Manager · Salla",
+        title: { ar: "مدير منتج / مدير تسويق منتج", en: "Product Manager / Product Marketing Manager" },
+        company: { ar: "سلة", en: "Salla" },
+        logo: "/logos/salla.svg",
+        start: "2024-01",
+        end: null,
+        impact: null,
+        stores: false,
+        ar: "أقود استراتيجية المنتج وتسويق المنتج في قطاع تجارة المنتجات الرقمية بسلة. أطلقت «سوق الجملة» و«كاشير سلة»، وأقود حالياً توجّه الاكتساب (Acquisition).",
+        en: "I lead product & product-marketing strategy for the digital-products commerce sector at Salla. Launched the Wholesale Market and Salla Cashier; now leading the Acquisition direction.",
       },
       {
-        year: "2018–",
-        ar: "مؤسس · AbdihQT (قدرات وتحصيلي)",
-        en: "Founder · AbdihQT",
+        title: { ar: "مؤسس", en: "Founder" },
+        company: { ar: "AbdihQT", en: "AbdihQT" },
+        logo: "/logos/abdihqt.png",
+        start: "2018-02",
+        end: null,
+        impact: null,
+        stores: false,
+        ar: "احتياجي للاستعداد للقدرات والتحصيلي خلّاني أبني مجتمعاً، تحوّل إلى منتج، ثم إلى منظومة وكيان استفاد منه +300 ألف طالب و+6 مليون مشاهدة على يوتيوب.",
+        en: "My own need to prep for Qudurat & Tahsili led me to build a community — that became a product, then a full system used by 300K+ students with 6M+ YouTube views.",
       },
       {
-        year: "2025–",
-        ar: "مدير منتج متطوّع · آمين",
-        en: "Volunteer Product Manager · Ameen",
+        title: { ar: "مدير منتج (متطوّع)", en: "Product Manager (Volunteer)" },
+        company: { ar: "آمين", en: "Ameen" },
+        logo: "/logos/ameen.svg",
+        start: "2025-02",
+        end: null,
+        impact: { ar: "+2 مليون مستخدم · +14 ألف تقييم", en: "2M+ users · 14K+ ratings" },
+        stores: true,
+        ar: "بنيت الأذكار، المصحف، الرئيسية واختصاراتها، والخدمات — مفهوماً ونظاماً ومنتجاً وتجربة مستخدم.",
+        en: "Built Athkar, the Mushaf, the Home & its shortcuts, and Services — as concept, system, product and UX.",
       },
       {
-        year: "2025–26",
-        ar: "مستشار نمو · Doolab",
-        en: "Growth Consultant · Doolab",
-      },
-      {
-        year: "2030",
-        ar: "الهدف: CPO",
-        en: "Goal: CPO",
-        highlight: true,
+        title: { ar: "مستشار نمو", en: "Growth Consultant" },
+        company: { ar: "Doolab Agency", en: "Doolab Agency" },
+        logo: null,
+        start: "2025-11",
+        end: "2026-06",
+        impact: null,
+        stores: false,
+        ar: "دعم نمو وتوسّع وإعادة تموضع الحلول والخدمات داخلياً، مع تقييم كل المشاريع وتحسين خطط إطلاقها (لفترة محدودة). أبرز المخرجات: Tecno Mobile، bxstore، بندر بطاطا، دافور.",
+        en: "Supported internal growth, expansion & repositioning of solutions and services — evaluating projects and improving launch plans (fixed term). Highlights: Tecno Mobile, bxstore, Bandar Batata, Dafoor.",
       },
     ],
   },
@@ -200,6 +219,34 @@ export const content = {
         arDesc: "نماذج وأدوات تُبنى وتُطلق بسرعة عبر Vibe Coding و Claude API.",
         enDesc: "Prototypes and tools built and shipped fast with Vibe Coding & the Claude API.",
       },
+    ],
+  },
+
+  // ===== Strengths (CliftonStrengths · Gallup) =====
+  strengths: {
+    eyebrow: { ar: "نقاط القوة", en: "Strengths" },
+    source: { ar: "CliftonStrengths® · Gallup · 2024", en: "CliftonStrengths® · Gallup · 2024" },
+    title: { ar: "أقوى ٥ مواهب فطرية", en: "My top 5 natural talents" },
+    moreLabel: { ar: "وأيضاً ضمن العشرة الأوائل", en: "Also in my top 10" },
+    domains: {
+      strategic: { ar: "تفكير استراتيجي", en: "Strategic Thinking", color: "#1ef482" },
+      executing: { ar: "تنفيذ", en: "Executing", color: "#a855f7" },
+      influencing: { ar: "تأثير", en: "Influencing", color: "#f3500f" },
+      relationship: { ar: "بناء علاقات", en: "Relationship Building", color: "#4d8cff" },
+    },
+    top5: [
+      { name: "Ideation", domain: "strategic", ar: "مفتون بالأفكار، وأربط بين ظواهر تبدو غير مترابطة.", en: "Fascinated by ideas; I connect seemingly disparate dots." },
+      { name: "Input", domain: "strategic", ar: "أجمع وأؤرشف المعرفة والأفكار باستمرار.", en: "I constantly collect and archive knowledge and ideas." },
+      { name: "Arranger", domain: "executing", ar: "أنظّم الناس والموارد لأقصى إنتاجية ومرونة.", en: "I organize people and resources for maximum productivity." },
+      { name: "Activator", domain: "influencing", ar: "أحوّل الأفكار إلى فعل — التنفيذ أهم من التخطيط.", en: "I turn ideas into action — execution over planning." },
+      { name: "Futuristic", domain: "strategic", ar: "تُلهمني صورة المستقبل وأرسم الطريق نحوها.", en: "Inspired by what could be — I paint the future." },
+    ],
+    more: [
+      { rank: 6, name: "Empathy", domain: "relationship" },
+      { rank: 7, name: "Relator", domain: "relationship" },
+      { rank: 8, name: "Responsibility", domain: "executing" },
+      { rank: 9, name: "Restorative", domain: "executing" },
+      { rank: 10, name: "Intellection", domain: "strategic" },
     ],
   },
 
