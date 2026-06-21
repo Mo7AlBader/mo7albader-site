@@ -65,40 +65,35 @@ export default function Hero() {
         {/* portrait card + cursive signature (placeholder until photo is added) */}
         <Reveal delay={0.08} y={28}>
           <div
-            className="relative mx-auto mt-8 w-full max-w-[350px] overflow-hidden rounded-[28px] border border-line"
-            style={{ aspectRatio: "436 / 460" }}
+            className="relative mx-auto mt-8 w-full max-w-[360px] overflow-hidden rounded-[28px] border border-line"
+            style={{ aspectRatio: "4 / 5" }}
           >
+            {/* orange duotone background — shows through the transparent cutout */}
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(120% 95% at 50% 8%, #ff7a3d 0%, var(--accent) 28%, #7d1f06 62%, #160a05 100%)",
+                  "radial-gradient(120% 95% at 50% 12%, #ff7a3d 0%, var(--accent) 30%, #7d1f06 66%, #160a05 100%)",
               }}
             />
-            {/* silhouette stands in for the portrait photo */}
-            <svg
-              viewBox="0 0 200 220"
-              preserveAspectRatio="xMidYMax meet"
-              className="absolute inset-x-0 bottom-0 mx-auto h-[82%]"
-              aria-hidden
-            >
-              <g fill="rgba(0,0,0,0.30)">
-                <circle cx="100" cy="72" r="44" />
-                <path d="M16 220c0-48 37.6-82 84-82s84 34 84 82Z" />
-              </g>
-            </svg>
-            {/* top vignette for depth */}
+            {/* real photo (transparent PNG sits on the gradient) */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/mohammed.png"
+              alt="محمد البدر"
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ objectPosition: "center top" }}
+            />
+            {/* bottom scrim so the signature stays legible */}
             <div
-              className="absolute inset-0"
-              style={{
-                background: "radial-gradient(100% 80% at 50% 0%, transparent 50%, rgba(0,0,0,0.5) 100%)",
-              }}
+              className="absolute inset-x-0 bottom-0 h-2/5"
+              style={{ background: "linear-gradient(transparent, rgba(0,0,0,0.55))" }}
             />
             {/* signature */}
             <span
               dir="ltr"
-              className="signature absolute bottom-1 text-[68px] text-white ltr:left-4 rtl:right-4 md:text-[88px]"
-              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}
+              className="signature absolute bottom-1 text-[58px] text-white ltr:left-4 rtl:right-4 md:text-[76px]"
+              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}
             >
               Mohammed
             </span>

@@ -4,3 +4,7 @@ out
 .env*
 .DS_Store
 *.log
+
+# original full-res source assets (the optimized copy lives in public/)
+mohammed Alanazi.png
+.claude/settings.local.json
