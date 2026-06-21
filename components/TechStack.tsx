@@ -4,7 +4,7 @@ import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
 
-function ToolLogo({ name }: { name: string }) {
+function ToolLogo({ name, logo }: { name: string; logo?: string | null }) {
   if (name === "Figma") {
     return (
       <svg viewBox="0 0 38 57" className="h-6 w-6" aria-hidden>
@@ -37,9 +37,38 @@ function ToolLogo({ name }: { name: string }) {
       </svg>
     );
   }
-  // fallback monogram for any future tool without a bundled logo
+  if (name === "ChatGPT") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="#fff" aria-hidden>
+        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071.007l-4.83-2.791a4.504 4.504 0 0 1-1.638-6.119zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071-.007l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z" />
+      </svg>
+    );
+  }
+  if (name === "Photoshop") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden>
+        <rect x="1" y="1" width="22" height="22" rx="5" fill="#001E36" />
+        <text
+          x="12"
+          y="16.6"
+          textAnchor="middle"
+          fontFamily="Arial, Helvetica, sans-serif"
+          fontWeight="700"
+          fontSize="11"
+          fill="#31A8FF"
+        >
+          Ps
+        </text>
+      </svg>
+    );
+  }
+  if (logo) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={logo} alt={name} className="h-5 w-5 object-contain" />;
+  }
+  // fallback monogram for any tool without a bundled logo
   const init = name.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase();
-  return <span className="font-display text-lg font-bold text-white">{init}</span>;
+  return <span className="font-display text-base font-bold text-white">{init}</span>;
 }
 
 export default function TechStack() {
@@ -53,12 +82,31 @@ export default function TechStack() {
         <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{t.title[lang]}</h2>
       </Reveal>
 
-      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+      {/* Mobile: seamless auto-scrolling carousel (two identical halves, loops forever) */}
+      <Reveal y={20}>
+        <div className="logos-marquee mt-8 md:hidden" aria-hidden>
+          <div className="logos-track">
+            {[...t.items, ...t.items].map((item, i) => (
+              <div key={i} className="logos-chip">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-line bg-white/[0.04]">
+                  <ToolLogo name={item.name} logo={item.logo} />
+                </span>
+                <span className="font-display whitespace-nowrap text-base font-semibold tracking-tight">
+                  {item.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      {/* Desktop: full grid with taglines */}
+      <div className="mt-10 hidden grid-cols-4 gap-4 md:grid">
         {t.items.map((item, i) => (
-          <Reveal key={i} delay={i * 0.06} y={24}>
+          <Reveal key={i} delay={(i % 4) * 0.06} y={24}>
             <div className="card h-full p-6">
               <span className="grid h-12 w-12 place-items-center rounded-xl border border-line bg-white/[0.04]">
-                <ToolLogo name={item.name} />
+                <ToolLogo name={item.name} logo={item.logo} />
               </span>
               <h3 className="font-display mt-5 text-xl font-bold tracking-tight">{item.name}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-muted">{item[lang]}</p>

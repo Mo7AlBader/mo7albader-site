@@ -87,7 +87,7 @@ export default function Journey() {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
                     <span className="grid h-7 w-7 shrink-0 place-items-center overflow-hidden rounded-lg bg-white p-1">
-                      {r.logo ? (
+                      {(r.logo as string | null) ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={r.logo} alt={r.company[lang]} className="max-h-full max-w-full object-contain" />
                       ) : (

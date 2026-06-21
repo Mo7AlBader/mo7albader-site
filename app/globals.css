@@ -158,6 +158,38 @@ html[lang="en"] body {
   to { transform: translateX(-50%); }
 }
 
+/* ===== Tools carousel (mobile) — seamless infinite loop ===== */
+.logos-marquee {
+  overflow: hidden;
+  direction: ltr;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.logos-track {
+  display: flex;
+  width: max-content;
+  align-items: stretch;
+  gap: 0;
+  animation: ticker-scroll 32s linear infinite;
+  will-change: transform;
+}
+@media (hover: hover) {
+  .logos-marquee:hover .logos-track {
+    animation-play-state: paused;
+  }
+}
+.logos-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* trailing gap lives on the item so translateX(-50%) seams perfectly */
+  margin-inline-end: 12px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
 /* ===== 3D flip card ===== */
 .flip {
   perspective: 1200px;
@@ -184,7 +216,8 @@ html[lang="en"] body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ticker__track {
+  .ticker__track,
+  .logos-track {
     animation: none;
   }
   .flip:hover .flip__inner {
