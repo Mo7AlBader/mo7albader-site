@@ -296,6 +296,7 @@ export const content = {
       { name: "Alnoj Oud", src: "/logos/partners/alnoj.jpg" },
       { name: "Lamha", src: "/logos/partners/lamha.png" },
       { name: "AbdihQT", src: "/logos/abdihqt.png" },
+      { name: "مجرة أبدع", src: "/logos/partners/majarah.png" },
       { name: "Moamen Academy", src: "/logos/partners/moamen.jpg" },
       { name: "Mojrm Games", src: "/logos/partners/mojrm.jpg" },
     ],
