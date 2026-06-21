@@ -173,6 +173,9 @@ html[lang="en"] body {
   animation: ticker-scroll 32s linear infinite;
   will-change: transform;
 }
+.logos-track--rev {
+  animation-direction: reverse;
+}
 @media (hover: hover) {
   .logos-marquee:hover .logos-track {
     animation-play-state: paused;

@@ -283,12 +283,21 @@ export const content = {
   // ===== Partners / trusted by =====
   partners: {
     eyebrow: { ar: "موثوق من", en: "Trusted by" },
-    title: { ar: "بنيتُ لعلامات ومنصّات", en: "Built for brands & platforms" },
+    title: { ar: "علامات ومنصّات اشتغلت معها", en: "Brands & platforms I've worked with" },
     logos: [
       { name: "Salla", src: "/logos/salla.svg" },
+      { name: "Noon Academy", src: "/logos/partners/noon.png" },
       { name: "Ameen", src: "/logos/ameen.svg" },
-      { name: "AbdihQT", src: "/logos/abdihqt.png" },
+      { name: "Doolab", src: "/logos/doolab.svg" },
       { name: "SalahBreak", src: "/logos/salahbreak.svg" },
+      { name: "Algooru", src: "/logos/partners/algooru.png" },
+      { name: "Najd Water", src: "/logos/partners/najd.png" },
+      { name: "Edraak", src: "/logos/partners/edraak.jpg" },
+      { name: "Alnoj Oud", src: "/logos/partners/alnoj.jpg" },
+      { name: "Lamha", src: "/logos/partners/lamha.png" },
+      { name: "AbdihQT", src: "/logos/abdihqt.png" },
+      { name: "Moamen Academy", src: "/logos/partners/moamen.jpg" },
+      { name: "Mojrm Games", src: "/logos/partners/mojrm.jpg" },
     ],
   },
 
