@@ -261,7 +261,7 @@ export const content = {
   // ===== Tech stack =====
   techStack: {
     eyebrow: { ar: "أدواتي", en: "Tech stack" },
-    title: { ar: "اللي أبني فيه", en: "What I build with" },
+    title: { ar: "اللي أشتغل فيه", en: "What I work with" },
     items: [
       { name: "Claude", logo: null, ar: "توليد المحتوى وبناء الأدوات", en: "Content & tooling" },
       { name: "ChatGPT", logo: null, ar: "بحث وصياغة وعصف أفكار", en: "Research & drafting" },
@@ -276,7 +276,7 @@ export const content = {
       { name: "WordPress", logo: "/logos/tools/wordpress.svg", ar: "مواقع ومدوّنات المحتوى", en: "Content sites & blogs" },
       { name: "Webflow", logo: "/logos/tools/webflow.svg", ar: "صفحات هبوط بدون كود", en: "No-code landing pages" },
       { name: "GA4", logo: "/logos/tools/ga.svg", ar: "تحليلات المنتج والاكتساب", en: "Product & acquisition analytics" },
-      { name: "Amplitude", logo: "/logos/tools/amplitude.png", ar: "قياس الإيفنتات وتقارير النمو", en: "Event analytics & growth reports" },
+      { name: "Mixpanel", logo: "/logos/tools/mixpanel.svg", ar: "قياس الإيفنتات وتقارير النمو", en: "Event analytics & growth reports" },
     ],
   },
 
