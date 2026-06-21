@@ -265,8 +265,8 @@ export const content = {
     items: [
       { name: "Claude", logo: null, ar: "توليد المحتوى وبناء الأدوات", en: "Content & tooling" },
       { name: "ChatGPT", logo: null, ar: "بحث وصياغة وعصف أفكار", en: "Research & drafting" },
-      { name: "Manus AI", logo: null, ar: "وكيل ذكاء ينجز المهام", en: "Agentic task runner" },
-      { name: "Antigravity", logo: null, ar: "بيئة برمجة وكيلة", en: "Agentic coding IDE" },
+      { name: "Manus AI", logo: "/logos/tools/manus.png", ar: "وكيل ذكاء ينجز المهام", en: "Agentic task runner" },
+      { name: "Antigravity", logo: "/logos/tools/antigravity.png", ar: "بيئة برمجة وكيلة", en: "Agentic coding IDE" },
       { name: "Cursor", logo: "/logos/tools/cursor.svg", ar: "محرّر أكواد بالذكاء الاصطناعي", en: "AI-native code editor" },
       { name: "Next.js", logo: null, ar: "تطبيقات React سريعة", en: "Fast React apps" },
       { name: "Figma", logo: null, ar: "تصميم الواجهات وأنظمتها", en: "UI & design systems" },
@@ -276,6 +276,7 @@ export const content = {
       { name: "WordPress", logo: "/logos/tools/wordpress.svg", ar: "مواقع ومدوّنات المحتوى", en: "Content sites & blogs" },
       { name: "Webflow", logo: "/logos/tools/webflow.svg", ar: "صفحات هبوط بدون كود", en: "No-code landing pages" },
       { name: "GA4", logo: "/logos/tools/ga.svg", ar: "تحليلات المنتج والاكتساب", en: "Product & acquisition analytics" },
+      { name: "Amplitude", logo: "/logos/tools/amplitude.png", ar: "قياس الإيفنتات وتقارير النمو", en: "Event analytics & growth reports" },
     ],
   },
 
