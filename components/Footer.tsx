@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
+import CalModal from "./CalModal";
 
 function SocialIcon({ label }: { label: string }) {
   if (label === "LinkedIn") {
@@ -29,6 +31,7 @@ function SocialIcon({ label }: { label: string }) {
 export default function Footer() {
   const { lang } = useLang();
   const socials = content.contact.links;
+  const [calOpen, setCalOpen] = useState(false);
 
   return (
     <footer className="relative overflow-hidden">
@@ -42,12 +45,16 @@ export default function Footer() {
           {lang === "ar" ? "تواصل" : "Get in touch"}
         </p>
 
-        <a href="#contact" className="group mt-6 flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={() => setCalOpen(true)}
+          className="group mt-6 flex w-full items-center justify-center gap-4"
+        >
           <span className="h-2.5 w-2.5 rounded-full bg-white transition-colors group-hover:bg-accent" />
           <span className="font-display text-5xl font-bold tracking-tight transition-colors group-hover:text-accent md:text-7xl">
             {lang === "ar" ? "احجز مكالمة" : "Book a call"}
           </span>
-        </a>
+        </button>
 
         {/* profile chip */}
         <div className="mt-10 inline-flex items-center gap-3 rounded-full border border-line bg-white/[0.03] p-1.5 pe-5">
@@ -83,6 +90,8 @@ export default function Footer() {
           © {new Date().getFullYear()} · {content.footer[lang]}
         </p>
       </div>
+
+      <CalModal open={calOpen} onClose={() => setCalOpen(false)} />
     </footer>
   );
 }
