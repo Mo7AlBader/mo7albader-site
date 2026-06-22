@@ -107,6 +107,7 @@ export const content = {
       {
         name: "AbdihQT",
         logo: "/logos/abdihqt.png",
+        cover: "/covers/abdihqt.png",
         ar: "منصة تعليمية ذاتية التمويل بدأتها في سن 17، فيها أكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
         en: "Bootstrapped education platform I started at 17, now with 300K+ students and 6M+ YouTube views.",
         tags: ["EdTech", "Founder", "Since 2018"],
@@ -115,6 +116,7 @@ export const content = {
       {
         name: "Salla",
         logo: "/logos/salla.svg",
+        cover: "/covers/salla.png",
         ar: "إدارة منتج وتسويق للمنتجات الرقمية في سلة: أطلقت «سوق الجملة» و«كاشير سلة»، وأقود توجّه الاكتساب حالياً.",
         en: "Product & product-marketing for Salla's digital products: launched the Wholesale Market and Salla Cashier, now leading Acquisition.",
         tags: ["Product", "Acquisition", "2024 →"],
@@ -123,6 +125,7 @@ export const content = {
       {
         name: "Ameen",
         logo: "/logos/ameen.svg",
+        cover: "/covers/ameen.png",
         ar: "متطوّع كمدير منتج. التطبيق تجاوز مليوني مستخدم و+14 ألف تقييم، وتصدّر متجر التطبيقات.",
         en: "Volunteer PM. The app surpassed 2M users with 14K+ ratings and topped the App Store.",
         tags: ["Volunteer PM", "1M users", "#1 App Store"],
@@ -131,6 +134,7 @@ export const content = {
       {
         name: "SalahBreak",
         logo: "/logos/salahbreak.svg",
+        cover: "/covers/salahbreak.png",
         ar: "تطبيق يعيد تعريف الصلاة كـ«استراحة صلاة» في بيئة العمل، مع تكامل عبر iOS وSlack وApple Watch وغيرها.",
         en: "An app that reframes prayer as a workplace “prayer break,” with integrations across iOS, Slack, Apple Watch and more.",
         tags: ["iOS", "Product", "Building"],

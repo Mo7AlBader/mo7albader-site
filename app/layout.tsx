@@ -29,9 +29,43 @@ const signature = Waterfall({
 });
 
 export const metadata: Metadata = {
-  title: "Mohammed AlBader · Product Manager",
+  // NOTE: switch to https://mo7albader.com once DNS points here (then OG images resolve on the brand domain)
+  metadataBase: new URL("https://mo7albader-site.vercel.app"),
+  title: {
+    default: "Mohammed AlBader · Product Manager",
+    template: "%s · Mohammed AlBader",
+  },
   description:
-    "Product Manager · Builder · Founder. I build and ship products that grow.",
+    "Product Manager, builder and founder from Riyadh. I take ideas from a blank page to products millions use. 2M+ users, 300K+ students, 6M+ views.",
+  keywords: [
+    "Mohammed AlBader",
+    "محمد البدر",
+    "Product Manager",
+    "Product Advisory",
+    "Salla",
+    "AbdihQT",
+    "Riyadh",
+    "PM",
+    "Growth",
+  ],
+  authors: [{ name: "Mohammed AlBader" }],
+  creator: "Mohammed AlBader",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "Mohammed AlBader",
+    title: "Mohammed AlBader · Product Manager",
+    description:
+      "Product Manager, builder and founder from Riyadh. From a blank page to products millions use.",
+    url: "/",
+    locale: "ar_SA",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mohammed AlBader · Product Manager",
+    description: "Product Manager, builder and founder from Riyadh.",
+    creator: "@mo7albader",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

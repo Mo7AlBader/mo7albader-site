@@ -28,6 +28,7 @@ export default function Projects() {
         {p.items.map((item, i) => {
           const href = "href" in item ? (item.href as string) : undefined;
           const logo = "logo" in item ? (item.logo as string) : undefined;
+          const cover = "cover" in item ? (item.cover as string) : undefined;
           const Wrapper = href ? "a" : "div";
           const featured = i === 0;
           return (
@@ -38,13 +39,26 @@ export default function Projects() {
                   featured ? "min-h-[320px]" : "min-h-[260px]"
                 }`}
               >
-                {/* placeholder cover */}
-                <div
-                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-                  style={{ background: `${covers[i % covers.length]}, #0c0c0c` }}
-                />
-                {/* faint logo watermark */}
-                {logo && (
+                {/* cover: real screenshot when available, gradient otherwise */}
+                {cover ? (
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={cover}
+                      alt={`${item.name} preview`}
+                      className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                    />
+                    {/* readability scrim */}
+                    <div className="pointer-events-none absolute inset-0 bg-black/15" />
+                  </>
+                ) : (
+                  <div
+                    className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                    style={{ background: `${covers[i % covers.length]}, #0c0c0c` }}
+                  />
+                )}
+                {/* faint logo watermark only when there's no real cover */}
+                {logo && !cover && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={logo}
