@@ -23,7 +23,7 @@ export const content = {
 
   // ===== Hero =====
   hero: {
-    available: { ar: "متاح لفرص ومشاريع", en: "Open to roles & projects" },
+    available: { ar: "متاح لاستشارات منتج · يوم بالأسبوع", en: "Product advisory · 1 day/week" },
     location: { ar: "الرياض، السعودية", en: "Riyadh, Saudi Arabia" },
     greeting: { ar: "أنا محمد البدر،", en: "I'm Mohammed AlBader," },
     line: {
@@ -46,7 +46,7 @@ export const content = {
   // ===== Tickers (marquee bands) =====
   tickers: {
     work: { ar: "أعمال مختارة", en: "Selected Work" },
-    cta: { ar: "خلنا نبني شي", en: "Let's build something" },
+    cta: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
   },
 
   // ===== Stats (impact band) =====
@@ -401,10 +401,10 @@ export const content = {
   // ===== Contact =====
   contact: {
     eyebrow: { ar: "تواصل", en: "Get in touch" },
-    title: { ar: "خلنا نبني شي", en: "Let's build something" },
+    title: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
     note: {
-      ar: "مفتوح لفرص إدارة المنتجات بدوام كامل، وللاستشارات والمشاريع الجانبية اللي لها أثر. أرد بسرعة.",
-      en: "Open to full-time product roles, plus consulting and side projects with real impact. I reply fast.",
+      ar: "متاح لاستشارات المنتج فقط، يوم واحد في الأسبوع. أرد بسرعة.",
+      en: "Available for product advisory only, one day a week. I reply fast.",
     },
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },
