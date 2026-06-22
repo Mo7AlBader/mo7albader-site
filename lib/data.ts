@@ -27,8 +27,8 @@ export const content = {
     location: { ar: "الرياض، السعودية", en: "Riyadh, Saudi Arabia" },
     greeting: { ar: "أنا محمد البدر،", en: "I'm Mohammed AlBader," },
     line: {
-      ar: "مدير منتج. أبني وأطلق منتجات تنمو.",
-      en: "Product Manager. I build and ship products that grow.",
+      ar: "مدير منتج. آخذ الفكرة من صفحة بيضاء إلى منتج يستخدمه الملايين.",
+      en: "Product Manager. I take ideas from a blank page to products millions use.",
     },
     cta: { ar: "تواصل معي", en: "Get in touch" },
     ctaHref: "#contact",
@@ -51,12 +51,12 @@ export const content = {
 
   // ===== Stats (impact band) =====
   stats: {
-    ready: { ar: "جاهز لمشاريع عالمية", en: "Ready for global projects" },
+    ready: { ar: "الأثر، بالأرقام", en: "Impact, in numbers" },
     items: [
       { value: "+2M", ar: "مستخدم وصلهم آمين", en: "users reached · Ameen" },
       { value: "+300K", ar: "طالب في AbdihQT", en: "AbdihQT students" },
       { value: "+6M", ar: "مشاهدة على يوتيوب", en: "YouTube views" },
-      { value: "+100", ar: "متجر مبني على سلة", en: "Salla stores built" },
+      { value: "+100", ar: "متجر بنيته على سلة", en: "Salla stores I built" },
     ],
   },
 
@@ -69,12 +69,12 @@ export const content = {
     },
     paragraphs: [
       {
-        ar: "مهندس برمجيات تحوّل لمدير منتجات. أبني وأطلق من وأنا عمري 17، وبدأت بمنصة AbdihQT التعليمية بدون تمويل خارجي، ووصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
-        en: "A software engineer turned product manager. I've been building and shipping since I was 17. It started with AbdihQT, a bootstrapped education platform that reached 300K+ students and 6M+ views.",
+        ar: "بديت مهندس برمجيات، وصرت مدير منتجات لأني أحب أبني أشياء يستخدمها الناس فعلاً. أول مشروع كان وأنا بعمر 17: منصة AbdihQT التعليمية، بنيتها من الصفر وبدون تمويل، ووصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة.",
+        en: "I started as a software engineer and became a product manager because I love building things people actually use. My first build was at 17: AbdihQT, an education platform I bootstrapped from zero to 300K+ students and 6M+ views.",
       },
       {
-        ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية. شغلي نمو قائم على البيانات وقرارات تخدم التاجر، وفلسفتي بسيطة: التنفيذ قبل التخطيط، والإشارة قبل الضجيج.",
-        en: "Today I drive acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform. Data-driven growth and merchant-first decisions. My philosophy is simple: execution over planning, signal over noise.",
+        ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية. شغلي نمو مبني على البيانات، وقراري دايم أوله التاجر. وفلسفتي بسيطة: التنفيذ قبل التخطيط، والإشارة قبل الضجيج.",
+        en: "Today I lead acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform. Data-driven growth, merchant-first decisions. My philosophy is simple: execution over planning, signal over noise.",
       },
     ],
     tags: ["Product Management", "Growth & Acquisition", "SaaS", "UI/UX", "Web Dev", "Content & SEO"],
@@ -192,8 +192,8 @@ export const content = {
         end: "2026-06",
         impact: null,
         stores: false,
-        ar: "دعم نمو وتوسّع وإعادة تموضع الحلول والخدمات داخلياً، مع تقييم كل المشاريع وتحسين خطط إطلاقها (لفترة محدودة). أبرز المخرجات: Tecno Mobile، bxstore، بندر بطاطا، دافور.",
-        en: "Supported internal growth, expansion and repositioning of solutions and services, evaluating projects and improving their launch plans (fixed term). Highlights: Tecno Mobile, bxstore, Bandar Batata, Dafoor.",
+        ar: "ساعدت دولاب في النمو والتوسّع وإعادة تموضع خدماتها، وقيّمت مشاريعها وحسّنت خطط إطلاقها. من أبرز اللي اشتغلت عليه: Tecno Mobile، bxstore، بندر بطاطا، ودافور.",
+        en: "Helped Doolab grow, expand and reposition its services, evaluating its projects and sharpening their launch plans. Highlights I worked on: Tecno Mobile, bxstore, Bandar Batata, and Dafoor.",
       },
     ],
   },
@@ -385,7 +385,7 @@ export const content = {
       },
       {
         q: { ar: "تاخذ مشاريع جانبية؟", en: "Do you take side projects?" },
-        a: { ar: "بشكل محدود، على مشاريع منتج أو نمو لها أثر واضح.", en: "Selectively, on product or growth work with clear impact." },
+        a: { ar: "نعم، استشارات منتج فقط، يوم واحد في الأسبوع، ولمشاريع لها أثر واضح.", en: "Yes, product advisory only, one day a week, for work with clear impact." },
       },
       {
         q: { ar: "كيف أتواصل معك؟", en: "How do I reach you?" },
@@ -403,8 +403,8 @@ export const content = {
     eyebrow: { ar: "تواصل", en: "Get in touch" },
     title: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
     note: {
-      ar: "متاح لاستشارات المنتج فقط، يوم واحد في الأسبوع. أرد بسرعة.",
-      en: "Available for product advisory only, one day a week. I reply fast.",
+      ar: "متاح لاستشارات المنتج فقط، يوم واحد في الأسبوع. اكتب لي وبردّ عليك بسرعة.",
+      en: "Available for product advisory only, one day a week. Drop me a line and I'll reply fast.",
     },
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },
@@ -414,7 +414,7 @@ export const content = {
   },
 
   footer: {
-    ar: "صُمّم وبُني بواسطة محمد البدر",
+    ar: "صمّمه وبناه محمد البدر",
     en: "Designed & built by Mohammed AlBader",
   },
 } as const;
