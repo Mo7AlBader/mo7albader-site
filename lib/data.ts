@@ -76,6 +76,10 @@ export const content = {
         ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية. شغلي نمو مبني على البيانات، وقراري دايم أوله التاجر. وفلسفتي بسيطة: التنفيذ قبل التخطيط، والإشارة قبل الضجيج.",
         en: "Today I lead acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform. Data-driven growth, merchant-first decisions. My philosophy is simple: execution over planning, signal over noise.",
       },
+      {
+        ar: "وباختصار: أي مشروع أنضمّ له أكون مكسب له، مو مجرد منفّذ. آخذ الأفكار من ورق وأطلّعها نتائج تتقاس، وأملك شغلي من أوله لآخره.",
+        en: "In short: any project I join, I'm an asset to it, not just a pair of hands. I turn ideas into measurable results, and I own my work end to end.",
+      },
     ],
     tags: ["Product Management", "Growth & Acquisition", "SaaS", "UI/UX", "Web Dev", "Content & SEO"],
   },
@@ -210,26 +214,26 @@ export const content = {
       {
         ar: "استراتيجية المنتج",
         en: "Product Strategy",
-        arDesc: "اكتشاف مساحة المشكلة، التحقق، وبناء رودماب يخدم المستخدم والأعمال.",
-        enDesc: "Problem-space discovery, validation, and roadmaps that serve user and business.",
+        arDesc: "أكتشف المشكلة الصح قبل الحل، وأبني رودماب يحرّك المستخدم والإيراد مع بعض.",
+        enDesc: "I find the right problem before the solution, then build a roadmap that moves both the user and the revenue.",
       },
       {
         ar: "الاكتساب و PLG",
         en: "Acquisition & PLG",
-        arDesc: "SEO/GEO ونمو مدفوع بالمنتج يحوّل الزوار إلى مستخدمين.",
-        enDesc: "SEO/GEO and product-led growth that turns visitors into users.",
+        arDesc: "أحوّل الزوار إلى مستخدمين عبر SEO/GEO ونمو مدفوع بالمنتج، ونمو يبان على الأرقام.",
+        enDesc: "I turn visitors into users with SEO/GEO and product-led growth, growth you can see in the numbers.",
       },
       {
         ar: "المحتوى والسرد",
         en: "Content & Narrative",
-        arDesc: "رسائل ومحتوى يحوّل، من صفحات الهبوط إلى قصص النجاح.",
-        enDesc: "Messaging and content that converts, from landing pages to success stories.",
+        arDesc: "رسائل تبيع: من صفحة الهبوط إلى قصة النجاح، محتوى يحوّل مو بس يوصف.",
+        enDesc: "Messaging that sells: from landing pages to success stories, content that converts, not just describes.",
       },
       {
         ar: "البناء السريع",
         en: "Rapid Building",
-        arDesc: "نماذج وأدوات تُبنى وتُطلق بسرعة عبر Vibe Coding و Claude API.",
-        enDesc: "Prototypes and tools built and shipped fast with Vibe Coding & the Claude API.",
+        arDesc: "من الفكرة لنموذج شغّال في أيام عبر Vibe Coding، فتختبر بسرعة وتقرّر بثقة.",
+        enDesc: "From idea to a working prototype in days with Vibe Coding, so you test fast and decide with confidence.",
       },
     ],
   },
@@ -384,6 +388,10 @@ export const content = {
     eyebrow: { ar: "أسئلة شائعة", en: "FAQs" },
     items: [
       {
+        q: { ar: "ليش أشتغل معك؟", en: "Why work with you?" },
+        a: { ar: "لأني باني فعلي مو مستشار نظري. أرقامي تتكلم: ملايين المستخدمين ومنتجات أطلقتها بيدي، وأجي بعقلية مالك يهمّه النتيجة قبل أي شي.", en: "Because I'm a builder, not a theorist. The numbers speak: millions of users and products I shipped myself, and I bring an owner's mindset focused on the result." },
+      },
+      {
         q: { ar: "وش تشتغل عليه بالضبط؟", en: "What do you actually work on?" },
         a: { ar: "إدارة المنتجات والاكتساب واستراتيجية الموقع في سلة، وأبني منتجات وأدوات شخصية على الجنب.", en: "Product management, acquisition and website strategy at Salla, plus building personal products and tools." },
       },
@@ -407,8 +415,8 @@ export const content = {
     eyebrow: { ar: "تواصل", en: "Get in touch" },
     title: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
     note: {
-      ar: "متاح لاستشارات المنتج فقط، يوم واحد في الأسبوع. اكتب لي وبردّ عليك بسرعة.",
-      en: "Available for product advisory only, one day a week. Drop me a line and I'll reply fast.",
+      ar: "متاح لاستشارات المنتج فقط، يوم واحد في الأسبوع. تجيك خبرة باني وأرقام حقيقية، مو نظريات. اكتب لي وبردّ عليك بسرعة.",
+      en: "Available for product advisory only, one day a week. You get a builder's experience and real numbers, not theory. Drop me a line and I'll reply fast.",
     },
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },
