@@ -362,7 +362,7 @@ export const content = {
     eyebrow: { ar: "الهدف الشخصي", en: "Personal goal" },
     title: { ar: "رينج روفر", en: "Range Rover" },
     year: "2028",
-    image: "/range-rover.jpg",
+    image: "/rangerover.jpg",
     note: {
       ar: "هدف واحد واضح أشتغل له بنظام، خطوة خطوة. لسه في أول الطريق، بس ماشي.",
       en: "One clear target I'm working toward on a system, step by step. Still early, but it's moving.",
