@@ -48,11 +48,18 @@ export default function Footer() {
         <button
           type="button"
           onClick={() => setCalOpen(true)}
-          className="group mt-6 flex w-full items-center justify-center gap-4"
+          className="group mt-6 flex w-full flex-col items-center gap-4"
         >
-          <span className="h-2.5 w-2.5 rounded-full bg-white transition-colors group-hover:bg-accent" />
-          <span className="font-display text-5xl font-bold tracking-tight transition-colors group-hover:text-accent md:text-7xl">
-            {lang === "ar" ? "احجز مكالمة" : "Book a call"}
+          <span className="flex items-center gap-4">
+            <span className="h-2.5 w-2.5 rounded-full bg-white transition-colors group-hover:bg-accent" />
+            <span className="font-display text-5xl font-bold tracking-tight transition-colors group-hover:text-accent md:text-7xl">
+              {lang === "ar" ? "احجز مكالمة" : "Book a call"}
+            </span>
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-4 py-2 text-xs text-muted transition-colors group-hover:border-accent/50">
+            <span>{lang === "ar" ? "الحجز عبر" : "Powered by"}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logos/tools/calcom.svg" alt="Cal.com" className="h-3.5 w-auto opacity-90" />
           </span>
         </button>
 
