@@ -8,3 +8,6 @@ out
 # original full-res source assets (the optimized copy lives in public/)
 mohammed Alanazi.png
 .claude/settings.local.json
+
+# Ameen landing-page source (cover lives in public/covers/)
+Landing-Page-ameenapp.png
