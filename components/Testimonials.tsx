@@ -9,19 +9,19 @@ export default function Testimonials() {
   const t = content.testimonials;
 
   return (
-    <section id="testimonial" className="container py-20 md:py-24">
+    <section id="testimonial" className="container py-12 md:py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{t.eyebrow[lang]}</p>
       </Reveal>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
         {t.items.map((item, i) => {
           const featured = i === 0;
           const name = item.name[lang];
           return (
             <Reveal key={i} delay={i * 0.07} y={28} className={featured ? "sm:col-span-2" : ""}>
               <figure
-                className="card relative h-full overflow-hidden p-7 md:p-9"
+                className="card relative h-full overflow-hidden p-5 md:p-6"
                 style={
                   featured
                     ? { background: "linear-gradient(226deg, #000 0%, #111 45%, rgba(243,80,15,0.55) 170%)" }
@@ -30,7 +30,7 @@ export default function Testimonials() {
               >
                 <blockquote
                   className={`font-display font-medium leading-snug tracking-tight ${
-                    featured ? "text-2xl md:text-3xl" : "text-xl"
+                    featured ? "text-xl md:text-2xl" : "text-lg"
                   }`}
                 >
                   “{item[lang]}”

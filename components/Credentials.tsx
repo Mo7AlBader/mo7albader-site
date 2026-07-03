@@ -9,18 +9,18 @@ export default function Credentials() {
   const c = content.credentials;
 
   return (
-    <section id="credentials" className="container py-24">
+    <section id="credentials" className="container py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{c.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl md:text-5xl font-bold tracking-tight">
+        <h2 className="font-display mt-4 text-2xl md:text-4xl font-bold tracking-tight">
           {c.title[lang]}
         </h2>
       </Reveal>
 
-      <div className="mt-10 grid sm:grid-cols-2 gap-4">
+      <div className="mt-7 grid sm:grid-cols-2 gap-3">
         {/* education */}
         <Reveal y={28}>
-          <div className="card h-full p-7">
+          <div className="card h-full p-5">
             <p className="eyebrow">{lang === "ar" ? "التعليم" : "Education"}</p>
             <h3 className="font-display mt-3 text-2xl font-bold tracking-tight">
               {c.education.degree[lang]}
@@ -34,7 +34,7 @@ export default function Credentials() {
 
         {/* certifications */}
         <Reveal delay={0.08} y={28}>
-          <div className="card h-full p-7">
+          <div className="card h-full p-5">
             <p className="eyebrow">{lang === "ar" ? "الشهادات" : "Certifications"}</p>
             <ul className="mt-3 space-y-3">
               {c.certs.map((cert, i) => (

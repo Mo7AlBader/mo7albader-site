@@ -23,12 +23,12 @@ export const content = {
 
   // ===== Hero =====
   hero: {
-    available: { ar: "متاح لاستشارات منتج · يوم بالأسبوع", en: "Product advisory · 1 day/week" },
+    available: { ar: "متاح للاستشارات فقط", en: "Available for advisory only" },
     location: { ar: "الرياض، السعودية", en: "Riyadh, Saudi Arabia" },
     greeting: { ar: "أنا محمد البدر،", en: "I'm Mohammed AlBader," },
     line: {
-      ar: "مدير منتج. آخذ الفكرة من صفحة بيضاء إلى منتج يستخدمه الملايين.",
-      en: "Product Manager. I take ideas from a blank page to products millions use.",
+      ar: "مدير منتج أحوّل الفكرة إلى منتج يستخدمه ملايين الناس.",
+      en: "A Product Manager turning ideas into products millions of people use.",
     },
     cta: { ar: "تواصل معي", en: "Get in touch" },
     ctaHref: "#contact",
@@ -64,21 +64,21 @@ export const content = {
   about: {
     eyebrow: { ar: "عنّي", en: "About" },
     title: {
-      ar: "مدير منتجات وباني من الرياض",
-      en: "PM & builder from Riyadh",
+      ar: "باني قبل ما أكون مدير منتجات",
+      en: "A builder before I was ever a PM",
     },
     paragraphs: [
       {
-        ar: "بديت مهندس برمجيات، وصرت مدير منتجات لأني أحب أبني أشياء يستخدمها الناس فعلاً. أول مشروع كان وأنا بعمر 17: منصة AbdihQT التعليمية، بنيتها من الصفر وبدون تمويل، ووصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة.",
-        en: "I started as a software engineer and became a product manager because I love building things people actually use. My first build was at 17: AbdihQT, an education platform I bootstrapped from zero to 300K+ students and 6M+ views.",
+        ar: "عمري 17 سنة لما بنيت أول منتج لي: AbdihQT. ما كان عندي فريق ولا تمويل، بس كان عندي مشكلة أعرفها زين واحتياج حقيقي. اليوم المنصة وصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة، وكل هذا قبل ما أتخرّج من الجامعة.",
+        en: "I was 17 when I built my first product: AbdihQT. No team, no funding, just a problem I understood deeply and a real need behind it. Today it reaches 300K+ students and 6M+ views, all before I'd even graduated.",
       },
       {
-        ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية. شغلي نمو مبني على البيانات، وقراري دايم أوله التاجر. وفلسفتي بسيطة: التنفيذ قبل التخطيط، والإشارة قبل الضجيج.",
-        en: "Today I lead acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform. Data-driven growth, merchant-first decisions. My philosophy is simple: execution over planning, signal over noise.",
+        ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية، وأشتغل على قرارات تحرّك آلاف التجار مو بس شاشة وحدة. كل قرار عندي مبني على بيانات، وكل صفحة أبنيها لها هدف تحويل واضح.",
+        en: "Today I lead acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform, shaping decisions that move thousands of merchants, not just a single screen. Every decision is data-driven, and every page I build has a clear conversion goal.",
       },
       {
-        ar: "وباختصار: أي مشروع أنضمّ له أكون مكسب له، مو مجرد منفّذ. آخذ الأفكار من ورق وأطلّعها نتائج تتقاس، وأملك شغلي من أوله لآخره.",
-        en: "In short: any project I join, I'm an asset to it, not just a pair of hands. I turn ideas into measurable results, and I own my work end to end.",
+        ar: "فلسفتي بسيطة: التنفيذ قبل التخطيط، والإشارة قبل الضجيج. ما أجي لأي مشروع كمنفّذ بس، أجي كمالك يهمّه الأثر. من فكرة على ورق إلى نتيجة تتقاس، وأملك شغلي من أوله لآخره.",
+        en: "My philosophy is simple: execution over planning, signal over noise. I don't join a project as just a pair of hands, I show up as an owner who cares about the result. From an idea on paper to a measurable outcome, owning my work start to finish.",
       },
     ],
     tags: ["Product Management", "Growth & Acquisition", "SaaS", "UI/UX", "Web Dev", "Content & SEO"],
@@ -112,8 +112,8 @@ export const content = {
         name: "AbdihQT",
         logo: "/logos/abdihqt.png",
         cover: "/covers/abdihqt.png",
-        ar: "منصة تعليمية ذاتية التمويل بدأتها في سن 17، فيها أكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
-        en: "Bootstrapped education platform I started at 17, now with 300K+ students and 6M+ YouTube views.",
+        ar: "منصة تعليمية ذاتية التمويل أسّستها عمري 17، وصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
+        en: "A self-funded education platform I founded at 17, now reaching 300K+ students and 6M+ YouTube views.",
         tags: ["EdTech", "Founder", "Since 2018"],
         href: "https://abdihqt.com",
       },
@@ -121,8 +121,8 @@ export const content = {
         name: "Salla",
         logo: "/logos/salla.svg",
         cover: "/covers/salla.png",
-        ar: "إدارة منتج وتسويق للمنتجات الرقمية في سلة: أطلقت «سوق الجملة» و«كاشير سلة»، وأقود توجّه الاكتساب حالياً.",
-        en: "Product & product-marketing for Salla's digital products: launched the Wholesale Market and Salla Cashier, now leading Acquisition.",
+        ar: "إدارة منتج وتسويق منتج للتجارة الرقمية في سلة: أطلقت «سوق الجملة» و«كاشير سلة»، وأقود حالياً توجّه الاكتساب.",
+        en: "Product & product-marketing for Salla's digital commerce: launched the Wholesale Market and Salla Cashier, now leading Acquisition.",
         tags: ["Product", "Acquisition", "2024 →"],
         href: "https://salla.com",
       },
@@ -130,8 +130,8 @@ export const content = {
         name: "Ameen",
         logo: "/logos/ameen.svg",
         cover: "/covers/ameen.png",
-        ar: "متطوّع كمدير منتج. التطبيق تجاوز مليوني مستخدم و+14 ألف تقييم، وتصدّر متجر التطبيقات.",
-        en: "Volunteer PM. The app surpassed 2M users with 14K+ ratings and topped the App Store.",
+        ar: "متطوّع كمدير منتج. التطبيق تجاوز مليوني مستخدم و14 ألف تقييم، وتصدّر متجر التطبيقات.",
+        en: "Volunteer PM. The app crossed 2M users with 14K+ ratings and topped the App Store.",
         tags: ["Volunteer PM", "1M users", "#1 App Store"],
         href: "https://ameenapp.org",
       },
@@ -139,15 +139,15 @@ export const content = {
         name: "SalahBreak",
         logo: "/logos/salahbreak.svg",
         cover: "/covers/salahbreak.png",
-        ar: "تطبيق يعيد تعريف الصلاة كـ«استراحة صلاة» في بيئة العمل، مع تكامل عبر iOS وSlack وApple Watch وغيرها.",
-        en: "An app that reframes prayer as a workplace “prayer break,” with integrations across iOS, Slack, Apple Watch and more.",
+        ar: "تطبيق يعيد تعريف الصلاة كـ«استراحة» داخل بيئة العمل، مع تكامل عبر iOS وSlack وApple Watch وغيرها.",
+        en: "An app reframing prayer as a workplace break, with integrations across iOS, Slack, Apple Watch and more.",
         tags: ["iOS", "Product", "Building"],
         href: "https://salahbreak.com",
       },
       {
         name: "50 Tools Challenge",
-        ar: "تحدٍّ شخصي لبناء 50 أداة منتج عبر Claude API، أستكشف فيه حدود الـ Vibe Coding.",
-        en: "A personal challenge to build 50 product tools with the Claude API, exploring the edges of Vibe Coding.",
+        ar: "تحدٍّ شخصي لبناء 50 أداة منتج بالـ Claude API، أستكشف فيه حدود الـ Vibe Coding.",
+        en: "A personal challenge to build 50 product tools with the Claude API, pushing the edges of Vibe Coding.",
         tags: ["Claude API", "Builder", "Ongoing"],
       },
     ],
@@ -160,15 +160,15 @@ export const content = {
     // start/end as YYYY-MM (end null = ongoing); duration is computed from these
     roles: [
       {
-        title: { ar: "مدير منتج / مدير تسويق منتج", en: "Product Manager / Product Marketing Manager" },
+        title: { ar: "مدير منتج مشارك، المنتج والنمو", en: "Associate Product Manager, Product & Growth" },
         company: { ar: "سلة", en: "Salla" },
         logo: "/logos/salla.svg",
-        start: "2024-01",
+        start: "2024-04",
         end: null,
-        impact: null,
+        impact: { ar: "+2,000 تاجر · +150% نمو GMV", en: "2,000+ merchants · +150% GMV growth" },
         stores: false,
-        ar: "أقود استراتيجية المنتج وتسويق المنتج في قطاع تجارة المنتجات الرقمية بسلة. أطلقت «سوق الجملة» و«كاشير سلة»، وأقود حالياً توجّه الاكتساب (Acquisition).",
-        en: "I lead product & product-marketing strategy for the digital-products commerce sector at Salla. Launched the Wholesale Market and Salla Cashier; now leading the Acquisition direction.",
+        ar: "أقود استراتيجية المنتج والنمو عبر قطاعين تجاريين يشملان أكثر من 2,000 تاجر. قدت إعادة تصميم وإطلاق تجربة «كاشير سلة»، وساهمت في نمو الـ GMV بنسبة 150% ونمو التبنّي بنسبة 200% خلال أول أسبوعين. أطلقت «سوق الجملة» من الألف إلى الياء، وألّفت دليل تهيئة تجار من 30 صفحة.",
+        en: "Leading product & growth strategy across two merchant sectors reaching 2,000+ merchants. Led the Salla Cashier (POS) redesign and relaunch, contributing to 150% GMV growth and 200% adoption growth within two weeks. Owned the Wholesale Market GTM end-to-end and authored a 30-page merchant onboarding guide.",
       },
       {
         title: { ar: "مؤسس", en: "Founder" },
@@ -178,8 +178,8 @@ export const content = {
         end: null,
         impact: null,
         stores: false,
-        ar: "احتياجي للاستعداد للقدرات والتحصيلي خلّاني أبني مجتمعاً، تحوّل إلى منتج، ثم إلى منظومة وكيان استفاد منه +300 ألف طالب و+6 مليون مشاهدة على يوتيوب.",
-        en: "My own need to prep for Qudurat & Tahsili led me to build a community that became a product, then a full system used by 300K+ students with 6M+ YouTube views.",
+        ar: "احتياجي الشخصي للاستعداد للقدرات والتحصيلي خلّاني أبني مجتمعاً تحوّل لمنتج، ثم لمنظومة كاملة: بعت أكثر من 26 ألف دورة وكتاب إلكتروني، وقدت فريق محتوى من 9 أشخاص، ووصلت المنظومة لأكثر من 400 ألف متابع و6 مليون مشاهدة على يوتيوب.",
+        en: "My own need to prep for Qudurat & Tahsili led me to build a community, then a product, then a full system: sold 26,000+ courses and e-books, led a 9-person content team, and grew the platform to 400K+ followers with 6M+ YouTube views.",
       },
       {
         title: { ar: "مدير منتج (متطوّع)", en: "Product Manager (Volunteer)" },
@@ -189,8 +189,19 @@ export const content = {
         end: null,
         impact: { ar: "+2 مليون مستخدم · +14 ألف تقييم", en: "2M+ users · 14K+ ratings" },
         stores: true,
-        ar: "بنيت الأذكار والمصحف والرئيسية واختصاراتها والخدمات، تصوّراً ونظاماً ومنتجاً وتجربة استخدام.",
-        en: "Built Athkar, the Mushaf, the Home and its shortcuts, and Services, owning the concept, the system, the product and the UX.",
+        ar: "بنيت الأذكار والمصحف والرئيسية واختصاراتها والخدمات، من التصوّر إلى النظام والمنتج وتجربة الاستخدام. قدت استراتيجية النمو التي أوصلت التطبيق لأكثر من 100 ألف تحميل خلال 20 يوم، والمركز الأول في آب ستور بأسبوع الإطلاق، ووصول لـ142 دولة.",
+        en: "Built Athkar, the Mushaf, the Home screen and its shortcuts, and Services, owning the concept, the system, the product and the UX. Led the growth strategy behind 100K+ downloads in 20 days, a #1 App Store ranking in launch week, and reach across 142 countries.",
+      },
+      {
+        title: { ar: "استشاري منتج، مسار تعلّم", en: "Learning Path Product (Consultant)" },
+        company: { ar: "Algooru", en: "AlGooru" },
+        logo: "/logos/partners/algooru.png",
+        start: "2025-02",
+        end: "2025-04",
+        impact: null,
+        stores: false,
+        ar: "صممت واستشرت في بناء مسار تعلّم مدعوم بالذكاء الاصطناعي لمادة القدرات ضمن منصة Algooru التعليمية، ودعمت مرحلة البناء الأولى وتصميم تجربة التعلّم.",
+        en: "Designed and consulted on an AI-powered Qudrat learning path for AlGooru's education platform, supporting the initial build phase and learning-experience design.",
       },
       {
         title: { ar: "مستشار نمو", en: "Growth Consultant" },
@@ -200,8 +211,19 @@ export const content = {
         end: "2026-06",
         impact: null,
         stores: false,
-        ar: "ساعدت دولاب في النمو والتوسّع وإعادة تموضع خدماتها، وقيّمت مشاريعها وحسّنت خطط إطلاقها. من أبرز اللي اشتغلت عليه: Tecno Mobile، bxstore، بندر بطاطا، ودافور.",
-        en: "Helped Doolab grow, expand and reposition its services, evaluating its projects and sharpening their launch plans. Highlights I worked on: Tecno Mobile, bxstore, Bandar Batata, and Dafoor.",
+        ar: "ساعدت دولاب في النمو وإعادة تموضع خدماتها، وقيّمت مشاريعها وحسّنت خطط إطلاقها. من أبرز اللي اشتغلت عليه: Tecno Mobile، bxstore، بندر بطاطا، ودافور.",
+        en: "Helped Doolab grow and reposition its services, evaluating projects and sharpening launch plans. Highlights: Tecno Mobile, bxstore, Bandar Batata, and Dafoor.",
+      },
+      {
+        title: { ar: "متدرّب مطوّر مواقع", en: "Webmaster Intern" },
+        company: { ar: "زد", en: "Zid" },
+        logo: null,
+        start: "2023-06",
+        end: "2023-08",
+        impact: null,
+        stores: false,
+        ar: "صممت وطوّرت صفحات هبوط لمنتجات نقاط البيع وبانى المتاجر الإلكترونية في زد، لدعم الوعي بالمنتج وتفاعل المستخدمين.",
+        en: "Designed and developed landing pages for Zid's POS and e-commerce app-builder products, supporting product awareness and user engagement.",
       },
     ],
   },
@@ -214,14 +236,14 @@ export const content = {
       {
         ar: "استراتيجية المنتج",
         en: "Product Strategy",
-        arDesc: "أكتشف المشكلة الصح قبل الحل، وأبني رودماب يحرّك المستخدم والإيراد مع بعض.",
+        arDesc: "أكتشف المشكلة الصحيحة قبل الحل، وأبني رودماب يحرّك المستخدم والإيراد مع بعض.",
         enDesc: "I find the right problem before the solution, then build a roadmap that moves both the user and the revenue.",
       },
       {
         ar: "الاكتساب و PLG",
         en: "Acquisition & PLG",
-        arDesc: "أحوّل الزوار إلى مستخدمين عبر SEO/GEO ونمو مدفوع بالمنتج، ونمو يبان على الأرقام.",
-        enDesc: "I turn visitors into users with SEO/GEO and product-led growth, growth you can see in the numbers.",
+        arDesc: "أحوّل الزوار إلى مستخدمين عبر SEO/GEO ونمو مدفوع بالمنتج، ونتائج تبان على الأرقام.",
+        enDesc: "I turn visitors into users with SEO/GEO and product-led growth, results you can see in the numbers.",
       },
       {
         ar: "المحتوى والسرد",
@@ -232,7 +254,7 @@ export const content = {
       {
         ar: "البناء السريع",
         en: "Rapid Building",
-        arDesc: "من الفكرة لنموذج شغّال في أيام عبر Vibe Coding، فتختبر بسرعة وتقرّر بثقة.",
+        arDesc: "من الفكرة لنموذج شغّال خلال أيام عبر Vibe Coding، فتختبر بسرعة وتقرّر بثقة.",
         enDesc: "From idea to a working prototype in days with Vibe Coding, so you test fast and decide with confidence.",
       },
     ],
@@ -285,6 +307,9 @@ export const content = {
       { name: "Webflow", logo: "/logos/tools/webflow.svg", ar: "صفحات هبوط بدون كود", en: "No-code landing pages" },
       { name: "GA4", logo: "/logos/tools/ga.svg", ar: "تحليلات المنتج والاكتساب", en: "Product & acquisition analytics" },
       { name: "Mixpanel", logo: "/logos/tools/mixpanel.svg", ar: "قياس الإيفنتات وتقارير النمو", en: "Event analytics & growth reports" },
+      { name: "Looker", logo: null, ar: "تقارير ولوحات بيانات النمو", en: "Growth dashboards & reporting" },
+      { name: "Hotjar", logo: null, ar: "خرائط حرارية وتسجيلات المستخدم", en: "Heatmaps & session recordings" },
+      { name: "Jira", logo: null, ar: "تتبّع المهام وإدارة السبرنتات", en: "Task tracking & sprints" },
     ],
   },
 
@@ -348,12 +373,22 @@ export const content = {
       {
         name: { ar: "Product Analytics", en: "Product Analytics" },
         issuer: { ar: "Product School", en: "Product School" },
-        year: "2025",
+        year: "Dec 2025",
+      },
+      {
+        name: { ar: "Product Launches", en: "Product Launches" },
+        issuer: { ar: "Product School", en: "Product School" },
+        year: "Nov 2024",
+      },
+      {
+        name: { ar: "Product Marketing Foundations", en: "Product Marketing Foundations" },
+        issuer: { ar: "LinkedIn Learning", en: "LinkedIn Learning" },
+        year: "May 2025",
       },
     ],
     note: {
-      ar: "وشهادات إدارة منتجات أخرى على LinkedIn.",
-      en: "Plus more product certifications on LinkedIn.",
+      ar: "الشهادات كاملة وموثّقة على LinkedIn.",
+      en: "Full list, verified on LinkedIn.",
     },
   },
 
@@ -364,8 +399,8 @@ export const content = {
     year: "2028",
     image: "/rangerover.jpg",
     note: {
-      ar: "هدف واحد واضح أشتغل له بنظام، خطوة خطوة. لسه في أول الطريق، بس ماشي.",
-      en: "One clear target I'm working toward on a system, step by step. Still early, but it's moving.",
+      ar: "هدف واحد واضح أشتغل عليه بنظام، خطوة خطوة. لسه في البداية، بس ماشي وثابت.",
+      en: "One clear target I'm working toward with a system, step by step. Still early, but steady.",
     },
     progress: 15,
     progressLabel: { ar: "التقدّم نحو الهدف", en: "Progress to goal" },
@@ -377,9 +412,9 @@ export const content = {
     title: { ar: "من المشكلة إلى الأثر", en: "From problem to impact" },
     steps: [
       { ar: "اكتشاف المشكلة", en: "Discover", arDesc: "أفهم الهدف والمستخدم قبل أي حل، بالبيانات والإشارات.", enDesc: "Understand the goal and user before any solution. Data and signal first." },
-      { ar: "التحقق والتأطير", en: "Validate & frame", arDesc: "أصيغ المشكلة وأحدّد المقاييس التي تحرّك القرار.", enDesc: "Frame the problem and define the metrics that drive the decision." },
+      { ar: "التحقق والتأطير", en: "Validate & frame", arDesc: "أصيغ المشكلة وأحدّد المقاييس اللي تحرّك القرار.", enDesc: "Frame the problem and define the metrics that drive the decision." },
       { ar: "البناء السريع", en: "Build fast", arDesc: "نماذج وإطلاق سريع عبر Vibe Coding بدون هدر.", enDesc: "Prototypes and fast shipping with Vibe Coding, no waste." },
-      { ar: "القياس والتكرار", en: "Measure & iterate", arDesc: "أتتبّع الأثر على الأرقام وأكرّر بحلقات قصيرة.", enDesc: "Track impact on the numbers and iterate in tight loops." },
+      { ar: "القياس والتكرار", en: "Measure & iterate", arDesc: "أتابع الأثر بالأرقام وأكرّر بحلقات قصيرة.", enDesc: "Track impact on the numbers and iterate in tight loops." },
     ],
   },
 
@@ -389,11 +424,11 @@ export const content = {
     items: [
       {
         q: { ar: "ليش أشتغل معك؟", en: "Why work with you?" },
-        a: { ar: "لأني باني فعلي مو مستشار نظري. أرقامي تتكلم: ملايين المستخدمين ومنتجات أطلقتها بيدي، وأجي بعقلية مالك يهمّه النتيجة قبل أي شي.", en: "Because I'm a builder, not a theorist. The numbers speak: millions of users and products I shipped myself, and I bring an owner's mindset focused on the result." },
+        a: { ar: "لأني باني فعلي مو مستشار نظري. أرقامي تتكلم: ملايين المستخدمين ومنتجات أطلقتها بيدي، وأشتغل بعقلية مالك يهمّه النتيجة قبل أي شي.", en: "Because I'm a builder, not a theorist. The numbers speak for themselves: millions of users and products I shipped myself, with an owner's mindset focused on the result." },
       },
       {
         q: { ar: "وش تشتغل عليه بالضبط؟", en: "What do you actually work on?" },
-        a: { ar: "إدارة المنتجات والاكتساب واستراتيجية الموقع في سلة، وأبني منتجات وأدوات شخصية على الجنب.", en: "Product management, acquisition and website strategy at Salla, plus building personal products and tools." },
+        a: { ar: "إدارة المنتجات والاكتساب واستراتيجية الموقع في سلة، وأبني منتجات وأدوات شخصية على الجنب.", en: "Product management, acquisition and website strategy at Salla, plus building personal products and tools on the side." },
       },
       {
         q: { ar: "تاخذ مشاريع جانبية؟", en: "Do you take side projects?" },
@@ -405,7 +440,7 @@ export const content = {
       },
       {
         q: { ar: "وش هدفك المهني؟", en: "What's your career goal?" },
-        a: { ar: "الطموح أكون CPO، بمسار واضح خطوة بخطوة.", en: "Becoming a CPO, on a clear step-by-step track." },
+        a: { ar: "أطمح أكون CPO، على مسار واضح خطوة بخطوة.", en: "Becoming a CPO, on a clear step-by-step track." },
       },
     ],
   },
@@ -415,7 +450,7 @@ export const content = {
     eyebrow: { ar: "تواصل", en: "Get in touch" },
     title: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
     note: {
-      ar: "متاح لاستشارات المنتج فقط، يوم واحد في الأسبوع. تجيك خبرة باني وأرقام حقيقية، مو نظريات. اكتب لي وبردّ عليك بسرعة.",
+      ar: "متاح لاستشارات المنتج فقط، يوم واحد في الأسبوع. تجيك خبرة باني وأرقام حقيقية، مو نظريات. اكتب لي وأرد بسرعة.",
       en: "Available for product advisory only, one day a week. You get a builder's experience and real numbers, not theory. Drop me a line and I'll reply fast.",
     },
     links: [

@@ -46,7 +46,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen flex-col justify-center overflow-hidden py-16 md:py-20"
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden py-10 md:py-12"
     >
       <HeroBackground />
 
@@ -102,7 +102,7 @@ export default function Hero() {
 
         {/* greeting + line */}
         <Reveal delay={0.16} y={24}>
-          <p className="mx-auto mt-8 max-w-xl text-center text-xl leading-relaxed text-muted md:text-2xl">
+          <p className="mx-auto mt-6 max-w-xl text-center text-lg leading-relaxed text-muted md:text-xl">
             {h.greeting[lang]} <span className="text-white">{h.line[lang]}</span>
           </p>
         </Reveal>

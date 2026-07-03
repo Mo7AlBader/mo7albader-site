@@ -68,7 +68,7 @@ function ToolLogo({ name, logo }: { name: string; logo?: string | null }) {
   }
   // fallback monogram for any tool without a bundled logo
   const init = name.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase();
-  return <span className="font-display text-base font-bold text-white">{init}</span>;
+  return <span className="font-display text-xs font-bold text-white/70">{init}</span>;
 }
 
 export default function TechStack() {
@@ -76,44 +76,25 @@ export default function TechStack() {
   const t = content.techStack;
 
   return (
-    <section id="stack" className="container py-20 md:py-24">
+    <section id="stack" className="container py-10 md:py-12">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{t.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{t.title[lang]}</h2>
+        <h2 className="font-display mt-3 text-2xl font-bold tracking-tight md:text-4xl">{t.title[lang]}</h2>
       </Reveal>
 
-      {/* Mobile: seamless auto-scrolling carousel (two identical halves, loops forever) */}
-      <Reveal y={20}>
-        <div className="logos-marquee mt-8 md:hidden" aria-hidden>
-          <div className="logos-track">
-            {[...t.items, ...t.items].map((item, i) => (
-              <div key={i} className="logos-chip">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-line bg-white/[0.04]">
-                  <ToolLogo name={item.name} logo={item.logo} />
-                </span>
-                <span className="font-display whitespace-nowrap text-base font-semibold tracking-tight">
-                  {item.name}
-                </span>
-              </div>
-            ))}
-          </div>
+      <Reveal delay={0.08} y={16}>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {t.items.map((item, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white/[0.03] px-3 py-1.5 text-sm text-white/80"
+            >
+              <ToolLogo name={item.name} logo={item.logo} />
+              {item.name}
+            </span>
+          ))}
         </div>
       </Reveal>
-
-      {/* Desktop: full grid with taglines */}
-      <div className="mt-10 hidden grid-cols-4 gap-4 md:grid">
-        {t.items.map((item, i) => (
-          <Reveal key={i} delay={(i % 4) * 0.06} y={24}>
-            <div className="card h-full p-6">
-              <span className="grid h-12 w-12 place-items-center rounded-xl border border-line bg-white/[0.04]">
-                <ToolLogo name={item.name} logo={item.logo} />
-              </span>
-              <h3 className="font-display mt-5 text-xl font-bold tracking-tight">{item.name}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted">{item[lang]}</p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
     </section>
   );
 }

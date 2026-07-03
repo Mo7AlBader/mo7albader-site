@@ -31,19 +31,19 @@ export default function Stats() {
   const headline = [items[0], items[2]]; // most striking numbers
 
   return (
-    <section id="stats" className="container py-16 md:py-20">
+    <section id="stats" className="container py-10 md:py-12">
       {/* two headline cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {headline.map((item, i) => (
           <Reveal key={i} delay={i * 0.08} y={24}>
-            <div className="card p-7 md:p-9">
+            <div className="card p-5 md:p-6">
               <div className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--accent)" }} />
                 <span className="text-sm text-muted">{item[lang]}</span>
               </div>
               <CountUp
                 value={item.value}
-                className="font-display mt-8 block text-6xl font-bold tracking-tight tabular-nums md:text-7xl"
+                className="font-display mt-6 block text-5xl font-bold tracking-tight tabular-nums md:text-6xl"
               />
             </div>
           </Reveal>

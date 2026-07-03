@@ -17,9 +17,9 @@ export default function Ticker({
   className?: string;
 }) {
   const repeats = Array.from({ length: 6 });
-  const size = big ? "text-6xl md:text-8xl" : "text-2xl md:text-3xl";
-  const innerGap = big ? "gap-10" : "gap-7";
-  const star = big ? "text-3xl md:text-5xl" : "text-lg";
+  const size = big ? "text-3xl md:text-5xl" : "text-2xl md:text-3xl";
+  const innerGap = big ? "gap-8" : "gap-7";
+  const star = big ? "text-xl md:text-2xl" : "text-lg";
 
   const Group = (
     <span className="ticker__item">

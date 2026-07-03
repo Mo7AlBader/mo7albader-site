@@ -68,13 +68,13 @@ export default function Journey() {
   const present = lang === "ar" ? "مستمر" : "Present";
 
   return (
-    <section id="journey" className="container py-20 md:py-24">
+    <section id="journey" className="container py-12 md:py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{j.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{j.title[lang]}</h2>
+        <h2 className="font-display mt-3 text-2xl font-bold tracking-tight md:text-4xl">{j.title[lang]}</h2>
       </Reveal>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+      <div className="mt-7 grid gap-3 sm:grid-cols-2">
         {j.roles.map((r, i) => {
           const featured = i === 0;
           const ongoing = !r.end;
@@ -82,14 +82,14 @@ export default function Journey() {
           const dur = durationLabel(r.start, r.end, lang);
           return (
             <Reveal key={i} delay={i * 0.06} y={28} className={featured ? "sm:col-span-2" : ""}>
-              <div className="card h-full p-7">
+              <div className="card h-full p-5">
                 {/* logo + company + period */}
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center gap-2.5">
                     <span className="grid h-7 w-7 shrink-0 place-items-center overflow-hidden rounded-lg bg-white p-1">
                       {(r.logo as string | null) ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={r.logo} alt={r.company[lang]} className="max-h-full max-w-full object-contain" />
+                        <img src={r.logo as string} alt={r.company[lang]} className="max-h-full max-w-full object-contain" />
                       ) : (
                         <span className="font-display text-sm font-bold text-black">{r.company.en.slice(0, 1)}</span>
                       )}
@@ -105,7 +105,7 @@ export default function Journey() {
                 </div>
 
                 {/* job title */}
-                <h3 className="font-display mt-3 text-2xl font-bold tracking-tight md:text-3xl">{r.title[lang]}</h3>
+                <h3 className="font-display mt-3 text-xl font-bold tracking-tight md:text-2xl">{r.title[lang]}</h3>
 
                 {/* years of experience + impact + store badges */}
                 <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">

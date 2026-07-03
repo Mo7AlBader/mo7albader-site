@@ -10,7 +10,7 @@ export default function Goal2028() {
   const pct = g.progress;
 
   return (
-    <section id="goal" className="container py-20 md:py-24">
+    <section id="goal" className="container py-12 md:py-14">
       <Reveal y={28}>
         <div className="group relative overflow-hidden rounded-[28px] border border-line">
           {/* real Range Rover image */}
@@ -31,10 +31,10 @@ export default function Goal2028() {
           />
 
           {/* content */}
-          <div className="relative flex min-h-[460px] flex-col justify-end p-8 md:min-h-[540px] md:p-12">
+          <div className="relative flex min-h-[320px] flex-col justify-end p-6 md:min-h-[380px] md:p-9">
             <p className="eyebrow">{g.eyebrow[lang]}</p>
             <div className="mt-4 flex flex-wrap items-end gap-3">
-              <h2 className="font-display text-5xl font-bold leading-none tracking-tight md:text-7xl">{g.title[lang]}</h2>
+              <h2 className="font-display text-4xl font-bold leading-none tracking-tight md:text-6xl">{g.title[lang]}</h2>
               <span className="mb-1 rounded-full border border-line bg-black/40 px-3 py-1 font-display text-sm tabular-nums text-white/85 backdrop-blur">
                 {g.year}
               </span>

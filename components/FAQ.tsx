@@ -11,12 +11,12 @@ export default function FAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className="container py-20 md:py-24">
+    <section id="faq" className="container py-12 md:py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{f.eyebrow[lang]}</p>
       </Reveal>
 
-      <div className="mt-8 flex flex-col gap-3">
+      <div className="mt-6 flex flex-col gap-2.5">
         {f.items.map((item, i) => {
           const active = open === i;
           return (
@@ -28,7 +28,7 @@ export default function FAQ() {
                   aria-expanded={active}
                   className="flex w-full items-center justify-between gap-4 p-6 text-start"
                 >
-                  <span className="font-display text-lg font-bold md:text-xl">{item.q[lang]}</span>
+                  <span className="font-display text-base font-bold md:text-lg">{item.q[lang]}</span>
                   <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line text-white/80">
                     <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
                       {active ? (

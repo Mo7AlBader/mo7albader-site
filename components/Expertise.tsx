@@ -19,13 +19,13 @@ export default function Expertise() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="expertise" className="container py-20 md:py-24">
+    <section id="expertise" className="container py-12 md:py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{e.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{e.title[lang]}</h2>
+        <h2 className="font-display mt-3 text-2xl font-bold tracking-tight md:text-4xl">{e.title[lang]}</h2>
       </Reveal>
 
-      <div className="mt-10 flex flex-col gap-3">
+      <div className="mt-7 flex flex-col gap-2.5">
         {e.areas.map((area, i) => {
           const active = open === i;
           return (
@@ -34,7 +34,7 @@ export default function Expertise() {
                 type="button"
                 onClick={() => setOpen(i)}
                 aria-expanded={active}
-                className="card w-full p-6 text-start transition-colors md:p-7"
+                className="card w-full p-5 text-start transition-colors md:p-6"
               >
                 <div className="flex items-center gap-4">
                   <span
@@ -58,7 +58,7 @@ export default function Expertise() {
                     </svg>
                   </span>
                   <h3
-                    className="font-display text-2xl font-bold tracking-tight transition-colors md:text-3xl"
+                    className="font-display text-xl font-bold tracking-tight transition-colors md:text-2xl"
                     style={{ color: active ? "var(--white)" : "rgba(255,255,255,0.4)" }}
                   >
                     {area[lang]}

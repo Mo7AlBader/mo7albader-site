@@ -9,18 +9,18 @@ export default function About() {
   const a = content.about;
 
   return (
-    <section id="about" className="container py-24">
+    <section id="about" className="container py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{a.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl md:text-5xl font-bold tracking-tight">
+        <h2 className="font-display mt-4 text-2xl md:text-4xl font-bold tracking-tight">
           {a.title[lang]}
         </h2>
       </Reveal>
 
-      <div className="mt-8 max-w-2xl space-y-5">
+      <div className="mt-6 max-w-2xl space-y-4">
         {a.paragraphs.map((p, i) => (
           <Reveal key={i} delay={0.08 + i * 0.08} y={20}>
-            <p className="text-lg leading-relaxed text-white/80">{p[lang]}</p>
+            <p className="text-base leading-relaxed text-white/80">{p[lang]}</p>
           </Reveal>
         ))}
       </div>

@@ -10,21 +10,21 @@ export default function Strengths() {
   const dom = s.domains;
 
   return (
-    <section id="strengths" className="container py-20 md:py-24">
+    <section id="strengths" className="container py-12 md:py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{s.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{s.title[lang]}</h2>
+        <h2 className="font-display mt-3 text-2xl font-bold tracking-tight md:text-4xl">{s.title[lang]}</h2>
         <p className="mt-3 text-sm text-faint">{s.source[lang]}</p>
       </Reveal>
 
       {/* top 5 — prominent cards */}
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+      <div className="mt-7 grid gap-3 sm:grid-cols-2">
         {s.top5.map((t, i) => {
           const d = dom[t.domain];
           const featured = i === 0;
           return (
             <Reveal key={i} delay={i * 0.06} y={28} className={featured ? "sm:col-span-2" : ""}>
-              <div className="card group relative h-full overflow-hidden p-7">
+              <div className="card group relative h-full overflow-hidden p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full" style={{ background: d.color }} />
@@ -36,7 +36,7 @@ export default function Strengths() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <h3 className="font-display mt-4 text-2xl font-bold tracking-tight md:text-3xl">{t.name}</h3>
+                <h3 className="font-display mt-4 text-xl font-bold tracking-tight md:text-2xl">{t.name}</h3>
                 <p className="mt-2 leading-relaxed text-muted">{t[lang]}</p>
                 {/* soft domain-colored glow */}
                 <div

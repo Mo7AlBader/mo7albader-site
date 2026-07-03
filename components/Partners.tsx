@@ -9,7 +9,7 @@ export default function Partners() {
   const p = content.partners;
 
   return (
-    <section id="partners" className="container py-10 md:py-12">
+    <section id="partners" className="container py-7 md:py-8">
       <Reveal y={0}>
         <p className="eyebrow justify-center text-center" style={{ display: "flex" }}>
           {p.eyebrow[lang]}

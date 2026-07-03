@@ -9,17 +9,17 @@ export default function Now() {
   const n = content.now;
 
   return (
-    <section id="now" className="container py-24">
+    <section id="now" className="container py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{n.eyebrow[lang]}</p>
       </Reveal>
 
-      <div className="mt-8 grid gap-4">
+      <div className="mt-6 grid gap-2.5">
         {n.items.map((item, i) => (
           <Reveal key={i} delay={i * 0.08} y={24}>
-            <div className="card p-6 flex items-start gap-4">
+            <div className="card p-4 flex items-start gap-3">
               <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "var(--accent)" }} />
-              <p className="text-lg leading-relaxed text-white/90">{item[lang]}</p>
+              <p className="text-base leading-relaxed text-white/90">{item[lang]}</p>
             </div>
           </Reveal>
         ))}

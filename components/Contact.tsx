@@ -9,11 +9,11 @@ export default function Contact() {
   const c = content.contact;
 
   return (
-    <section id="contact" className="container py-20 md:py-24">
+    <section id="contact" className="container py-12 md:py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{c.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-4xl font-bold tracking-tight md:text-6xl">{c.title[lang]}</h2>
-        <p className="mt-4 max-w-md text-lg leading-relaxed text-muted">{c.note[lang]}</p>
+        <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{c.title[lang]}</h2>
+        <p className="mt-3 max-w-md text-base leading-relaxed text-muted">{c.note[lang]}</p>
       </Reveal>
 
       <Reveal delay={0.1} y={20}>

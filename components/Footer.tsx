@@ -52,7 +52,7 @@ export default function Footer() {
         >
           <span className="flex items-center gap-4">
             <span className="h-2.5 w-2.5 rounded-full bg-white transition-colors group-hover:bg-accent" />
-            <span className="font-display text-5xl font-bold tracking-tight transition-colors group-hover:text-accent md:text-7xl">
+            <span className="font-display text-4xl font-bold tracking-tight transition-colors group-hover:text-accent md:text-6xl">
               {lang === "ar" ? "احجز مكالمة" : "Book a call"}
             </span>
           </span>

@@ -18,13 +18,13 @@ export default function Projects() {
   const p = content.projects;
 
   return (
-    <section id="projects" className="container py-20 md:py-24">
+    <section id="projects" className="container py-12 md:py-14">
       <Reveal x={lang === "ar" ? 40 : -40} y={0}>
         <p className="eyebrow">{p.eyebrow[lang]}</p>
-        <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-5xl">{p.title[lang]}</h2>
+        <h2 className="font-display mt-3 text-2xl font-bold tracking-tight md:text-4xl">{p.title[lang]}</h2>
       </Reveal>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+      <div className="mt-7 grid gap-3 sm:grid-cols-2">
         {p.items.map((item, i) => {
           const href = "href" in item ? (item.href as string) : undefined;
           const logo = "logo" in item ? (item.logo as string) : undefined;
@@ -36,7 +36,7 @@ export default function Projects() {
               <Wrapper
                 {...(href ? { href, target: "_blank", rel: "noopener" } : {})}
                 className={`group relative block w-full overflow-hidden rounded-[24px] border border-line transition-colors hover:border-accent/60 ${
-                  featured ? "min-h-[320px]" : "min-h-[260px]"
+                  featured ? "min-h-[220px]" : "min-h-[180px]"
                 }`}
               >
                 {/* cover: real screenshot when available, gradient otherwise */}
@@ -78,7 +78,7 @@ export default function Projects() {
                 >
                   <div className="min-w-0">
                     <p className="text-sm text-muted">{item.tags[0]}</p>
-                    <h3 className="font-display text-2xl font-bold tracking-tight md:text-3xl">{item.name}</h3>
+                    <h3 className="font-display text-xl font-bold tracking-tight md:text-2xl">{item.name}</h3>
                     <p className="mt-1 line-clamp-2 max-w-md text-sm text-white/55">{item[lang]}</p>
                   </div>
                   {href && (
