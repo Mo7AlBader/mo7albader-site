@@ -160,7 +160,7 @@ export const content = {
     // start/end as YYYY-MM (end null = ongoing); duration is computed from these
     roles: [
       {
-        title: { ar: "مدير منتج مشارك، المنتج والنمو", en: "Associate Product Manager, Product & Growth" },
+        title: { ar: "مدير منتج", en: "Product Manager" },
         company: { ar: "سلة", en: "Salla" },
         logo: "/logos/salla.svg",
         start: "2024-04",
@@ -193,7 +193,7 @@ export const content = {
         en: "Built Athkar, the Mushaf, the Home screen and its shortcuts, and Services, owning the concept, the system, the product and the UX. Led the growth strategy behind 100K+ downloads in 20 days, a #1 App Store ranking in launch week, and reach across 142 countries.",
       },
       {
-        title: { ar: "استشاري منتج، مسار تعلّم", en: "Learning Path Product (Consultant)" },
+        title: { ar: "مدير منتج - مسار تعلم", en: "Product Manager - Learning Path" },
         company: { ar: "Algooru", en: "AlGooru" },
         logo: "/logos/partners/algooru.png",
         start: "2025-02",
@@ -204,7 +204,7 @@ export const content = {
         en: "Designed and consulted on an AI-powered Qudrat learning path for AlGooru's education platform, supporting the initial build phase and learning-experience design.",
       },
       {
-        title: { ar: "مستشار نمو", en: "Growth Consultant" },
+        title: { ar: "مدير نمو المنتج", en: "Product Growth Manager" },
         company: { ar: "Doolab Agency", en: "Doolab Agency" },
         logo: "/logos/doolab.svg",
         start: "2025-11",
