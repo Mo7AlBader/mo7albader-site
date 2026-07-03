@@ -27,7 +27,7 @@ export default function Partners() {
             {[...p.logos, ...p.logos].map((logo, i) => (
               <span
                 key={i}
-                className="me-3 grid h-14 w-[124px] shrink-0 place-items-center rounded-xl bg-white px-4"
+                className="me-3 grid h-14 min-w-[90px] shrink-0 place-items-center rounded-xl bg-white px-5"
                 title={logo.name}
               >
                 <LogoImg
@@ -35,7 +35,7 @@ export default function Partners() {
                   alt={logo.name}
                   fallbackText={logo.name}
                   fallbackClassName="font-display text-sm font-bold text-black"
-                  className="max-h-8 max-w-full object-contain"
+                  className="h-8 w-auto max-w-[110px] object-contain"
                 />
               </span>
             ))}
