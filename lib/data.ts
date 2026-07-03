@@ -391,7 +391,9 @@ export const content = {
       ar: "هدف واحد واضح أشتغل عليه بنظام، خطوة خطوة. لسه في البداية، بس ماشي وثابت.",
       en: "One clear target I'm working toward with a system, step by step. Still early, but steady.",
     },
-    progress: 15,
+    // baseline % as of baselineDate (YYYY-MM); auto-grows +1% every 2 full months from there
+    baselineProgress: 13,
+    baselineDate: "2026-07",
     progressLabel: { ar: "التقدّم نحو الهدف", en: "Progress to goal" },
   },
 

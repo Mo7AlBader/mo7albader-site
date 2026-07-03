@@ -4,10 +4,19 @@ import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
 
+// +1% for every 2 full months elapsed since baselineDate, capped at 100%
+function computeProgress(baselineDate: string, baselineProgress: number) {
+  const [y, m] = baselineDate.split("-").map(Number);
+  const now = new Date();
+  const monthsElapsed = (now.getFullYear() - y) * 12 + (now.getMonth() - (m - 1));
+  const grown = baselineProgress + Math.max(0, Math.floor(monthsElapsed / 2));
+  return Math.min(100, grown);
+}
+
 export default function Goal2028() {
   const { lang } = useLang();
   const g = content.goal;
-  const pct = g.progress;
+  const pct = computeProgress(g.baselineDate, g.baselineProgress);
 
   return (
     <section id="goal" className="container py-12 md:py-14">
