@@ -123,7 +123,7 @@ export const content = {
         cover: "/covers/salla.png",
         ar: "إدارة منتج وتسويق منتج للتجارة الرقمية في سلة: أطلقت «سوق الجملة» و«كاشير سلة»، وأقود حالياً توجّه الاكتساب.",
         en: "Product & product-marketing for Salla's digital commerce: launched the Wholesale Market and Salla Cashier, now leading Acquisition.",
-        tags: ["Product", "Acquisition", "أكبر منصة تجارة إلكترونية بالشرق الأوسط"],
+        tags: ["Product", "Acquisition", "MENA's Commerce Engine"],
         href: "https://salla.com",
       },
       {
