@@ -161,7 +161,7 @@ export const content = {
     roles: [
       {
         title: { ar: "مدير منتج", en: "Product Manager" },
-        company: { ar: "سلة", en: "Salla" },
+        company: { ar: "Salla", en: "Salla" },
         logo: "/logos/salla.svg",
         start: "2024-04",
         end: null,
@@ -183,7 +183,7 @@ export const content = {
       },
       {
         title: { ar: "مدير منتج (بارت تايم)", en: "Product Manager (Part-time)" },
-        company: { ar: "آمين", en: "Ameen" },
+        company: { ar: "Ameen App", en: "Ameen App" },
         logo: "/logos/ameen.svg",
         start: "2025-02",
         end: null,
