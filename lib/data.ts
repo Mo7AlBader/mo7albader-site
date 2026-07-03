@@ -193,17 +193,6 @@ export const content = {
         en: "Built Athkar, the Mushaf, the Home screen and its shortcuts, and Services, owning the concept, the system, the product and the UX. Led the growth strategy behind 100K+ downloads in 20 days, a #1 App Store ranking in launch week, and reach across 142 countries.",
       },
       {
-        title: { ar: "مدير منتج - مسار تعلم", en: "Product Manager - Learning Path" },
-        company: { ar: "Algooru", en: "AlGooru" },
-        logo: "/logos/partners/algooru.png",
-        start: "2025-02",
-        end: "2025-05",
-        impact: null,
-        stores: false,
-        ar: "صممت واستشرت في بناء مسار تعلّم مدعوم بالذكاء الاصطناعي لمادة القدرات ضمن منصة Algooru التعليمية، ودعمت مرحلة البناء الأولى وتصميم تجربة التعلّم.",
-        en: "Designed and consulted on an AI-powered Qudrat learning path for AlGooru's education platform, supporting the initial build phase and learning-experience design.",
-      },
-      {
         title: { ar: "مدير نمو المنتج", en: "Product Growth Manager" },
         company: { ar: "Doolab Agency", en: "Doolab Agency" },
         logo: "/logos/doolab.svg",
@@ -214,12 +203,23 @@ export const content = {
         ar: "ساعدت دولاب في النمو وإعادة تموضع خدماتها، وقيّمت مشاريعها وحسّنت خطط إطلاقها. من أبرز اللي اشتغلت عليه: Tecno Mobile، bxstore، بندر بطاطا، ودافور.",
         en: "Helped Doolab grow and reposition its services, evaluating projects and sharpening launch plans. Highlights: Tecno Mobile, bxstore, Bandar Batata, and Dafoor.",
       },
+      {
+        title: { ar: "مدير منتج - مسار تعلم", en: "Product Manager - Learning Path" },
+        company: { ar: "Algooru", en: "AlGooru" },
+        logo: "/logos/partners/algooru.png",
+        start: "2025-02",
+        end: "2025-05",
+        impact: null,
+        stores: false,
+        ar: "صممت واستشرت في بناء مسار تعلّم مدعوم بالذكاء الاصطناعي لمادة القدرات ضمن منصة Algooru التعليمية، ودعمت مرحلة البناء الأولى وتصميم تجربة التعلّم.",
+        en: "Designed and consulted on an AI-powered Qudrat learning path for AlGooru's education platform, supporting the initial build phase and learning-experience design.",
+      },
     ],
   },
 
   // ===== Expertise (what I do) =====
   expertise: {
-    eyebrow: { ar: "الخبرة", en: "What I do" },
+    eyebrow: { ar: "مجالات التركيز", en: "What I do" },
     title: { ar: "أين أصنع الأثر", en: "Where I make impact" },
     areas: [
       {
@@ -253,7 +253,7 @@ export const content = {
   strengths: {
     eyebrow: { ar: "نقاط القوة", en: "Strengths" },
     source: { ar: "CliftonStrengths® · Gallup · 2024", en: "CliftonStrengths® · Gallup · 2024" },
-    title: { ar: "أقوى ٥ مواهب فطرية", en: "My top 5 natural talents" },
+    title: { ar: "أقوى 5 مواهب فطرية", en: "My top 5 natural talents" },
     moreLabel: { ar: "وأيضاً ضمن العشرة الأوائل", en: "Also in my top 10" },
     domains: {
       strategic: { ar: "تفكير استراتيجي", en: "Strategic Thinking", color: "#1ef482" },
@@ -362,17 +362,17 @@ export const content = {
       {
         name: { ar: "Product Analytics", en: "Product Analytics" },
         issuer: { ar: "Product School", en: "Product School" },
-        year: "Dec 2025",
-      },
-      {
-        name: { ar: "Product Launches", en: "Product Launches" },
-        issuer: { ar: "Product School", en: "Product School" },
-        year: "Nov 2024",
+        year: { ar: "ديسمبر 2025", en: "Dec 2025" },
       },
       {
         name: { ar: "Product Marketing Foundations", en: "Product Marketing Foundations" },
         issuer: { ar: "LinkedIn Learning", en: "LinkedIn Learning" },
-        year: "May 2025",
+        year: { ar: "مايو 2025", en: "May 2025" },
+      },
+      {
+        name: { ar: "Product Launches", en: "Product Launches" },
+        issuer: { ar: "Product School", en: "Product School" },
+        year: { ar: "نوفمبر 2024", en: "Nov 2024" },
       },
     ],
     note: {

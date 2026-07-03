@@ -3,6 +3,7 @@
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
+import LogoImg from "./LogoImg";
 
 const MONTHS = {
   ar: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
@@ -78,7 +79,9 @@ export default function Journey() {
         {j.roles.map((r, i) => {
           const featured = i === 0;
           const ongoing = !r.end;
-          const period = `${fmtMonth(r.start, lang)} → ${r.end ? fmtMonth(r.end, lang) : present}`;
+          const startLabel = fmtMonth(r.start, lang);
+          const endLabel = r.end ? fmtMonth(r.end, lang) : present;
+          const arrow = lang === "ar" ? "←" : "→";
           const dur = durationLabel(r.start, r.end, lang);
           return (
             <Reveal key={i} delay={i * 0.06} y={28} className={featured ? "sm:col-span-2" : ""}>
@@ -88,8 +91,13 @@ export default function Journey() {
                   <div className="flex items-center gap-2.5">
                     <span className="grid h-7 w-7 shrink-0 place-items-center overflow-hidden rounded-lg bg-white p-1">
                       {(r.logo as string | null) ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={r.logo as string} alt={r.company[lang]} className="max-h-full max-w-full object-contain" />
+                        <LogoImg
+                          src={r.logo as string}
+                          alt={r.company[lang]}
+                          fallbackText={r.company.en}
+                          fallbackClassName="font-display text-sm font-bold text-black"
+                          className="max-h-full max-w-full object-contain"
+                        />
                       ) : (
                         <span className="font-display text-sm font-bold text-black">{r.company.en.slice(0, 1)}</span>
                       )}
@@ -99,8 +107,10 @@ export default function Journey() {
                       {r.company[lang]}
                     </span>
                   </div>
-                  <span dir="ltr" className="shrink-0 rounded-full border border-line px-3 py-1 text-xs text-muted tabular-nums">
-                    {period}
+                  <span className="flex shrink-0 items-center gap-1.5 rounded-full border border-line px-3 py-1 text-xs text-muted tabular-nums">
+                    <bdi>{startLabel}</bdi>
+                    <span aria-hidden>{arrow}</span>
+                    <bdi>{endLabel}</bdi>
                   </span>
                 </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
@@ -29,7 +30,10 @@ export default function FAQ() {
                   className="flex w-full items-center justify-between gap-4 p-6 text-start"
                 >
                   <span className="font-display text-base font-bold md:text-lg">{item.q[lang]}</span>
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line text-white/80">
+                  <span
+                    className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line text-white/80 transition-transform duration-300"
+                    style={{ transform: active ? "rotate(180deg)" : "none" }}
+                  >
                     <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
                       {active ? (
                         <path d="M3 8h10" strokeLinecap="round" />
@@ -39,7 +43,19 @@ export default function FAQ() {
                     </svg>
                   </span>
                 </button>
-                {active && <p className="-mt-1 px-6 pb-6 leading-relaxed text-muted">{item.a[lang]}</p>}
+                <AnimatePresence initial={false}>
+                  {active && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.44, 0, 0.56, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="-mt-1 px-6 pb-6 leading-relaxed text-muted">{item.a[lang]}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </Reveal>
           );

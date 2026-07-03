@@ -3,6 +3,7 @@
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
+import LogoImg from "./LogoImg";
 
 function ToolLogo({ name, logo }: { name: string; logo?: string | null }) {
   if (name === "Figma") {
@@ -63,12 +64,23 @@ function ToolLogo({ name, logo }: { name: string; logo?: string | null }) {
     );
   }
   if (logo) {
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={logo} alt={name} className="h-5 w-5 object-contain" />;
+    return (
+      <LogoImg
+        src={logo}
+        alt={name}
+        fallbackText={name}
+        fallbackClassName="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white/10 font-display text-[9px] font-bold text-white/70"
+        className="h-5 w-5 object-contain"
+      />
+    );
   }
   // fallback monogram for any tool without a bundled logo
   const init = name.replace(/[^A-Za-z]/g, "").slice(0, 2).toUpperCase();
-  return <span className="font-display text-xs font-bold text-white/70">{init}</span>;
+  return (
+    <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white/10 font-display text-[9px] font-bold text-white/70">
+      {init}
+    </span>
+  );
 }
 
 export default function TechStack() {
@@ -87,6 +99,7 @@ export default function TechStack() {
           {t.items.map((item, i) => (
             <span
               key={i}
+              title={item[lang]}
               className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white/[0.03] px-3 py-1.5 text-sm text-white/80"
             >
               <ToolLogo name={item.name} logo={item.logo} />

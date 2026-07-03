@@ -3,6 +3,7 @@
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
+import LogoImg from "./LogoImg";
 
 export default function Partners() {
   const { lang } = useLang();
@@ -29,8 +30,13 @@ export default function Partners() {
                 className="me-3 grid h-14 w-[124px] shrink-0 place-items-center rounded-xl bg-white px-4"
                 title={logo.name}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={logo.src} alt={logo.name} className="max-h-8 max-w-full object-contain" />
+                <LogoImg
+                  src={logo.src}
+                  alt={logo.name}
+                  fallbackText={logo.name}
+                  fallbackClassName="font-display text-sm font-bold text-black"
+                  className="max-h-8 max-w-full object-contain"
+                />
               </span>
             ))}
           </div>

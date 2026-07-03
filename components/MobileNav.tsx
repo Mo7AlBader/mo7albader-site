@@ -1,12 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
+
+export const MOBILE_NAV_TOGGLE_EVENT = "mobile-nav-toggle";
 
 export default function MobileNav() {
   const { lang, toggle } = useLang();
   const [open, setOpen] = useState(false);
+
+  // lock body scroll while the drawer is open + notify other floating UI (MobileCTA)
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent(MOBILE_NAV_TOGGLE_EVENT, { detail: open }));
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
 
   return (
     <div className="lg:hidden">

@@ -3,11 +3,14 @@
 import { useEffect, useState } from "react";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
+import { trackClick } from "@/lib/track";
+import { MOBILE_NAV_TOGGLE_EVENT } from "./MobileNav";
 
 /**
  * Sticky mobile contact CTA.
  * Hidden at the top (hero already has CTAs); appears after the user scrolls
- * past the hero; disappears once the contact section / footer is reached.
+ * past the hero; disappears once the contact section / footer is reached,
+ * and while the mobile nav drawer is open (avoids overlapping it).
  */
 export default function MobileCTA() {
   const { lang } = useLang();
@@ -17,7 +20,8 @@ export default function MobileCTA() {
   useEffect(() => {
     let pastHero = false;
     let contactInView = false;
-    const sync = () => setVisible(pastHero && !contactInView);
+    let navOpen = false;
+    const sync = () => setVisible(pastHero && !contactInView && !navOpen);
 
     const onScroll = () => {
       pastHero = window.scrollY > window.innerHeight * 0.7;
@@ -25,6 +29,12 @@ export default function MobileCTA() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+
+    const onNavToggle = (e: Event) => {
+      navOpen = (e as CustomEvent<boolean>).detail;
+      sync();
+    };
+    window.addEventListener(MOBILE_NAV_TOGGLE_EVENT, onNavToggle);
 
     // hide the floating CTA once the contact section (and footer below it) is in view
     const contact = document.getElementById("contact");
@@ -42,6 +52,7 @@ export default function MobileCTA() {
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener(MOBILE_NAV_TOGGLE_EVENT, onNavToggle);
       io?.disconnect();
     };
   }, []);
@@ -49,6 +60,7 @@ export default function MobileCTA() {
   return (
     <a
       href={h.ctaHref}
+      onClick={() => trackClick("mobile_sticky_cta")}
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
       className={`fixed bottom-4 left-1/2 z-50 inline-flex -translate-x-1/2 items-center gap-2 rounded-full

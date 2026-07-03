@@ -4,10 +4,14 @@ import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
 import CountUp from "./CountUp";
+import LogoImg from "./LogoImg";
 
 const avatars = ["/logos/ameen.svg", "/logos/abdihqt.png", "/logos/salla.svg"];
 
-function Star() {
+// verified rating proof (Ameen App Store), not a generic 5-star claim
+const ameenRatings = content.journey.roles.find((r) => r.company.en === "Ameen App")?.impact;
+
+function RatingBadge() {
   return (
     <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="var(--accent)" aria-hidden>
       <path d="M8 1.2l1.9 4 4.3.5-3.2 2.9.9 4.3L8 11.7 4.1 13.8l.9-4.3L1.8 5.7l4.3-.5z" />
@@ -43,7 +47,7 @@ export default function Stats() {
               </div>
               <CountUp
                 value={item.value}
-                className="font-display mt-6 block text-5xl font-bold tracking-tight tabular-nums md:text-6xl"
+                className="font-display mt-3 block text-5xl font-bold tracking-tight tabular-nums md:mt-6 md:text-6xl"
               />
             </div>
           </Reveal>
@@ -61,17 +65,23 @@ export default function Stats() {
                   className="grid h-10 w-10 place-items-center rounded-full border border-line bg-white p-1.5"
                   style={{ marginInlineStart: i === 0 ? 0 : -12, zIndex: avatars.length - i }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt="" className="max-h-full max-w-full object-contain" />
+                  <LogoImg
+                    src={src}
+                    alt=""
+                    fallbackText={src.split("/").pop()?.split(".")[0] ?? "?"}
+                    fallbackClassName="font-display text-xs font-bold text-black"
+                    className="max-h-full max-w-full object-contain"
+                  />
                 </span>
               ))}
             </div>
             <div>
-              <div className="flex gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} />
-                ))}
-              </div>
+              {ameenRatings && (
+                <div className="flex items-center gap-1.5 text-sm text-white/85">
+                  <RatingBadge />
+                  {ameenRatings[lang]}
+                </div>
+              )}
               <p className="mt-1.5 text-sm text-muted">
                 <span className="font-display font-bold text-white">{items[1].value}</span> {items[1][lang]}
               </p>

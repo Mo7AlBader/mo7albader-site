@@ -3,6 +3,8 @@
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
+import { trackClick } from "@/lib/track";
+import { OPEN_CAL_MODAL_EVENT } from "./Footer";
 
 export default function Contact() {
   const { lang } = useLang();
@@ -18,17 +20,36 @@ export default function Contact() {
 
       <Reveal delay={0.1} y={20}>
         <div className="mt-8 flex flex-wrap gap-3">
-          {c.links.map((l, i) => (
+          {/* primary action: booking a call converts directly, ahead of outbound links */}
+          <button
+            type="button"
+            onClick={() => {
+              trackClick("contact_cta_book_call");
+              window.dispatchEvent(new Event(OPEN_CAL_MODAL_EVENT));
+            }}
+            className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 font-medium text-white transition-colors hover:bg-accent2"
+          >
+            {lang === "ar" ? "احجز مكالمة" : "Book a call"}
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:rotate-90"
+            >
+              <path d="M4 12 12 4M6 4h6v6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          {c.links.map((l) => (
             <a
               key={l.label}
               href={l.href}
               target={l.href.startsWith("http") ? "_blank" : undefined}
               rel="noopener"
-              className={`group inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-medium transition-colors ${
-                i === 0
-                  ? "bg-accent text-white hover:bg-accent2"
-                  : "border border-line bg-white/[0.03] text-white/90 hover:border-accent hover:text-white"
-              }`}
+              onClick={() => trackClick("contact_link_click", { label: l.label })}
+              className="group inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-6 py-3.5 font-medium text-white/90 transition-colors hover:border-accent hover:text-white"
             >
               {l.label}
               <svg

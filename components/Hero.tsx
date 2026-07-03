@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
 import HeroBackground from "./HeroBackground";
+import { trackClick } from "@/lib/track";
 
 function SocialIcon({ label }: { label: string }) {
   if (label === "LinkedIn") {
@@ -65,7 +67,7 @@ export default function Hero() {
         {/* portrait card + cursive signature (placeholder until photo is added) */}
         <Reveal delay={0.08} y={28}>
           <div
-            className="relative mx-auto mt-8 w-full max-w-[360px] overflow-hidden rounded-[28px] border border-line"
+            className="relative mx-auto mt-5 w-full max-w-[240px] overflow-hidden rounded-[28px] border border-line sm:mt-8 sm:max-w-[360px]"
             style={{ aspectRatio: "4 / 5" }}
           >
             {/* orange duotone background — shows through the transparent cutout */}
@@ -77,11 +79,13 @@ export default function Hero() {
               }}
             />
             {/* real photo (transparent PNG sits on the gradient) */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/mohammed.png"
               alt="محمد البدر"
-              className="absolute inset-0 h-full w-full object-cover"
+              fill
+              priority
+              sizes="(min-width: 640px) 360px, 240px"
+              className="object-cover"
               style={{ objectPosition: "center top" }}
             />
             {/* bottom scrim so the signature stays legible */}
@@ -92,7 +96,7 @@ export default function Hero() {
             {/* signature */}
             <span
               dir="ltr"
-              className="signature absolute bottom-1 text-[58px] text-white ltr:left-4 rtl:right-4 md:text-[76px]"
+              className="signature absolute bottom-1 text-[38px] text-white ltr:left-3 rtl:right-3 sm:text-[58px] sm:ltr:left-4 sm:rtl:right-4 md:text-[76px]"
               style={{ textShadow: "0 2px 24px rgba(0,0,0,0.45)" }}
             >
               Mohammed
@@ -102,14 +106,14 @@ export default function Hero() {
 
         {/* greeting + line */}
         <Reveal delay={0.16} y={24}>
-          <p className="mx-auto mt-6 max-w-xl text-center text-lg leading-relaxed text-muted md:text-xl">
+          <h1 className="mx-auto mt-4 max-w-xl text-center text-base font-normal leading-relaxed text-muted sm:mt-6 sm:text-lg md:text-xl">
             {h.greeting[lang]} <span className="text-white">{h.line[lang]}</span>
-          </p>
+          </h1>
         </Reveal>
 
         {/* socials */}
         <Reveal delay={0.2} y={16}>
-          <div className="mt-6 flex items-center justify-center gap-3">
+          <div className="mt-4 flex items-center justify-center gap-3 sm:mt-6">
             {socials.map((s) => (
               <a
                 key={s.label}
@@ -117,6 +121,7 @@ export default function Hero() {
                 target={s.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener"
                 aria-label={s.label}
+                onClick={() => trackClick("hero_social_click", { label: s.label })}
                 className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white/[0.03]
                            text-white/80 transition-colors hover:border-accent hover:text-white"
               >
@@ -131,6 +136,7 @@ export default function Hero() {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <a
               href={h.ctaHref}
+              onClick={() => trackClick("hero_cta_contact")}
               className="group inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3.5
                          font-medium text-white transition-colors hover:bg-accent2"
             >
@@ -149,6 +155,7 @@ export default function Hero() {
             </a>
             <a
               href={h.workHref}
+              onClick={() => trackClick("hero_cta_view_work")}
               className="inline-flex items-center rounded-full border border-line bg-white/[0.03] px-6 py-3.5
                          font-medium text-white/90 transition-colors hover:border-accent hover:text-white"
             >

@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import CalModal from "./CalModal";
+import { trackClick } from "@/lib/track";
+
+export const OPEN_CAL_MODAL_EVENT = "open-cal-modal";
 
 function SocialIcon({ label }: { label: string }) {
   if (label === "LinkedIn") {
@@ -33,6 +36,13 @@ export default function Footer() {
   const socials = content.contact.links;
   const [calOpen, setCalOpen] = useState(false);
 
+  // let other sections (e.g. the Contact CTA) trigger this same modal instance
+  useEffect(() => {
+    const onOpen = () => setCalOpen(true);
+    window.addEventListener(OPEN_CAL_MODAL_EVENT, onOpen);
+    return () => window.removeEventListener(OPEN_CAL_MODAL_EVENT, onOpen);
+  }, []);
+
   return (
     <footer className="relative overflow-hidden">
       <div
@@ -41,14 +51,13 @@ export default function Footer() {
         style={{ background: "radial-gradient(80% 100% at 50% 100%, rgba(243,80,15,0.18), transparent 70%)" }}
       />
       <div className="container relative py-16 text-center md:py-20">
-        <p className="eyebrow" style={{ display: "inline-flex" }}>
-          {lang === "ar" ? "تواصل" : "Get in touch"}
-        </p>
-
         <button
           type="button"
-          onClick={() => setCalOpen(true)}
-          className="group mt-6 flex w-full flex-col items-center gap-4"
+          onClick={() => {
+            trackClick("footer_cta_book_call");
+            setCalOpen(true);
+          }}
+          className="group flex w-full flex-col items-center gap-4"
         >
           <span className="flex items-center gap-4">
             <span className="h-2.5 w-2.5 rounded-full bg-white transition-colors group-hover:bg-accent" />
@@ -59,7 +68,12 @@ export default function Footer() {
           <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-4 py-2 text-xs text-muted transition-colors group-hover:border-accent/50">
             <span>{lang === "ar" ? "الحجز عبر" : "Powered by"}</span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logos/tools/calcom.svg" alt="Cal.com" className="h-3.5 w-auto opacity-90" />
+            <img
+              src="/logos/tools/calcom.svg"
+              alt="Cal.com"
+              className="h-3.5 w-auto opacity-90"
+              onError={(e) => (e.currentTarget.style.display = "none")}
+            />
           </span>
         </button>
 
@@ -86,6 +100,7 @@ export default function Footer() {
               target={s.href.startsWith("http") ? "_blank" : undefined}
               rel="noopener"
               aria-label={s.label}
+              onClick={() => trackClick("footer_social_click", { label: s.label })}
               className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white/[0.03] text-white/80 transition-colors hover:border-accent hover:text-white"
             >
               <SocialIcon label={s.label} />

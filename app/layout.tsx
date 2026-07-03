@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Rajdhani, Poppins, IBM_Plex_Sans_Arabic, Waterfall } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { LangProvider } from "@/components/LangContext";
 
@@ -73,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ar" dir="rtl" className={`${display.variable} ${body.variable} ${arabic.variable} ${signature.variable}`}>
       <body className="font-ar">
         <LangProvider>{children}</LangProvider>
+        <Analytics />
       </body>
     </html>
   );

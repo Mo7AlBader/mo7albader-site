@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 declare global {
   interface Window {
@@ -13,9 +13,12 @@ declare global {
  * Embed config is the exact snippet from cal.com (mo7albader/30min, month view).
  */
 export default function CalModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [ready, setReady] = useState(false);
+
   // load + mount the Cal inline embed whenever the modal opens
   useEffect(() => {
     if (!open) return;
+    setReady(false);
 
     // --- Cal.com embed loader (verbatim) ---
     (function (C: any, A: string, L: string) {
@@ -61,6 +64,13 @@ export default function CalModal({ open, onClose }: { open: boolean; onClose: ()
       calLink: "mo7albader/30min",
     });
     Cal.ns["30min"]("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    Cal.ns["30min"]("on", {
+      action: "linkReady",
+      callback: () => setReady(true),
+    });
+    // fallback in case the embed doesn't emit linkReady
+    const fallback = window.setTimeout(() => setReady(true), 4000);
+    return () => window.clearTimeout(fallback);
   }, [open]);
 
   // Escape to close + lock body scroll while open
@@ -103,6 +113,15 @@ export default function CalModal({ open, onClose }: { open: boolean; onClose: ()
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
+        {/* loading skeleton while the Cal.com iframe boots */}
+        {!ready && (
+          <div className="absolute inset-0 z-10 grid place-items-center bg-[#0c0c0c]">
+            <div className="flex flex-col items-center gap-3">
+              <span className="h-8 w-8 animate-spin rounded-full border-2 border-white/15 border-t-white/70" />
+              <span className="text-sm text-white/50">Loading booking calendar…</span>
+            </div>
+          </div>
+        )}
         {/* Cal inline embed mounts here */}
         <div style={{ width: "100%", height: "100%", overflow: "scroll" }} id="my-cal-inline-30min" />
       </div>

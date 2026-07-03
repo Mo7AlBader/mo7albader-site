@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
@@ -70,11 +71,21 @@ export default function Expertise() {
                     [{String(i + 1).padStart(2, "0")}]
                   </span>
                 </div>
-                {active && (
-                  <p className="mt-4 leading-relaxed text-muted ltr:pl-16 rtl:pr-16">
-                    {lang === "ar" ? area.arDesc : area.enDesc}
-                  </p>
-                )}
+                <AnimatePresence initial={false}>
+                  {active && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.44, 0, 0.56, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-4 leading-relaxed text-muted ltr:pl-16 rtl:pr-16">
+                        {lang === "ar" ? area.arDesc : area.enDesc}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </button>
             </Reveal>
           );

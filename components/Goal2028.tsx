@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
@@ -23,11 +24,13 @@ export default function Goal2028() {
       <Reveal y={28}>
         <div className="group relative overflow-hidden rounded-[28px] border border-line">
           {/* real Range Rover image */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={g.image}
             alt="Range Rover"
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            fill
+            loading="lazy"
+            sizes="(min-width: 850px) 850px, 100vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
           {/* legibility gradients */}
           <div

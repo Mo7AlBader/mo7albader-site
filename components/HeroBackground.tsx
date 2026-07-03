@@ -18,6 +18,7 @@ export default function HeroBackground() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let raf = 0;
+    let running = false;
     let w = 0;
     let h = 0;
     let dpr = 1;
@@ -79,20 +80,41 @@ export default function HeroBackground() {
         ctx.fill();
       }
 
+      if (running) raf = requestAnimationFrame(draw);
+    };
+
+    const start = () => {
+      if (running || reduce) return;
+      running = true;
       raf = requestAnimationFrame(draw);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
     };
 
     resize();
     if (reduce) {
       draw(); // one static frame
     } else {
-      raf = requestAnimationFrame(draw);
+      start();
     }
     window.addEventListener("resize", resize);
 
+    // pause the loop while the hero has scrolled off screen (saves battery/CPU)
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) start();
+        else stop();
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
       window.removeEventListener("resize", resize);
+      io.disconnect();
     };
   }, []);
 

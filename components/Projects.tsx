@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
@@ -42,14 +43,16 @@ export default function Projects() {
                 {/* cover: real screenshot when available, gradient otherwise */}
                 {cover ? (
                   <>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={cover}
                       alt={`${item.name} preview`}
-                      className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                      fill
+                      loading="lazy"
+                      sizes={featured ? "(min-width: 640px) 850px, 100vw" : "(min-width: 640px) 420px, 100vw"}
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                     {/* readability scrim */}
-                    <div className="pointer-events-none absolute inset-0 bg-black/15" />
+                    <div className="pointer-events-none absolute inset-0 bg-black/30" />
                   </>
                 ) : (
                   <div
@@ -73,13 +76,15 @@ export default function Projects() {
                 </span>
                 {/* bottom panel */}
                 <div
-                  className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5"
-                  style={{ background: "linear-gradient(transparent, rgba(0,0,0,0.85))" }}
+                  className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 pt-10"
+                  style={{ background: "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.92))" }}
                 >
                   <div className="min-w-0">
-                    <p className="text-sm text-muted">{item.tags[0]}</p>
-                    <h3 className="font-display text-xl font-bold tracking-tight md:text-2xl">{item.name}</h3>
-                    <p className="mt-1 line-clamp-2 max-w-md text-sm text-white/55">{item[lang]}</p>
+                    <p className="text-sm text-white/70">{item.tags[0]}</p>
+                    <h3 className="font-display text-xl font-bold tracking-tight text-white md:text-2xl">
+                      <bdi>{item.name}</bdi>
+                    </h3>
+                    <p className="mt-1 line-clamp-2 max-w-md text-sm text-white/75">{item[lang]}</p>
                   </div>
                   {href && (
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-white text-black transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:rotate-90">

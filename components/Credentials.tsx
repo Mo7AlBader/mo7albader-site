@@ -44,7 +44,7 @@ export default function Credentials() {
                     <span className="text-muted"> · {cert.issuer[lang]}</span>
                   </span>
                   <span className="font-display text-sm tabular-nums shrink-0" style={{ color: "var(--accent)" }}>
-                    {cert.year}
+                    {cert.year[lang]}
                   </span>
                 </li>
               ))}
