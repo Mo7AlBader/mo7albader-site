@@ -68,7 +68,7 @@ export default function Projects() {
                   />
                 )}
                 {/* category / date chip */}
-                <span className="absolute top-4 rounded-full border border-line bg-black/40 px-3 py-1 text-xs text-white/80 backdrop-blur ltr:left-4 rtl:right-4">
+                <span className="absolute top-4 max-w-[80%] rounded-full border border-line bg-black/40 px-3 py-1 text-xs leading-snug text-white/80 backdrop-blur ltr:left-4 rtl:right-4">
                   {item.tags[item.tags.length - 1]}
                 </span>
                 {/* bottom panel */}
