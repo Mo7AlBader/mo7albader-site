@@ -28,7 +28,8 @@ export default {
     }
 
     if (url.pathname === "/api/stats" && request.method === "GET") {
-      if (url.searchParams.get("token") !== env.STATS_TOKEN) {
+      const auth = request.headers.get("Authorization") || "";
+      if (auth !== `Bearer ${env.STATS_TOKEN}`) {
         return new Response("Unauthorized", { status: 401 });
       }
       const counts = {};
