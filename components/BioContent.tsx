@@ -12,6 +12,15 @@ function amazonSearch(query: string) {
   return `https://www.amazon.sa/s?k=${encodeURIComponent(query)}&tag=${AMAZON_TAG}`;
 }
 
+// +1% for every 2 full months elapsed since baselineDate, capped at 100% — same logic as the homepage goal card
+function computeProgress(baselineDate: string, baselineProgress: number) {
+  const [y, m] = baselineDate.split("-").map(Number);
+  const now = new Date();
+  const monthsElapsed = (now.getFullYear() - y) * 12 + (now.getMonth() - (m - 1));
+  const grown = baselineProgress + Math.max(0, Math.floor(monthsElapsed / 2));
+  return Math.min(100, grown);
+}
+
 const SOCIALS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },
   { label: "X", href: "https://x.com/mo7albader" },
@@ -19,30 +28,38 @@ const SOCIALS = [
   { label: "Snapchat", href: "https://snapchat.com/add/mo7albader" },
 ];
 
-// products list needs your confirmation on "لوجتك xs master 4" — displayed as Logitech MX Master below
+// products list needs your confirmation on "لوجتك xs master 4" — displayed as Logitech MX Master 3S below
+// photos are real (Wikimedia Commons, freely licensed) except mousepad + monitor, which have no confirmed product yet
 const PRODUCTIVITY_PRODUCTS = [
-  { name: "ماوس Logitech MX Master", key: "mouse_logitech", query: "Logitech MX Master mouse" },
+  { name: "ماوس Logitech MX Master 3S", key: "mouse_logitech", query: "Logitech MX Master mouse", image: "/bio/products/mx_master.jpg" },
   { name: "شاشة بي سي", key: "monitor", comingSoon: true },
   { name: "ماوس باد", key: "mousepad", query: "gaming mouse pad" },
-  { name: "آيفون 17 برو ماكس", key: "iphone_17_pro_max", query: "iPhone 17 Pro Max" },
-  { name: "سماعة Anker Soundcore Q45", key: "soundcore_q45", query: "Anker Soundcore Q45" },
+  { name: "آيفون 17 برو ماكس", key: "iphone_17_pro_max", query: "iPhone 17 Pro Max", image: "/bio/products/iphone17.jpg" },
+  // exact Q45 photo wasn't available under a free license — using another Anker Soundcore headphone as a stand-in, swap anytime
+  { name: "سماعة Anker Soundcore Q45", key: "soundcore_q45", query: "Anker Soundcore Q45", image: "/bio/products/soundcore.jpg" },
 ];
 
 // suggested — swap anytime, these are placeholders since you asked me to pick
 const ENTERTAINMENT_PRODUCTS = [
-  { name: "Kindle Paperwhite", key: "kindle_paperwhite", query: "Kindle Paperwhite" },
-  { name: "Nintendo Switch OLED", key: "switch_oled", query: "Nintendo Switch OLED" },
-  { name: "Apple TV 4K", key: "apple_tv_4k", query: "Apple TV 4K" },
+  { name: "Kindle Paperwhite", key: "kindle_paperwhite", query: "Kindle Paperwhite", image: "/bio/products/kindle.jpg" },
+  { name: "Nintendo Switch OLED", key: "switch_oled", query: "Nintendo Switch OLED", image: "/bio/products/switch_oled.png" },
+  { name: "Apple TV 4K", key: "apple_tv_4k", query: "Apple TV 4K", image: "/bio/products/appletv.jpg" },
 ];
 
-// only "فن الحرب" was specified — the other 4 are placeholders, swap anytime
+// only "فن الحرب" was specified — the other 4 are placeholders, swap anytime. Covers are real (Open Library)
 const BOOKS = [
-  { title: "فن الحرب", author: "سون تزو", key: "art_of_war", query: "فن الحرب سون تزو" },
-  { title: "العادات السبع للناس الأكثر فعالية", author: "ستيفن كوفي", key: "7_habits", query: "العادات السبع للناس الأكثر فعالية" },
-  { title: "فكر تصبح غنيًا", author: "نابليون هيل", key: "think_grow_rich", query: "فكر تصبح غنيا نابليون هيل" },
-  { title: "الأمير", author: "ميكافيلي", key: "the_prince", query: "الأمير ميكافيلي" },
-  { title: "ابدأ بالسبب", author: "سايمون سينك", key: "start_with_why", query: "ابدأ بالسبب سايمون سينك" },
+  { title: "فن الحرب", author: "سون تزو", key: "art_of_war", query: "فن الحرب سون تزو", image: "/bio/books/art_of_war.jpg" },
+  { title: "العادات السبع للناس الأكثر فعالية", author: "ستيفن كوفي", key: "7_habits", query: "العادات السبع للناس الأكثر فعالية", image: "/bio/books/7_habits.jpg" },
+  { title: "فكر تصبح غنيًا", author: "نابليون هيل", key: "think_grow_rich", query: "فكر تصبح غنيا نابليون هيل", image: "/bio/books/think_grow_rich.jpg" },
+  { title: "الأمير", author: "ميكافيلي", key: "the_prince", query: "الأمير ميكافيلي", image: "/bio/books/the_prince.jpg" },
+  { title: "ابدأ بالسبب", author: "سايمون سينك", key: "start_with_why", query: "ابدأ بالسبب سايمون سينك", image: "/bio/books/start_with_why.jpg" },
 ];
+
+// Range Rover goal — same numbers as the homepage's Goal2028 card
+const GOAL = {
+  baselineDate: "2026-07",
+  baselineProgress: 13,
+};
 
 function SocialIcon({ label }: { label: string }) {
   if (label === "LinkedIn") {
@@ -114,21 +131,46 @@ function ExternalArrow() {
   );
 }
 
+// generic mat/pad icon — shown when a product has no photo yet
+function MousepadIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="6" width="18" height="12" rx="3" />
+      <path d="M7 10h10M7 14h6" />
+    </svg>
+  );
+}
+
+function Thumb({ image, fallback }: { image?: string; fallback?: React.ReactNode }) {
+  return (
+    <span className="relative grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-lg border border-line bg-white/[0.03]">
+      {image ? (
+        <Image src={image} alt="" fill sizes="44px" className="object-cover" />
+      ) : (
+        <span className="text-white/50">{fallback}</span>
+      )}
+    </span>
+  );
+}
+
 function ProductRow({
   name,
   eventKey,
   query,
   comingSoon,
+  image,
 }: {
   name: string;
   eventKey: string;
   query?: string;
   comingSoon?: boolean;
+  image?: string;
 }) {
   if (comingSoon) {
     return (
-      <div className="flex items-center justify-between gap-3 rounded-xl border border-line bg-white/[0.02] px-4 py-3 opacity-60">
-        <span className="text-sm">{name}</span>
+      <div className="flex items-center gap-3 rounded-xl border border-line bg-white/[0.02] px-3 py-3 opacity-60">
+        <Thumb fallback={<MousepadIcon />} />
+        <span className="flex-1 text-sm">{name}</span>
         <span className="pill !py-1 !text-xs">قريبًا</span>
       </div>
     );
@@ -139,9 +181,10 @@ function ProductRow({
       target="_blank"
       rel="noopener sponsored"
       onClick={() => trackClick("bio_product_click", { label: eventKey })}
-      className="flex items-center justify-between gap-3 rounded-xl border border-line bg-white/[0.02] px-4 py-3 transition-colors hover:border-accent"
+      className="flex items-center gap-3 rounded-xl border border-line bg-white/[0.02] px-3 py-3 transition-colors hover:border-accent"
     >
-      <span className="text-sm">{name}</span>
+      <Thumb image={image} fallback={<MousepadIcon />} />
+      <span className="flex-1 text-sm">{name}</span>
       <ExternalArrow />
     </a>
   );
@@ -151,6 +194,7 @@ export default function BioContent() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [booksOpen, setBooksOpen] = useState(false);
   const [calOpen, setCalOpen] = useState(false);
+  const pct = computeProgress(GOAL.baselineDate, GOAL.baselineProgress);
 
   return (
     <main className="min-h-screen py-14">
@@ -234,7 +278,7 @@ export default function BioContent() {
                         <p className="mb-2 text-xs uppercase tracking-wide text-faint">الإنتاجية</p>
                         <div className="flex flex-col gap-2">
                           {PRODUCTIVITY_PRODUCTS.map((p) => (
-                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} comingSoon={p.comingSoon} />
+                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} comingSoon={p.comingSoon} image={p.image} />
                           ))}
                         </div>
                       </div>
@@ -242,7 +286,7 @@ export default function BioContent() {
                         <p className="mb-2 text-xs uppercase tracking-wide text-faint">الترفيهية</p>
                         <div className="flex flex-col gap-2">
                           {ENTERTAINMENT_PRODUCTS.map((p) => (
-                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} />
+                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} image={p.image} />
                           ))}
                         </div>
                       </div>
@@ -253,15 +297,26 @@ export default function BioContent() {
             </div>
           </Reveal>
 
-          {/* موقعي الشخصي */}
+          {/* موقعي الشخصي — preview thumbnail from the real OG image */}
           <Reveal delay={0.1} y={16}>
             <a
               href="https://mo7albader.com"
               onClick={() => trackClick("bio_website_click")}
-              className="card flex items-center justify-between gap-4 p-5 transition-colors hover:border-accent"
+              className="card group block overflow-hidden transition-colors hover:border-accent"
             >
-              <span className="font-display text-base font-bold">موقعي الشخصي</span>
-              <ExternalArrow />
+              <div className="relative aspect-[1200/630] w-full overflow-hidden">
+                <Image
+                  src="/opengraph-image.png"
+                  alt="mo7albader.com"
+                  fill
+                  sizes="440px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="flex items-center justify-between gap-4 p-5">
+                <span className="font-display text-base font-bold">موقعي الشخصي</span>
+                <ExternalArrow />
+              </div>
             </a>
           </Reveal>
 
@@ -298,9 +353,12 @@ export default function BioContent() {
                           target="_blank"
                           rel="noopener sponsored"
                           onClick={() => trackClick("bio_book_click", { label: b.key })}
-                          className="flex items-center justify-between gap-3 rounded-xl border border-line bg-white/[0.02] px-4 py-3 transition-colors hover:border-accent"
+                          className="flex items-center gap-3 rounded-xl border border-line bg-white/[0.02] px-3 py-3 transition-colors hover:border-accent"
                         >
-                          <span className="text-sm">
+                          <span className="relative h-14 w-11 shrink-0 overflow-hidden rounded-md border border-line">
+                            <Image src={b.image} alt="" fill sizes="44px" className="object-cover" />
+                          </span>
+                          <span className="flex-1 text-sm">
                             {b.title} <span className="text-muted">— {b.author}</span>
                           </span>
                           <ExternalArrow />
@@ -313,8 +371,53 @@ export default function BioContent() {
             </div>
           </Reveal>
 
+          {/* هدف رينج روفر — نسخة مبسطة من كرت الهدف بالموقع الرئيسي */}
+          <Reveal delay={0.18} y={16}>
+            <div className="relative overflow-hidden rounded-[24px] border border-line">
+              <Image
+                src="/rangerover.jpg"
+                alt="Range Rover"
+                fill
+                loading="lazy"
+                sizes="440px"
+                className="object-cover"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.92) 100%)" }}
+              />
+              <div className="relative flex min-h-[220px] flex-col justify-end p-5">
+                <p className="eyebrow">الهدف الشخصي</p>
+                <div className="mt-2 flex flex-wrap items-end gap-2">
+                  <h2 className="font-display text-3xl font-bold leading-none tracking-tight">رينج روفر</h2>
+                  <span className="mb-0.5 rounded-full border border-line bg-black/40 px-2.5 py-0.5 font-display text-xs tabular-nums text-white/85 backdrop-blur">
+                    2028
+                  </span>
+                </div>
+                <div className="mt-5">
+                  <div className="mb-1.5 flex items-center justify-between text-xs">
+                    <span className="text-white/70">التقدّم نحو الهدف</span>
+                    <span className="font-display text-sm font-bold tabular-nums" style={{ color: "var(--accent)" }}>
+                      {pct}%
+                    </span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full border border-white/10 bg-black/40">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${pct}%`,
+                        background: "linear-gradient(90deg, var(--accent), var(--accent-2))",
+                        boxShadow: "0 0 14px rgba(243,80,15,0.6)",
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
           {/* احجز مكالمة */}
-          <Reveal delay={0.2} y={16}>
+          <Reveal delay={0.22} y={16}>
             <button
               type="button"
               onClick={() => {
