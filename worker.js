@@ -1,13 +1,11 @@
-const EVENT_NAMES = new Set([
-  "hero_social_click",
-  "hero_cta_contact",
-  "hero_cta_view_work",
-  "contact_cta_book_call",
-  "contact_link_click",
-  "footer_cta_book_call",
-  "footer_social_click",
-  "mobile_sticky_cta",
-]);
+const NAME_RE = /^[a-z0-9_]{1,64}$/;
+const LABEL_RE = /^[a-z0-9_]{1,64}$/i;
+
+function sanitizeLabel(label) {
+  if (typeof label !== "string") return null;
+  const cleaned = label.toLowerCase().replace(/[^a-z0-9_]+/g, "_").slice(0, 64);
+  return LABEL_RE.test(cleaned) ? cleaned : null;
+}
 
 export default {
   async fetch(request, env) {
@@ -15,9 +13,10 @@ export default {
 
     if (url.pathname === "/api/track" && request.method === "POST") {
       try {
-        const { name } = await request.json();
-        if (EVENT_NAMES.has(name)) {
-          const key = `count:${name}`;
+        const { name, props } = await request.json();
+        if (typeof name === "string" && NAME_RE.test(name)) {
+          const label = sanitizeLabel(props && props.label);
+          const key = label ? `count:${name}:${label}` : `count:${name}`;
           const current = parseInt((await env.ANALYTICS_KV.get(key)) || "0", 10);
           await env.ANALYTICS_KV.put(key, String(current + 1));
         }
@@ -34,8 +33,9 @@ export default {
         return new Response("Unauthorized", { status: 401 });
       }
       const counts = {};
-      for (const name of EVENT_NAMES) {
-        counts[name] = parseInt((await env.ANALYTICS_KV.get(`count:${name}`)) || "0", 10);
+      const list = await env.ANALYTICS_KV.list({ prefix: "count:" });
+      for (const { name: key } of list.keys) {
+        counts[key.slice("count:".length)] = parseInt((await env.ANALYTICS_KV.get(key)) || "0", 10);
       }
       return Response.json(counts);
     }
