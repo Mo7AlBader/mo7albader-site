@@ -297,26 +297,25 @@ export default function BioContent() {
             </div>
           </Reveal>
 
-          {/* موقعي الشخصي — preview thumbnail from the real OG image */}
+          {/* موقعي الشخصي — compact row, thumbnail cropped from the real OG image */}
           <Reveal delay={0.1} y={16}>
             <a
               href="https://mo7albader.com"
               onClick={() => trackClick("bio_website_click")}
-              className="card group block overflow-hidden transition-colors hover:border-accent"
+              className="card flex items-center gap-3 p-3 transition-colors hover:border-accent"
             >
-              <div className="relative aspect-[1200/630] w-full overflow-hidden">
+              <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-line">
                 <Image
                   src="/opengraph-image.png"
-                  alt="mo7albader.com"
+                  alt=""
                   fill
-                  sizes="440px"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="44px"
+                  className="object-cover"
+                  style={{ objectPosition: "85% center" }}
                 />
-              </div>
-              <div className="flex items-center justify-between gap-4 p-5">
-                <span className="font-display text-base font-bold">موقعي الشخصي</span>
-                <ExternalArrow />
-              </div>
+              </span>
+              <span className="flex-1 font-display text-base font-bold">موقعي الشخصي</span>
+              <ExternalArrow />
             </a>
           </Reveal>
 
@@ -371,47 +370,29 @@ export default function BioContent() {
             </div>
           </Reveal>
 
-          {/* هدف رينج روفر — نسخة مبسطة من كرت الهدف بالموقع الرئيسي */}
+          {/* هدف رينج روفر — نسخة مصغّرة (كرت سطر بدل بانر كبير) */}
           <Reveal delay={0.18} y={16}>
-            <div className="relative overflow-hidden rounded-[24px] border border-line">
-              <Image
-                src="/rangerover.jpg"
-                alt="Range Rover"
-                fill
-                loading="lazy"
-                sizes="440px"
-                className="object-cover"
-              />
-              <div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.92) 100%)" }}
-              />
-              <div className="relative flex min-h-[220px] flex-col justify-end p-5">
-                <p className="eyebrow">الهدف الشخصي</p>
-                <div className="mt-2 flex flex-wrap items-end gap-2">
-                  <h2 className="font-display text-3xl font-bold leading-none tracking-tight">رينج روفر</h2>
-                  <span className="mb-0.5 rounded-full border border-line bg-black/40 px-2.5 py-0.5 font-display text-xs tabular-nums text-white/85 backdrop-blur">
-                    2028
-                  </span>
-                </div>
-                <div className="mt-5">
-                  <div className="mb-1.5 flex items-center justify-between text-xs">
-                    <span className="text-white/70">التقدّم نحو الهدف</span>
-                    <span className="font-display text-sm font-bold tabular-nums" style={{ color: "var(--accent)" }}>
-                      {pct}%
-                    </span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full border border-white/10 bg-black/40">
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: `${pct}%`,
-                        background: "linear-gradient(90deg, var(--accent), var(--accent-2))",
-                        boxShadow: "0 0 14px rgba(243,80,15,0.6)",
-                      }}
-                    />
-                  </div>
-                </div>
+            <div className="card flex flex-col gap-2 p-3">
+              <div className="flex items-center gap-3">
+                <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-line">
+                  <Image src="/rangerover.jpg" alt="" fill sizes="44px" className="object-cover" />
+                </span>
+                <span className="flex-1">
+                  <span className="font-display block text-base font-bold">رينج روفر</span>
+                  <span className="text-xs text-muted">الهدف الشخصي · 2028</span>
+                </span>
+                <span className="font-display text-sm font-bold tabular-nums" style={{ color: "var(--accent)" }}>
+                  {pct}%
+                </span>
+              </div>
+              <div className="h-1.5 overflow-hidden rounded-full border border-line bg-black/40">
+                <div
+                  className="h-full rounded-full"
+                  style={{
+                    width: `${pct}%`,
+                    background: "linear-gradient(90deg, var(--accent), var(--accent-2))",
+                  }}
+                />
               </div>
             </div>
           </Reveal>
