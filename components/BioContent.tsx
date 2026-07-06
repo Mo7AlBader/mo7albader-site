@@ -29,7 +29,7 @@ const SOCIALS = [
 ];
 
 // products list needs your confirmation on "لوجتك xs master 4" — displayed as Logitech MX Master 3S below
-// photos are real (Wikimedia Commons, freely licensed) except mousepad + monitor, which have no confirmed product yet
+// photos are real (Wikimedia Commons, freely licensed) except mousepad/monitor/laptop/bag/whoop, which have no confirmed product yet
 const PRODUCTIVITY_PRODUCTS = [
   { name: "ماوس Logitech MX Master 3S", key: "mouse_logitech", query: "Logitech MX Master mouse", image: "/bio/products/mx_master.jpg" },
   { name: "شاشة بي سي", key: "monitor", comingSoon: true },
@@ -37,6 +37,10 @@ const PRODUCTIVITY_PRODUCTS = [
   { name: "آيفون 17 برو ماكس", key: "iphone_17_pro_max", query: "iPhone 17 Pro Max", image: "/bio/products/iphone17.jpg" },
   // exact Q45 photo wasn't available under a free license — using another Anker Soundcore headphone as a stand-in, swap anytime
   { name: "سماعة Anker Soundcore Q45", key: "soundcore_q45", query: "Anker Soundcore Q45", image: "/bio/products/soundcore.jpg" },
+  { name: "ساعة Apple Watch Ultra", key: "watch_ultra", query: "Apple Watch Ultra", image: "/bio/products/watch_ultra.jpg" },
+  { name: "Whoop", key: "whoop", query: "Whoop band" },
+  { name: "نوت بوك قوي للمهام", key: "laptop", query: "powerful laptop" },
+  { name: "حقيبة لابتوب", key: "laptop_bag", query: "laptop bag" },
 ];
 
 // suggested — swap anytime, these are placeholders since you asked me to pick
@@ -44,15 +48,18 @@ const ENTERTAINMENT_PRODUCTS = [
   { name: "Kindle Paperwhite", key: "kindle_paperwhite", query: "Kindle Paperwhite", image: "/bio/products/kindle.jpg" },
   { name: "Nintendo Switch OLED", key: "switch_oled", query: "Nintendo Switch OLED", image: "/bio/products/switch_oled.png" },
   { name: "Apple TV 4K", key: "apple_tv_4k", query: "Apple TV 4K", image: "/bio/products/appletv.jpg" },
+  { name: "PlayStation 5", key: "ps5", query: "PlayStation 5", image: "/bio/products/ps5.jpg" },
 ];
 
-// only "فن الحرب" was specified — the other 4 are placeholders, swap anytime. Covers are real (Open Library)
+// only "فن الحرب" was specified — the rest are placeholders (including the 2 latest), swap anytime. Covers are real (Open Library)
 const BOOKS = [
   { title: "فن الحرب", author: "سون تزو", key: "art_of_war", query: "فن الحرب سون تزو", image: "/bio/books/art_of_war.jpg" },
   { title: "العادات السبع للناس الأكثر فعالية", author: "ستيفن كوفي", key: "7_habits", query: "العادات السبع للناس الأكثر فعالية", image: "/bio/books/7_habits.jpg" },
   { title: "فكر تصبح غنيًا", author: "نابليون هيل", key: "think_grow_rich", query: "فكر تصبح غنيا نابليون هيل", image: "/bio/books/think_grow_rich.jpg" },
   { title: "الأمير", author: "ميكافيلي", key: "the_prince", query: "الأمير ميكافيلي", image: "/bio/books/the_prince.jpg" },
   { title: "ابدأ بالسبب", author: "سايمون سينك", key: "start_with_why", query: "ابدأ بالسبب سايمون سينك", image: "/bio/books/start_with_why.jpg" },
+  { title: "العادات الذرية", author: "جيمس كلير", key: "atomic_habits", query: "العادات الذرية جيمس كلير", image: "/bio/books/atomic_habits.jpg" },
+  { title: "الأب الغني والأب الفقير", author: "روبرت كيوساكي", key: "rich_dad_poor_dad", query: "الأب الغني والأب الفقير", image: "/bio/books/rich_dad_poor_dad.jpg" },
 ];
 
 // Range Rover goal — same numbers as the homepage's Goal2028 card
