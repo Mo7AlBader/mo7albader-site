@@ -61,15 +61,32 @@ const ENTERTAINMENT_PRODUCTS: ProductItem[] = [
   { name: "PlayStation 5", key: "ps5", asin: "B0CN5Q73LC", image: "/bio/products/ps5.jpg" },
 ];
 
-// only "فن الحرب" was specified — the rest are placeholders (including the 2 latest), swap anytime. Covers are real (Open Library)
+// exact editions you sent — real ASIN + official cover
 const BOOKS = [
-  { title: "فن الحرب", author: "سون تزو", key: "art_of_war", query: "فن الحرب سون تزو", image: "/bio/books/art_of_war.jpg" },
-  { title: "العادات السبع للناس الأكثر فعالية", author: "ستيفن كوفي", key: "7_habits", query: "العادات السبع للناس الأكثر فعالية", image: "/bio/books/7_habits.jpg" },
-  { title: "فكر تصبح غنيًا", author: "نابليون هيل", key: "think_grow_rich", query: "فكر تصبح غنيا نابليون هيل", image: "/bio/books/think_grow_rich.jpg" },
-  { title: "الأمير", author: "ميكافيلي", key: "the_prince", query: "الأمير ميكافيلي", image: "/bio/books/the_prince.jpg" },
-  { title: "ابدأ بالسبب", author: "سايمون سينك", key: "start_with_why", query: "ابدأ بالسبب سايمون سينك", image: "/bio/books/start_with_why.jpg" },
-  { title: "العادات الذرية", author: "جيمس كلير", key: "atomic_habits", query: "العادات الذرية جيمس كلير", image: "/bio/books/atomic_habits.jpg" },
-  { title: "الأب الغني والأب الفقير", author: "روبرت كيوساكي", key: "rich_dad_poor_dad", query: "الأب الغني والأب الفقير", image: "/bio/books/rich_dad_poor_dad.jpg" },
+  {
+    title: "فن الحرب",
+    author: "سون تزو",
+    key: "art_of_war",
+    asin: "B0D87QQ29G",
+    image: "/bio/books/art_of_war.jpg",
+    blurb: "حكمة استراتيجية عمرها 2500 سنة، لسه تطبقها الشركات الكبرى اليوم",
+  },
+  {
+    title: "لأنك الله",
+    author: "علي الفيفي",
+    key: "liannaka_allah",
+    asin: "6035065007",
+    image: "/bio/books/liannaka_allah.jpg",
+    blurb: "رحلة روحانية تهز القلب، من أكثر الكتب تأثيرًا في اليقين",
+  },
+  {
+    title: "العادات الذرية",
+    author: "جيمس كلير",
+    key: "atomic_habits",
+    asin: "6144720669",
+    image: "/bio/books/atomic_habits.jpg",
+    blurb: "تغييرات صغيرة يومية تبني نتائج ضخمة على المدى الطويل",
+  },
 ];
 
 // Range Rover goal — same numbers as the homepage's Goal2028 card
@@ -367,7 +384,7 @@ export default function BioContent() {
                       {BOOKS.map((b) => (
                         <a
                           key={b.key}
-                          href={amazonSearch(b.query)}
+                          href={amazonProduct(b.asin)}
                           target="_blank"
                           rel="noopener sponsored"
                           onClick={() => trackClick("bio_book_click", { label: b.key })}
@@ -376,8 +393,11 @@ export default function BioContent() {
                           <span className="relative h-14 w-11 shrink-0 overflow-hidden rounded-md border border-line">
                             <Image src={b.image} alt="" fill sizes="44px" className="object-cover" />
                           </span>
-                          <span className="flex-1 text-sm">
-                            {b.title} <span className="text-muted">— {b.author}</span>
+                          <span className="flex-1">
+                            <span className="block text-sm">
+                              {b.title} <span className="text-muted">· {b.author}</span>
+                            </span>
+                            <span className="mt-0.5 block text-xs text-muted">{b.blurb}</span>
                           </span>
                           <ExternalArrow />
                         </a>
