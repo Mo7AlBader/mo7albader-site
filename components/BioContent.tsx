@@ -46,12 +46,10 @@ type ProductItem = {
 const PRODUCTIVITY_PRODUCTS: ProductItem[] = [
   { name: "ماوس Logitech MX Master 4", key: "mouse_logitech", asin: "B0FHHS787D", image: "/bio/products/mx_master.jpg" },
   { name: "شاشة ايسوس TUF Gaming VG27AQ5A-J", key: "monitor", asin: "B0GF8176TN", image: "/bio/products/monitor.jpg" },
-  { name: "ماوس باد", key: "mousepad", query: "gaming mouse pad" },
   { name: "آيفون 17 برو ماكس", key: "iphone_17_pro_max", asin: "B0FQFHZF6L", image: "/bio/products/iphone17.jpg" },
   { name: "سماعة Anker Soundcore Q45", key: "soundcore_q45", asin: "B0B5VHRX7F", image: "/bio/products/soundcore.jpg" },
   { name: "ساعة Apple Watch Ultra", key: "watch_ultra", query: "Apple Watch Ultra", image: "/bio/products/watch_ultra.jpg" },
   { name: "Whoop", key: "whoop", asin: "B0DY2SWV16", image: "/bio/products/whoop.jpg" },
-  { name: "نوت بوك قوي للمهام", key: "laptop", query: "powerful laptop" },
   { name: "حقيبة لابتوب", key: "laptop_bag", asin: "B0BWR4T89S", image: "/bio/products/laptop_bag.jpg" },
 ];
 
