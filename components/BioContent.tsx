@@ -44,7 +44,7 @@ type ProductItem = {
 // products list needs your confirmation on "لوجتك xs master 4" — displayed as Logitech MX Master 3S below
 // links + photos below are the exact listings you sent (real ASIN + official product photo)
 const PRODUCTIVITY_PRODUCTS: ProductItem[] = [
-  { name: "ماوس Logitech MX Master 3S", key: "mouse_logitech", asin: "B07W5JKHFZ", image: "/bio/products/mx_master.jpg" },
+  { name: "ماوس Logitech MX Master 4", key: "mouse_logitech", asin: "B0FHHS787D", image: "/bio/products/mx_master.jpg" },
   { name: "شاشة ايسوس TUF Gaming VG27AQ5A-J", key: "monitor", asin: "B0GF8176TN", image: "/bio/products/monitor.jpg" },
   { name: "ماوس باد", key: "mousepad", query: "gaming mouse pad" },
   { name: "آيفون 17 برو ماكس", key: "iphone_17_pro_max", asin: "B0FQFHZF6L", image: "/bio/products/iphone17.jpg" },
