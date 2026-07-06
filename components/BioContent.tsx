@@ -11,6 +11,10 @@ const AMAZON_TAG = "z7dart-21";
 function amazonSearch(query: string) {
   return `https://www.amazon.sa/s?k=${encodeURIComponent(query)}&tag=${AMAZON_TAG}`;
 }
+// exact product page (real ASIN), used once we know precisely which item it is
+function amazonProduct(asin: string) {
+  return `https://www.amazon.sa/dp/${asin}?tag=${AMAZON_TAG}`;
+}
 
 // +1% for every 2 full months elapsed since baselineDate, capped at 100% — same logic as the homepage goal card
 function computeProgress(baselineDate: string, baselineProgress: number) {
@@ -28,15 +32,24 @@ const SOCIALS = [
   { label: "Snapchat", href: "https://snapchat.com/add/mo7albader" },
 ];
 
+type ProductItem = {
+  name: string;
+  key: string;
+  query?: string;
+  asin?: string;
+  image?: string;
+  comingSoon?: boolean;
+};
+
 // products list needs your confirmation on "لوجتك xs master 4" — displayed as Logitech MX Master 3S below
-// photos are real (Wikimedia Commons, freely licensed) except mousepad/monitor/laptop/bag/whoop, which have no confirmed product yet
-const PRODUCTIVITY_PRODUCTS = [
-  { name: "ماوس Logitech MX Master 3S", key: "mouse_logitech", query: "Logitech MX Master mouse", image: "/bio/products/mx_master.jpg" },
-  { name: "شاشة بي سي", key: "monitor", comingSoon: true },
+// links + photos below are the exact listings you sent (real ASIN + official product photo)
+// laptop_bag + whoop links you sent resolved to the iPhone/Kindle pages instead — resend those two, still on search links for now
+const PRODUCTIVITY_PRODUCTS: ProductItem[] = [
+  { name: "ماوس Logitech MX Master 3S", key: "mouse_logitech", asin: "B07W5JKHFZ", image: "/bio/products/mx_master.jpg" },
+  { name: "شاشة ايسوس TUF Gaming VG27AQ5A-J", key: "monitor", asin: "B0GF8176TN", image: "/bio/products/monitor.jpg" },
   { name: "ماوس باد", key: "mousepad", query: "gaming mouse pad" },
-  { name: "آيفون 17 برو ماكس", key: "iphone_17_pro_max", query: "iPhone 17 Pro Max", image: "/bio/products/iphone17.jpg" },
-  // exact Q45 photo wasn't available under a free license — using another Anker Soundcore headphone as a stand-in, swap anytime
-  { name: "سماعة Anker Soundcore Q45", key: "soundcore_q45", query: "Anker Soundcore Q45", image: "/bio/products/soundcore.jpg" },
+  { name: "آيفون 17 برو ماكس", key: "iphone_17_pro_max", asin: "B0FQFHZF6L", image: "/bio/products/iphone17.jpg" },
+  { name: "سماعة Anker Soundcore Q45", key: "soundcore_q45", asin: "B0B5VHRX7F", image: "/bio/products/soundcore.jpg" },
   { name: "ساعة Apple Watch Ultra", key: "watch_ultra", query: "Apple Watch Ultra", image: "/bio/products/watch_ultra.jpg" },
   { name: "Whoop", key: "whoop", query: "Whoop band" },
   { name: "نوت بوك قوي للمهام", key: "laptop", query: "powerful laptop" },
@@ -44,11 +57,11 @@ const PRODUCTIVITY_PRODUCTS = [
 ];
 
 // suggested — swap anytime, these are placeholders since you asked me to pick
-const ENTERTAINMENT_PRODUCTS = [
-  { name: "Kindle Paperwhite", key: "kindle_paperwhite", query: "Kindle Paperwhite", image: "/bio/products/kindle.jpg" },
-  { name: "Nintendo Switch OLED", key: "switch_oled", query: "Nintendo Switch OLED", image: "/bio/products/switch_oled.png" },
-  { name: "Apple TV 4K", key: "apple_tv_4k", query: "Apple TV 4K", image: "/bio/products/appletv.jpg" },
-  { name: "PlayStation 5", key: "ps5", query: "PlayStation 5", image: "/bio/products/ps5.jpg" },
+const ENTERTAINMENT_PRODUCTS: ProductItem[] = [
+  { name: "Kindle", key: "kindle_paperwhite", asin: "B0CP31L73X", image: "/bio/products/kindle.jpg" },
+  { name: "Nintendo Switch 2", key: "switch_oled", asin: "B0GZH8NWND", image: "/bio/products/switch_oled.jpg" },
+  { name: "Apple TV 4K", key: "apple_tv_4k", asin: "B0BJMNZTCK", image: "/bio/products/appletv.jpg" },
+  { name: "PlayStation 5", key: "ps5", asin: "B0CN5Q73LC", image: "/bio/products/ps5.jpg" },
 ];
 
 // only "فن الحرب" was specified — the rest are placeholders (including the 2 latest), swap anytime. Covers are real (Open Library)
@@ -164,12 +177,14 @@ function ProductRow({
   name,
   eventKey,
   query,
+  asin,
   comingSoon,
   image,
 }: {
   name: string;
   eventKey: string;
   query?: string;
+  asin?: string;
   comingSoon?: boolean;
   image?: string;
 }) {
@@ -184,7 +199,7 @@ function ProductRow({
   }
   return (
     <a
-      href={amazonSearch(query!)}
+      href={asin ? amazonProduct(asin) : amazonSearch(query!)}
       target="_blank"
       rel="noopener sponsored"
       onClick={() => trackClick("bio_product_click", { label: eventKey })}
@@ -285,7 +300,7 @@ export default function BioContent() {
                         <p className="mb-2 text-xs uppercase tracking-wide text-faint">الإنتاجية</p>
                         <div className="flex flex-col gap-2">
                           {PRODUCTIVITY_PRODUCTS.map((p) => (
-                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} comingSoon={p.comingSoon} image={p.image} />
+                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} asin={p.asin} comingSoon={p.comingSoon} image={p.image} />
                           ))}
                         </div>
                       </div>
@@ -293,7 +308,7 @@ export default function BioContent() {
                         <p className="mb-2 text-xs uppercase tracking-wide text-faint">الترفيهية</p>
                         <div className="flex flex-col gap-2">
                           {ENTERTAINMENT_PRODUCTS.map((p) => (
-                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} image={p.image} />
+                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} asin={p.asin} image={p.image} />
                           ))}
                         </div>
                       </div>
