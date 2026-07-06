@@ -43,7 +43,6 @@ type ProductItem = {
 
 // products list needs your confirmation on "لوجتك xs master 4" — displayed as Logitech MX Master 3S below
 // links + photos below are the exact listings you sent (real ASIN + official product photo)
-// laptop_bag + whoop links you sent resolved to the iPhone/Kindle pages instead — resend those two, still on search links for now
 const PRODUCTIVITY_PRODUCTS: ProductItem[] = [
   { name: "ماوس Logitech MX Master 3S", key: "mouse_logitech", asin: "B07W5JKHFZ", image: "/bio/products/mx_master.jpg" },
   { name: "شاشة ايسوس TUF Gaming VG27AQ5A-J", key: "monitor", asin: "B0GF8176TN", image: "/bio/products/monitor.jpg" },
@@ -51,9 +50,9 @@ const PRODUCTIVITY_PRODUCTS: ProductItem[] = [
   { name: "آيفون 17 برو ماكس", key: "iphone_17_pro_max", asin: "B0FQFHZF6L", image: "/bio/products/iphone17.jpg" },
   { name: "سماعة Anker Soundcore Q45", key: "soundcore_q45", asin: "B0B5VHRX7F", image: "/bio/products/soundcore.jpg" },
   { name: "ساعة Apple Watch Ultra", key: "watch_ultra", query: "Apple Watch Ultra", image: "/bio/products/watch_ultra.jpg" },
-  { name: "Whoop", key: "whoop", query: "Whoop band" },
+  { name: "Whoop", key: "whoop", asin: "B0DY2SWV16", image: "/bio/products/whoop.jpg" },
   { name: "نوت بوك قوي للمهام", key: "laptop", query: "powerful laptop" },
-  { name: "حقيبة لابتوب", key: "laptop_bag", query: "laptop bag" },
+  { name: "حقيبة لابتوب", key: "laptop_bag", asin: "B0BWR4T89S", image: "/bio/products/laptop_bag.jpg" },
 ];
 
 // suggested — swap anytime, these are placeholders since you asked me to pick
