@@ -237,6 +237,10 @@ html[lang="en"] body {
   /* inset box-shadow instead of border-inline: the far edge (x = viewport width) can land on a
      half device pixel and antialias away on mobile, while a true border never does at x = 0 */
   box-shadow: inset 1px 0 0 var(--line), inset -1px 0 0 var(--line);
+  /* several descendants (ticker/marquee tracks, blurred glow accents) are wider than the frame
+     by design and only clipped by their own nested overflow-hidden; on some mobile renderers a
+     sliver of that still reaches body's scrollable width and eats into this edge. Clip it here too. */
+  overflow: hidden;
 }
 /* horizontal hairline under every framed section */
 .frame > section {
