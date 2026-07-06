@@ -40,7 +40,18 @@ export default function Testimonials() {
                     {name.slice(0, 1)}
                   </span>
                   <div>
-                    <p className="font-display font-bold leading-tight">{name}</p>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener"
+                        className="font-display font-bold leading-tight hover:text-accent transition-colors"
+                      >
+                        {name}
+                      </a>
+                    ) : (
+                      <p className="font-display font-bold leading-tight">{name}</p>
+                    )}
                     <p className="text-sm text-muted">{item.role[lang]}</p>
                   </div>
                 </figcaption>

@@ -324,27 +324,23 @@ export const content = {
     ],
   },
 
-  // ===== Testimonials (placeholder, replace with real quotes) =====
+  // ===== Testimonials (real LinkedIn recommendations) =====
   testimonials: {
-    eyebrow: { ar: "آراء", en: "Testimonial" },
+    eyebrow: { ar: "توصيات", en: "Recommendations" },
     items: [
       {
-        ar: "محمد يفهم مساحة المشكلة قبل ما يقفز للحل، وينفّذ بسرعة. أثره يبان على الأرقام.",
-        en: "Mohammed understands the problem space before jumping to a solution, and ships fast. His impact shows in the numbers.",
-        name: { ar: "اسم العميل", en: "Client name" },
-        role: { ar: "مؤسس · شركة", en: "Founder · Company" },
+        ar: "محمد إيجابي ومتعاون، وقدرته على الربط بين الأقسام المختلفة ومهاراته التواصلية تميّزه فعلاً.",
+        en: "Mohammed brings real positivity and a collaborative spirit, with strong communication skills that bridge different departments.",
+        name: { ar: "عبدالله باحشوان", en: "Abdullah Bahshwan, LSSBB" },
+        role: { ar: "Merchant Experience Operations Lead · Salla", en: "Merchant Experience Operations Lead · Salla" },
+        href: "https://www.linkedin.com/in/abdullah-bahshwan-lssbb-68326b179/",
       },
       {
-        ar: "تعاون احترافي ونتائج تفوق التوقّع. واضح، سريع، ومركّز على المستخدم.",
-        en: "Professional to work with and results beyond expectation. Clear, fast, user-focused.",
-        name: { ar: "اسم العميل", en: "Client name" },
-        role: { ar: "قائد منتج · منصة", en: "Product Lead · Platform" },
-      },
-      {
-        ar: "من الفكرة للإطلاق في وقت قياسي وبجودة عالية. أنصح فيه بقوة.",
-        en: "From idea to launch in record time, at high quality. Highly recommended.",
-        name: { ar: "اسم العميل", en: "Client name" },
-        role: { ar: "مهندس · فريق", en: "Engineer · Team" },
+        ar: "محمد مدير منتج يفهم احتياجات التجار زين ويحوّلها لحلول عملية. أوصي فيه بقوة.",
+        en: "Mohammed is a focused product manager who understands merchant needs and turns them into practical solutions. Highly recommend him.",
+        name: { ar: "عبدالعزيز المقرن", en: "Abdulaziz Almuqrin" },
+        role: { ar: "Manager of Customer Success · Salla", en: "Manager of Customer Success · Salla" },
+        href: "https://www.linkedin.com/in/abdulaziz-almuqrin-786829170/",
       },
     ],
   },
