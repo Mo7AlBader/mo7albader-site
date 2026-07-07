@@ -81,13 +81,7 @@ export const content = {
         en: "In my side projects, I build and test products fast using AI tools. My goal is always the same: a product that solves a real problem and actually grows.",
       },
     ],
-    tags: [
-      { ar: "إدارة المنتج", en: "Product Management" },
-      { ar: "SaaS / PLG", en: "SaaS / PLG" },
-      { ar: "نمو المنتج", en: "Product Growth" },
-      { ar: "الذكاء الاصطناعي", en: "AI" },
-      { ar: "بناء سريع", en: "Rapid Building" },
-    ],
+    tags: ["Product Management", "SaaS / PLG", "Product Growth", "AI", "Rapid Building"],
   },
 
   // ===== Now =====
@@ -133,7 +127,7 @@ export const content = {
         cover: "/covers/ameen.png",
         ar: "ساهمت في تجربة ونمو منتج وصل لأكثر من مليوني مستخدم، تصدّر متجر التطبيقات، وخلق عادة استخدام يومية لمستخدمين في عدة دول.",
         en: "Contributed to the product experience and growth of an app that reached 2M+ users, topped the App Store, and built a daily usage habit across multiple countries.",
-        tags: ["Part-time PM", "1M users", "#1 App Store"],
+        tags: ["Part-time PM", "2M users", "#1 App Store"],
         href: "https://ameenapp.org",
       },
       {
@@ -239,19 +233,19 @@ export const content = {
         enDesc: "I turn scattered AI experiments into real products, operations, and growth models you can actually use.",
       },
       {
-        ar: "اكتساب SaaS و PLG",
+        ar: "SaaS & PLG Acquisition",
         en: "SaaS & PLG Acquisition",
         arDesc: "أبني صفحات وتجارب تساعد المستخدم يفهم المنتج، يبدأ أسرع، ويتحول من زائر إلى مستخدم أو عميل.",
         enDesc: "I build pages and experiences that help users understand the product, start faster, and convert from visitor to user or customer.",
       },
       {
-        ar: "نمو بالمحتوى",
+        ar: "Content-led Growth",
         en: "Content-led Growth",
         arDesc: "أستخدم المحتوى والسرد كقناة اكتساب، لا كمنشورات فقط. تعليم، ثقة، توزيع، وتحويل.",
         enDesc: "I use content and storytelling as an acquisition channel, not just posts. Education, trust, distribution, and conversion.",
       },
       {
-        ar: "بناء سريع للمنتجات",
+        ar: "Rapid Product Building",
         en: "Rapid Product Building",
         arDesc: "أبني نماذج وتجارب بسرعة عبر Vibe Coding، ثم أقيس وأكرر بناءً على الأثر.",
         enDesc: "I build prototypes and experiments fast with Vibe Coding, then measure and iterate based on the impact.",

@@ -29,10 +29,10 @@ export default function About() {
         <div className="mt-8 flex flex-wrap gap-2.5">
           {a.tags.map((t) => (
             <span
-              key={t.en}
+              key={t}
               className="rounded-full border border-line bg-white/[0.03] px-4 py-1.5 text-sm text-white/80"
             >
-              {t[lang]}
+              {t}
             </span>
           ))}
         </div>
