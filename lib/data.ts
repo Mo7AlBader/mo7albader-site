@@ -5,8 +5,8 @@ export const content = {
   meta: {
     name: { ar: "محمد البدر", en: "Mohammed AlBader" },
     role: {
-      ar: "AI Product Growth Manager",
-      en: "AI Product Growth Manager",
+      ar: "مدير منتج",
+      en: "Product Manager",
     },
   },
 
@@ -27,18 +27,18 @@ export const content = {
     location: { ar: "الرياض، السعودية", en: "Riyadh, Saudi Arabia" },
     greeting: { ar: "أنا محمد البدر،", en: "I'm Mohammed AlBader," },
     line: {
-      ar: "AI Product Growth Manager أبني وأنمّي منتجات SaaS عبر المنتج، المحتوى، البيانات، والذكاء الاصطناعي. من بناء مجتمع تعليمي وصل إلى +300K طالب، إلى قيادة مبادرات نمو في Salla، إلى منتجات وصلت لملايين المستخدمين، تركيزي اليوم هو تحويل الفكرة إلى قناة نمو قابلة للتوسع.",
-      en: "an AI Product Growth Manager who builds and grows SaaS and digital products through product, content, data and AI. From growing an education community to 300K+ students, to leading growth initiatives at Salla, to products reaching millions of users, my focus today is turning an idea into a growth channel that scales.",
+      ar: "مدير منتج أبني منصات SaaS وأنمّيها من خلال المنتج، المحتوى، البيانات، والذكاء الاصطناعي. من مجتمع تعليمي وصل لأكثر من 300 ألف طالب، إلى قيادة نمو في Salla، إلى منتجات وصلت لملايين المستخدمين.",
+      en: "a Product Manager who builds and grows SaaS products through product, content, data and AI. From an education community that reached 300K+ students, to leading growth at Salla, to products used by millions.",
     },
-    cta: { ar: "تواصل لاستشارة منتج", en: "Book a product chat" },
+    cta: { ar: "تواصل معي", en: "Get in touch" },
     ctaHref: "#contact",
-    work: { ar: "شوف كيف أصنع النمو", en: "See how I drive growth" },
+    work: { ar: "شوف أعمالي", en: "View my work" },
     workHref: "#projects",
     // proof above the fold (CRO P6/P7)
     proof: [
       { value: "+2M", ar: "مستخدم عبر منتجات رقمية", en: "users across digital products" },
-      { value: "+300K", ar: "طالب عبر Content-led Growth", en: "students via content-led growth" },
-      { value: "+2,000", ar: "تاجر ضمن SaaS Growth", en: "merchants in SaaS growth" },
+      { value: "+300K", ar: "طالب عبر نمو بالمحتوى", en: "students via content-led growth" },
+      { value: "+2,000", ar: "تاجر عبر نمو المنتج", en: "merchants through product growth" },
       { value: "+8", ar: "سنوات بناء وتوزيع منتجات", en: "yrs building & shipping products" },
     ],
   },
@@ -46,7 +46,7 @@ export const content = {
   // ===== Tickers (marquee bands) =====
   tickers: {
     work: { ar: "أعمال مختارة", en: "Selected Work" },
-    cta: { ar: "خلنا نبني نمو واضح", en: "Let's build clear growth" },
+    cta: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
   },
 
   // ===== Stats (impact band) =====
@@ -64,24 +64,30 @@ export const content = {
   about: {
     eyebrow: { ar: "عنّي", en: "About" },
     title: {
-      ar: "باني نمو قبل ما أكون مدير منتج",
-      en: "A growth builder before I was ever a PM",
+      ar: "مدير منتج، وباني نمو",
+      en: "A Product Manager, and a growth builder",
     },
     paragraphs: [
       {
-        ar: "بدأت رحلتي من مشكلة شخصية في التعليم، ثم تحولت إلى مجتمع ومنتج وصل لأكثر من 300 ألف طالب. من هناك فهمت أن المنتج الناجح لا يكفي أن يكون جيدًا، لازم يكون قابلًا للاكتشاف، الفهم، الاستخدام، والنمو.",
-        en: "My journey started from a personal problem in education, which grew into a community and then a product reaching 300K+ students. From there I learned that a good product isn't enough. It has to be discoverable, understandable, usable, and built to grow.",
+        ar: "بدأت رحلتي من مشكلة شخصية في التعليم، تحولت لمجتمع ثم منتج وصل لأكثر من 300 ألف طالب. من هناك فهمت أن المنتج الناجح لازم يكون قابلًا للاكتشاف، الفهم، الاستخدام، والنمو.",
+        en: "My journey started from a personal problem in education, which grew into a community and then a product reaching 300K+ students. From there I learned that a good product has to be discoverable, understandable, usable, and built to grow.",
       },
       {
-        ar: "اليوم أعمل على تقاطع المنتج، النمو، المحتوى، والذكاء الاصطناعي. في Salla، أقود مبادرات اكتساب وتجارب ويب تخدم آلاف التجار وتحوّل الصفحات من واجهات تعريفية إلى قنوات نمو.",
-        en: "Today I work at the intersection of product, growth, content, and AI. At Salla, I lead acquisition initiatives and web experiences serving thousands of merchants, turning pages from static profiles into growth channels.",
+        ar: "اليوم أنا مدير منتج، وميزتي إني أجمع بين فهم المنتج والنمو والمحتوى والبيانات والذكاء الاصطناعي بنفس الوقت. في Salla، أقود مبادرات اكتساب وتجارب ويب تخدم آلاف التجار.",
+        en: "Today I'm a Product Manager, and my edge is combining product thinking with growth, content, data, and AI at the same time. At Salla, I lead acquisition initiatives and web experiences serving thousands of merchants.",
       },
       {
-        ar: "وفي مشاريعي الجانبية، أبني وأختبر منتجات بسرعة باستخدام أدوات AI و Vibe Coding. تموضعي واضح: أساعد منتجات SaaS والمنتجات الرقمية على النمو من خلال Product-led Growth، السرد، التجربة، والأنظمة الذكية.",
-        en: "In my side projects, I build and test products fast using AI tools and Vibe Coding. My focus is clear: helping SaaS and digital products grow through product-led growth, storytelling, experience, and smart systems.",
+        ar: "وفي مشاريعي الجانبية، أبني وأختبر منتجات بسرعة باستخدام أدوات الذكاء الاصطناعي. هدفي دائمًا واحد: منتج يحل مشكلة حقيقية وينمو فعليًا.",
+        en: "In my side projects, I build and test products fast using AI tools. My goal is always the same: a product that solves a real problem and actually grows.",
       },
     ],
-    tags: ["AI Product Growth", "SaaS / PLG", "Product Strategy", "Content-led Acquisition", "Rapid Prototyping"],
+    tags: [
+      { ar: "إدارة المنتج", en: "Product Management" },
+      { ar: "SaaS / PLG", en: "SaaS / PLG" },
+      { ar: "نمو المنتج", en: "Product Growth" },
+      { ar: "الذكاء الاصطناعي", en: "AI" },
+      { ar: "بناء سريع", en: "Rapid Building" },
+    ],
   },
 
   // ===== Now =====
@@ -89,20 +95,20 @@ export const content = {
     eyebrow: { ar: "حالياً أشتغل على", en: "Currently working on" },
     items: [
       {
-        ar: "أقود نمو واكتساب منتجات SaaS في Salla عبر صفحات، محتوى، وتجارب تحويل.",
-        en: "Leading SaaS growth & acquisition at Salla through pages, content, and conversion experiences.",
+        ar: "أدير المنتج والنمو والاكتساب في Salla، لمنصة SaaS تخدم آلاف التجار.",
+        en: "Managing product, growth, and acquisition at Salla, a SaaS platform serving thousands of merchants.",
       },
       {
         ar: "أطوّر AbdihQT كمنصة تعليمية قائمة على المحتوى والمجتمع والمنتج.",
         en: "Growing AbdihQT, an education platform built on content, community, and product.",
       },
       {
-        ar: "أبني نماذج AI Products بسرعة عبر Claude API و Vibe Coding.",
+        ar: "أبني نماذج منتجات بالذكاء الاصطناعي بسرعة عبر Claude API و Vibe Coding.",
         en: "Shipping AI product prototypes fast with the Claude API and Vibe Coding.",
       },
       {
-        ar: "أوثّق خبرتي في Product Growth و PLG و AI عبر محتوى عملي.",
-        en: "Documenting what I learn about Product Growth, PLG, and AI through practical content.",
+        ar: "أوثّق خبرتي في إدارة المنتج والنمو والذكاء الاصطناعي عبر محتوى عملي.",
+        en: "Documenting what I learn about product management, growth, and AI through practical content.",
       },
     ],
   },
@@ -110,15 +116,15 @@ export const content = {
   // ===== Projects (selected work) =====
   projects: {
     eyebrow: { ar: "المشاريع", en: "Selected work" },
-    title: { ar: "مختبر النمو: منتجات، قنوات، وتجارب صنعت أثرًا", en: "The growth lab: products, channels, and experiments that made an impact" },
+    title: { ar: "منتجات وتجارب صنعت أثرًا", en: "Products and experiences that made an impact" },
     items: [
       {
         name: "Salla",
         logo: "/logos/salla.svg",
         cover: "/covers/salla.png",
-        ar: "أقود مبادرات Product Growth و PLG داخل Salla، مع تركيز على تحويل صفحات وتجارب المنتج إلى قنوات اكتساب وتبنّي. عملت على قطاعات تضم +2,000 تاجر، وساهمت في نمو GMV بنسبة 150% ونمو التبنّي بنسبة 200% خلال أول أسبوعين من إطلاق تجربة كاشير سلة.",
-        en: "Leading Product Growth and PLG initiatives at Salla, turning product pages and experiences into acquisition and adoption channels. Worked across sectors with 2,000+ merchants, contributing to 150% GMV growth and 200% adoption growth within the first two weeks of the Salla Cashier launch.",
-        tags: ["SaaS Product Growth", "PLG", "MENA's Commerce Engine"],
+        ar: "أدير منتج ونمو داخل Salla، مع تركيز على تحويل صفحات وتجارب المنتج إلى قنوات اكتساب وتبنّي. عملت على قطاعات تضم +2,000 تاجر، وساهمت في نمو GMV بنسبة 150% ونمو التبنّي بنسبة 200% خلال أول أسبوعين من إطلاق تجربة كاشير سلة.",
+        en: "Managing product and growth at Salla, turning product pages and experiences into acquisition and adoption channels. Worked across sectors with 2,000+ merchants, contributing to 150% GMV growth and 200% adoption growth within the first two weeks of the Salla Cashier launch.",
+        tags: ["Product Management", "PLG", "MENA's Commerce Engine"],
         href: "https://salla.com",
       },
       {
@@ -127,7 +133,7 @@ export const content = {
         cover: "/covers/ameen.png",
         ar: "ساهمت في تجربة ونمو منتج وصل لأكثر من مليوني مستخدم، تصدّر متجر التطبيقات، وخلق عادة استخدام يومية لمستخدمين في عدة دول.",
         en: "Contributed to the product experience and growth of an app that reached 2M+ users, topped the App Store, and built a daily usage habit across multiple countries.",
-        tags: ["Consumer App Growth", "1M users", "#1 App Store"],
+        tags: ["Part-time PM", "1M users", "#1 App Store"],
         href: "https://ameenapp.org",
       },
       {
@@ -136,7 +142,7 @@ export const content = {
         cover: "/covers/abdihqt.png",
         ar: "نموذج واضح لتحويل المحتوى إلى منتج. بدأ كمجتمع تعليمي ثم تحول إلى منتجات مدفوعة، ثقة، مبيعات، وأثر مباشر على آلاف الطلاب.",
         en: "A clear model for turning content into a product. Started as an education community, then became paid products, trust, sales, and direct impact on thousands of students.",
-        tags: ["Content-led Growth", "Founder", "Since 2018"],
+        tags: ["EdTech", "Founder", "Since 2018"],
         href: "https://abdihqt.com",
       },
       {
@@ -152,7 +158,7 @@ export const content = {
         name: "50 Tools Challenge",
         ar: "تحدٍّ شخصي لبناء 50 أداة منتج بالـ Claude API، أستكشف فيه حدود الـ Vibe Coding.",
         en: "A personal challenge to build 50 product tools with the Claude API, pushing the edges of Vibe Coding.",
-        tags: ["AI Product Lab", "Builder", "Ongoing"],
+        tags: ["Builder", "Claude API", "Ongoing"],
       },
     ],
   },
@@ -227,25 +233,25 @@ export const content = {
     title: { ar: "أين أصنع الأثر", en: "Where I make impact" },
     areas: [
       {
-        ar: "AI Product Growth",
-        en: "AI Product Growth",
+        ar: "الذكاء الاصطناعي",
+        en: "AI Product Building",
         arDesc: "أحوّل أدوات الذكاء الاصطناعي من تجارب متفرقة إلى منتجات، عمليات، ونماذج نمو قابلة للاستخدام.",
         enDesc: "I turn scattered AI experiments into real products, operations, and growth models you can actually use.",
       },
       {
-        ar: "SaaS & PLG Acquisition",
+        ar: "اكتساب SaaS و PLG",
         en: "SaaS & PLG Acquisition",
         arDesc: "أبني صفحات وتجارب تساعد المستخدم يفهم المنتج، يبدأ أسرع، ويتحول من زائر إلى مستخدم أو عميل.",
         enDesc: "I build pages and experiences that help users understand the product, start faster, and convert from visitor to user or customer.",
       },
       {
-        ar: "Content-led Growth",
+        ar: "نمو بالمحتوى",
         en: "Content-led Growth",
         arDesc: "أستخدم المحتوى والسرد كقناة اكتساب، لا كمنشورات فقط. تعليم، ثقة، توزيع، وتحويل.",
         enDesc: "I use content and storytelling as an acquisition channel, not just posts. Education, trust, distribution, and conversion.",
       },
       {
-        ar: "Rapid Product Building",
+        ar: "بناء سريع للمنتجات",
         en: "Rapid Product Building",
         arDesc: "أبني نماذج وتجارب بسرعة عبر Vibe Coding، ثم أقيس وأكرر بناءً على الأثر.",
         enDesc: "I build prototypes and experiments fast with Vibe Coding, then measure and iterate based on the impact.",
@@ -405,8 +411,8 @@ export const content = {
     year: "2028",
     image: "/rangerover.jpg",
     note: {
-      ar: "بعيدًا عن الاجتماعات والجداول، عندي هدف fun يعرفه كثير من اللي حولي: رينج روفر 2028. ما هو جزء من هويتي المهنية، لكنه تفصيلة خفيفة تذكرني أن الرحلة لازم يكون فيها متعة وحلم شخصي بسيط. اللي يعرفني يعرف أن هذا الهدف صار ميم لطيف بيني وبين مجتمعي.",
-      en: "Away from meetings and roadmaps, I have a fun goal a lot of people around me know about: a Range Rover by 2028. It's not part of my professional identity, just a light personal detail that reminds me the journey should have some fun and a simple dream in it too. If you know me, you know this one turned into a running joke between me and my community.",
+      ar: "بعيدًا عن الاجتماعات والجداول، عندي هدف خفيف يعرفه مجتمعي: رينج روفر 2028. صار مزحة لطيفة بيني وبينهم، وأخليها هنا كتفصيلة شخصية بس.",
+      en: "Away from meetings and schedules, I have a light goal my community knows about: a Range Rover by 2028. It became a nice running joke between us, and I'm keeping it here as just a personal detail.",
     },
     // baseline % as of baselineDate (YYYY-MM); auto-grows +1% every 2 full months from there
     baselineProgress: 13,
@@ -417,7 +423,7 @@ export const content = {
   // ===== Work process =====
   process: {
     eyebrow: { ar: "طريقة العمل", en: "Work process" },
-    title: { ar: "نظامي في بناء النمو", en: "My system for building growth" },
+    title: { ar: "من المشكلة إلى الأثر", en: "From problem to impact" },
     steps: [
       { ar: "Signal", en: "Signal", arDesc: "ألتقط إشارات السوق والمستخدمين قبل أي قرار.", enDesc: "I capture market and user signals before any decision." },
       { ar: "Position", en: "Position", arDesc: "أصيغ الرسالة والقيمة بشكل واضح لا يحتاج شرح إضافي.", enDesc: "I shape the message and the value clearly, with no extra explanation needed." },
@@ -433,23 +439,23 @@ export const content = {
     items: [
       {
         q: { ar: "وش تشتغل عليه بالضبط؟", en: "What do you actually work on?" },
-        a: { ar: "أعمل على تقاطع Product Growth، SaaS، AI، والمحتوى. أساعد المنتجات الرقمية على النمو عبر تحسين التجربة، الرسالة، القنوات، وسرعة التجريب.", en: "I work at the intersection of Product Growth, SaaS, AI, and content. I help digital products grow by improving the experience, the message, the channels, and the speed of experimentation." },
+        a: { ar: "إدارة المنتج، مع تركيز خاص على النمو، SaaS، والذكاء الاصطناعي. أساعد المنتجات الرقمية تنمو عبر تحسين التجربة، الرسالة، القنوات، وسرعة التجريب.", en: "Product management, with a special focus on growth, SaaS, and AI. I help digital products grow by improving the experience, the message, the channels, and the speed of experimentation." },
       },
       {
-        q: { ar: "هل أنت Product Manager أو Growth؟", en: "Are you a Product Manager or Growth?" },
-        a: { ar: "أنا في المنطقة بين الاثنين: Product Growth. أفكر كمدير منتج، أقرأ السوق كمسوق، وأنفذ كباني.", en: "I sit in between the two: Product Growth. I think like a PM, read the market like a marketer, and execute like a builder." },
+        q: { ar: "هل أنت مدير منتج أو نمو؟", en: "Are you a Product Manager or Growth?" },
+        a: { ar: "مدير منتج بالدرجة الأولى، وميزتي إني أفهم النمو والذكاء الاصطناعي زين. أفكر كمدير منتج، أقرأ السوق كمسوق، وأنفذ كباني.", en: "A Product Manager first, with a strong edge in growth and AI. I think like a PM, read the market like a marketer, and execute like a builder." },
       },
       {
-        q: { ar: "هل تشتغل على مشاريع AI؟", en: "Do you work on AI projects?" },
-        a: { ar: "نعم، أستخدم AI في بناء النماذج، تسريع التجارب، تحليل الإشارات، وتحويل الأفكار إلى أدوات قابلة للاستخدام.", en: "Yes. I use AI to build prototypes, speed up experiments, read signals, and turn ideas into usable tools." },
+        q: { ar: "هل تشتغل على مشاريع ذكاء اصطناعي؟", en: "Do you work on AI projects?" },
+        a: { ar: "نعم، أستخدم الذكاء الاصطناعي في بناء النماذج، تسريع التجارب، وتحويل الأفكار إلى أدوات قابلة للاستخدام.", en: "Yes. I use AI to build prototypes, speed up experiments, and turn ideas into usable tools." },
       },
       {
         q: { ar: "تاخذ مشاريع جانبية؟", en: "Do you take side projects?" },
-        a: { ar: "نعم، فقط إذا كانت في SaaS، AI Products، Product Growth، أو Content-led Growth.", en: "Yes, only if it's in SaaS, AI products, Product Growth, or content-led growth." },
+        a: { ar: "نعم، فقط إذا كانت في SaaS، منتجات ذكاء اصطناعي، أو نمو بالمحتوى.", en: "Yes, only if it's in SaaS, AI products, or content-led growth." },
       },
       {
         q: { ar: "وش هدفك المهني؟", en: "What's your career goal?" },
-        a: { ar: "أبغى أكون قائد منتج يبني أنظمة نمو، مو مجرد ميزات. الاتجاه طويل المدى هو قيادة منتجات SaaS و AI على مستوى تنفيذي.", en: "I want to be a product leader who builds growth systems, not just features. The long-term direction is leading SaaS and AI products at an executive level." },
+        a: { ar: "أبغى أكون قائد منتج قوي، وميزتي النادرة إني أجمع بين النمو والذكاء الاصطناعي والبناء. الاتجاه طويل المدى هو قيادة منتجات SaaS على مستوى تنفيذي.", en: "I want to be a strong product leader, with a rare edge that combines growth, AI, and building. The long-term direction is leading SaaS products at an executive level." },
       },
     ],
   },
@@ -457,10 +463,10 @@ export const content = {
   // ===== Contact =====
   contact: {
     eyebrow: { ar: "تواصل", en: "Get in touch" },
-    title: { ar: "خلنا نبني نمو واضح", en: "Let's build clear growth" },
+    title: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
     note: {
-      ar: "متاح لعدد محدود من استشارات Product Growth و AI Product Strategy. أساعدك في فهم المشكلة، تحسين التموضع، بناء تجربة أولية، أو تحويل موقعك أو منتجك إلى قناة اكتساب أوضح. مناسب أكثر لـ SaaS، EdTech، AI Products، وتطبيقات المحتوى أو المجتمعات.",
-      en: "Available for a limited number of Product Growth and AI Product Strategy consultations. I can help you understand the problem, sharpen the positioning, build a first experience, or turn your site or product into a clearer acquisition channel. Best fit for SaaS, EdTech, AI products, and content or community apps.",
+      ar: "متاح لعدد محدود من استشارات المنتج، مع تركيز خاص على النمو والذكاء الاصطناعي. أساعدك في فهم المشكلة، بناء تجربة أولية، أو تحسين منتجك الحالي. مناسب أكثر لـ SaaS، EdTech، ومنتجات المحتوى أو المجتمعات.",
+      en: "Available for a limited number of product consultations, with a special focus on growth and AI. I can help you understand the problem, build a first experience, or improve your current product. Best fit for SaaS, EdTech, and content or community products.",
     },
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },

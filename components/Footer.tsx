@@ -62,7 +62,7 @@ export default function Footer() {
           <span className="flex items-center gap-4">
             <span className="h-2.5 w-2.5 rounded-full bg-white transition-colors group-hover:bg-accent" />
             <span className="font-display text-4xl font-bold tracking-tight transition-colors group-hover:text-accent md:text-6xl">
-              {lang === "ar" ? "احجز نقاش Product Growth" : "Book a Growth Chat"}
+              {lang === "ar" ? "احجز مكالمة" : "Book a call"}
             </span>
           </span>
           <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-4 py-2 text-xs text-muted transition-colors group-hover:border-accent/50">

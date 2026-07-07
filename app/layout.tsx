@@ -32,21 +32,21 @@ const signature = Waterfall({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mo7albader.com"),
   title: {
-    default: "Mohammed AlBader · AI Product Growth Manager",
+    default: "Mohammed AlBader · Product Manager",
     template: "%s · Mohammed AlBader",
   },
   description:
-    "AI Product Growth Manager from Riyadh. I grow SaaS and digital products through product, content, data and AI. 2M+ users, 300K+ students, 2,000+ merchants.",
+    "Product Manager from Riyadh, with a rare edge in growth, AI and building. I grow SaaS products through product, content, data and AI. 2M+ users, 300K+ students, 2,000+ merchants.",
   keywords: [
     "Mohammed AlBader",
     "محمد البدر",
-    "AI Product Growth",
+    "Product Manager",
     "SaaS Growth",
     "Product-led Growth",
     "Salla",
     "AbdihQT",
     "Riyadh",
-    "Product Growth Manager",
+    "AI Product Manager",
   ],
   authors: [{ name: "Mohammed AlBader" }],
   creator: "Mohammed AlBader",
@@ -54,16 +54,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Mohammed AlBader",
-    title: "Mohammed AlBader · AI Product Growth Manager",
+    title: "Mohammed AlBader · Product Manager",
     description:
-      "AI Product Growth Manager from Riyadh. I grow SaaS and digital products through product, content, data and AI.",
+      "Product Manager from Riyadh, with a rare edge in growth, AI and building. I grow SaaS products through product, content, data and AI.",
     url: "/",
     locale: "ar_SA",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohammed AlBader · AI Product Growth Manager",
-    description: "AI Product Growth Manager from Riyadh, growing SaaS and digital products with product, content, data and AI.",
+    title: "Mohammed AlBader · Product Manager",
+    description: "Product Manager from Riyadh, with a rare edge in growth, AI and building.",
     creator: "@mo7albader",
   },
 };
