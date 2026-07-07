@@ -38,16 +38,16 @@ export default function Page() {
           <Projects />
           <Journey />
           <Expertise />
-          <Strengths />
           <TechStack />
           <Partners />
           <Testimonials />
           <Credentials />
           <WorkProcess />
-          <Goal2028 />
+          <Strengths />
           <FAQ />
           <TickerBand which="cta" />
           <Contact />
+          <Goal2028 />
           <Footer />
         </div>
       </main>

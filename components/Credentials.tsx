@@ -50,6 +50,12 @@ export default function Credentials() {
               ))}
             </ul>
             <p className="mt-4 text-sm text-faint">{c.note[lang]}</p>
+            <div className="mt-4 border-t border-line pt-4">
+              <p className="text-xs uppercase tracking-wide text-faint">{c.learning.label[lang]}</p>
+              <p className="mt-1.5 text-sm text-muted">
+                {c.learning.items.map((item) => item[lang]).join(" · ")}
+              </p>
+            </div>
           </div>
         </Reveal>
       </div>

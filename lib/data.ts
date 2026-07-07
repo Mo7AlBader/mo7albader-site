@@ -5,8 +5,8 @@ export const content = {
   meta: {
     name: { ar: "محمد البدر", en: "Mohammed AlBader" },
     role: {
-      ar: "مدير منتجات · باني · مؤسس",
-      en: "Product Manager · Builder · Founder",
+      ar: "AI Product Growth Manager",
+      en: "AI Product Growth Manager",
     },
   },
 
@@ -17,8 +17,8 @@ export const content = {
     { id: "now", ar: "حالياً", en: "Now" },
     { id: "projects", ar: "المشاريع", en: "Work" },
     { id: "journey", ar: "الخبرة", en: "Experience" },
-    { id: "goal", ar: "الهدف", en: "Goal" },
     { id: "contact", ar: "تواصل", en: "Contact" },
+    { id: "goal", ar: "الهدف", en: "Goal" },
   ],
 
   // ===== Hero =====
@@ -27,26 +27,26 @@ export const content = {
     location: { ar: "الرياض، السعودية", en: "Riyadh, Saudi Arabia" },
     greeting: { ar: "أنا محمد البدر،", en: "I'm Mohammed AlBader," },
     line: {
-      ar: "مدير منتج أحوّل الفكرة إلى منتج يستخدمه ملايين الناس.",
-      en: "A Product Manager turning ideas into products millions of people use.",
+      ar: "AI Product Growth Manager أبني وأنمّي منتجات SaaS عبر المنتج، المحتوى، البيانات، والذكاء الاصطناعي. من بناء مجتمع تعليمي وصل إلى +300K طالب، إلى قيادة مبادرات نمو في Salla، إلى منتجات وصلت لملايين المستخدمين، تركيزي اليوم هو تحويل الفكرة إلى قناة نمو قابلة للتوسع.",
+      en: "an AI Product Growth Manager who builds and grows SaaS and digital products through product, content, data and AI. From growing an education community to 300K+ students, to leading growth initiatives at Salla, to products reaching millions of users, my focus today is turning an idea into a growth channel that scales.",
     },
-    cta: { ar: "تواصل معي", en: "Get in touch" },
+    cta: { ar: "تواصل لاستشارة منتج", en: "Book a product chat" },
     ctaHref: "#contact",
-    work: { ar: "شوف أعمالي", en: "View my work" },
+    work: { ar: "شوف كيف أصنع النمو", en: "See how I drive growth" },
     workHref: "#projects",
     // proof above the fold (CRO P6/P7)
     proof: [
-      { value: "+2M", ar: "مستخدم", en: "users" },
-      { value: "+300K", ar: "طالب", en: "students" },
-      { value: "+6M", ar: "مشاهدة", en: "views" },
-      { value: "+8", ar: "سنوات بناء", en: "yrs building" },
+      { value: "+2M", ar: "مستخدم عبر منتجات رقمية", en: "users across digital products" },
+      { value: "+300K", ar: "طالب عبر Content-led Growth", en: "students via content-led growth" },
+      { value: "+2,000", ar: "تاجر ضمن SaaS Growth", en: "merchants in SaaS growth" },
+      { value: "+8", ar: "سنوات بناء وتوزيع منتجات", en: "yrs building & shipping products" },
     ],
   },
 
   // ===== Tickers (marquee bands) =====
   tickers: {
     work: { ar: "أعمال مختارة", en: "Selected Work" },
-    cta: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
+    cta: { ar: "خلنا نبني نمو واضح", en: "Let's build clear growth" },
   },
 
   // ===== Stats (impact band) =====
@@ -64,24 +64,24 @@ export const content = {
   about: {
     eyebrow: { ar: "عنّي", en: "About" },
     title: {
-      ar: "باني قبل ما أكون مدير منتجات",
-      en: "A builder before I was ever a PM",
+      ar: "باني نمو قبل ما أكون مدير منتج",
+      en: "A growth builder before I was ever a PM",
     },
     paragraphs: [
       {
-        ar: "عمري 17 سنة لما بنيت أول منتج لي: AbdihQT. ما كان عندي فريق ولا تمويل، بس كان عندي مشكلة أعرفها زين واحتياج حقيقي. اليوم المنصة وصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة، وكل هذا قبل ما أتخرّج من الجامعة.",
-        en: "I was 17 when I built my first product: AbdihQT. No team, no funding, just a problem I understood deeply and a real need behind it. Today it reaches 300K+ students and 6M+ views, all before I'd even graduated.",
+        ar: "بدأت رحلتي من مشكلة شخصية في التعليم، ثم تحولت إلى مجتمع ومنتج وصل لأكثر من 300 ألف طالب. من هناك فهمت أن المنتج الناجح لا يكفي أن يكون جيدًا، لازم يكون قابلًا للاكتشاف، الفهم، الاستخدام، والنمو.",
+        en: "My journey started from a personal problem in education, which grew into a community and then a product reaching 300K+ students. From there I learned that a good product isn't enough. It has to be discoverable, understandable, usable, and built to grow.",
       },
       {
-        ar: "اليوم أقود الاكتساب واستراتيجية الموقع في سلة، أكبر منصة تجارة إلكترونية في السعودية، وأشتغل على قرارات تحرّك آلاف التجار مو بس شاشة وحدة. كل قرار عندي مبني على بيانات، وكل صفحة أبنيها لها هدف تحويل واضح.",
-        en: "Today I lead acquisition and website strategy at Salla, Saudi Arabia's largest e-commerce platform, shaping decisions that move thousands of merchants, not just a single screen. Every decision is data-driven, and every page I build has a clear conversion goal.",
+        ar: "اليوم أعمل على تقاطع المنتج، النمو، المحتوى، والذكاء الاصطناعي. في Salla، أقود مبادرات اكتساب وتجارب ويب تخدم آلاف التجار وتحوّل الصفحات من واجهات تعريفية إلى قنوات نمو.",
+        en: "Today I work at the intersection of product, growth, content, and AI. At Salla, I lead acquisition initiatives and web experiences serving thousands of merchants, turning pages from static profiles into growth channels.",
       },
       {
-        ar: "فلسفتي بسيطة: التنفيذ قبل التخطيط، والإشارة قبل الضجيج. ما أجي لأي مشروع كمنفّذ بس، أجي كمالك يهمّه الأثر. من فكرة على ورق إلى نتيجة تتقاس، وأملك شغلي من أوله لآخره.",
-        en: "My philosophy is simple: execution over planning, signal over noise. I don't join a project as just a pair of hands, I show up as an owner who cares about the result. From an idea on paper to a measurable outcome, owning my work start to finish.",
+        ar: "وفي مشاريعي الجانبية، أبني وأختبر منتجات بسرعة باستخدام أدوات AI و Vibe Coding. تموضعي واضح: أساعد منتجات SaaS والمنتجات الرقمية على النمو من خلال Product-led Growth، السرد، التجربة، والأنظمة الذكية.",
+        en: "In my side projects, I build and test products fast using AI tools and Vibe Coding. My focus is clear: helping SaaS and digital products grow through product-led growth, storytelling, experience, and smart systems.",
       },
     ],
-    tags: ["Product Management", "Growth & Acquisition", "SaaS", "UI/UX", "Web Dev", "Content & SEO"],
+    tags: ["AI Product Growth", "SaaS / PLG", "Product Strategy", "Content-led Acquisition", "Rapid Prototyping"],
   },
 
   // ===== Now =====
@@ -89,16 +89,20 @@ export const content = {
     eyebrow: { ar: "حالياً أشتغل على", en: "Currently working on" },
     items: [
       {
-        ar: "مدير منتج في سلة، أملك الاكتساب واستراتيجية الموقع والمحتوى.",
-        en: "Product Manager at Salla, owning acquisition, website strategy and content.",
+        ar: "أقود نمو واكتساب منتجات SaaS في Salla عبر صفحات، محتوى، وتجارب تحويل.",
+        en: "Leading SaaS growth & acquisition at Salla through pages, content, and conversion experiences.",
       },
       {
-        ar: "أطوّر منصة AbdihQT التعليمية لأكثر من 300 ألف طالب.",
-        en: "Growing AbdihQT, an Arabic education platform for 300K+ students.",
+        ar: "أطوّر AbdihQT كمنصة تعليمية قائمة على المحتوى والمجتمع والمنتج.",
+        en: "Growing AbdihQT, an education platform built on content, community, and product.",
       },
       {
-        ar: "أبني أدوات ونماذج منتجات بسرعة عبر الـ Vibe Coding.",
-        en: "Shipping tools & product prototypes fast with Vibe Coding.",
+        ar: "أبني نماذج AI Products بسرعة عبر Claude API و Vibe Coding.",
+        en: "Shipping AI product prototypes fast with the Claude API and Vibe Coding.",
+      },
+      {
+        ar: "أوثّق خبرتي في Product Growth و PLG و AI عبر محتوى عملي.",
+        en: "Documenting what I learn about Product Growth, PLG, and AI through practical content.",
       },
     ],
   },
@@ -106,49 +110,49 @@ export const content = {
   // ===== Projects (selected work) =====
   projects: {
     eyebrow: { ar: "المشاريع", en: "Selected work" },
-    title: { ar: "أشياء بنيتها وأطلقتها", en: "Things I've built & shipped" },
+    title: { ar: "مختبر النمو: منتجات، قنوات، وتجارب صنعت أثرًا", en: "The growth lab: products, channels, and experiments that made an impact" },
     items: [
-      {
-        name: "AbdihQT",
-        logo: "/logos/abdihqt.png",
-        cover: "/covers/abdihqt.png",
-        ar: "منصة تعليمية ذاتية التمويل أسّستها عمري 17، وصلت لأكثر من 300 ألف طالب و6 مليون مشاهدة على يوتيوب.",
-        en: "A self-funded education platform I founded at 17, now reaching 300K+ students and 6M+ YouTube views.",
-        tags: ["EdTech", "Founder", "Since 2018"],
-        href: "https://abdihqt.com",
-      },
       {
         name: "Salla",
         logo: "/logos/salla.svg",
         cover: "/covers/salla.png",
-        ar: "إدارة منتج وتسويق منتج للتجارة الرقمية في سلة: أطلقت «سوق الجملة» و«كاشير سلة»، وأقود حالياً توجّه الاكتساب.",
-        en: "Product & product-marketing for Salla's digital commerce: launched the Wholesale Market and Salla Cashier, now leading Acquisition.",
-        tags: ["Product", "Acquisition", "MENA's Commerce Engine"],
+        ar: "أقود مبادرات Product Growth و PLG داخل Salla، مع تركيز على تحويل صفحات وتجارب المنتج إلى قنوات اكتساب وتبنّي. عملت على قطاعات تضم +2,000 تاجر، وساهمت في نمو GMV بنسبة 150% ونمو التبنّي بنسبة 200% خلال أول أسبوعين من إطلاق تجربة كاشير سلة.",
+        en: "Leading Product Growth and PLG initiatives at Salla, turning product pages and experiences into acquisition and adoption channels. Worked across sectors with 2,000+ merchants, contributing to 150% GMV growth and 200% adoption growth within the first two weeks of the Salla Cashier launch.",
+        tags: ["SaaS Product Growth", "PLG", "MENA's Commerce Engine"],
         href: "https://salla.com",
       },
       {
         name: "Ameen",
         logo: "/logos/ameen.svg",
         cover: "/covers/ameen.png",
-        ar: "مدير منتج بارت تايم. التطبيق تجاوز مليوني مستخدم و14 ألف تقييم، وتصدّر متجر التطبيقات.",
-        en: "Part-time PM. The app crossed 2M users with 14K+ ratings and topped the App Store.",
-        tags: ["Part-time PM", "1M users", "#1 App Store"],
+        ar: "ساهمت في تجربة ونمو منتج وصل لأكثر من مليوني مستخدم، تصدّر متجر التطبيقات، وخلق عادة استخدام يومية لمستخدمين في عدة دول.",
+        en: "Contributed to the product experience and growth of an app that reached 2M+ users, topped the App Store, and built a daily usage habit across multiple countries.",
+        tags: ["Consumer App Growth", "1M users", "#1 App Store"],
         href: "https://ameenapp.org",
+      },
+      {
+        name: "AbdihQT",
+        logo: "/logos/abdihqt.png",
+        cover: "/covers/abdihqt.png",
+        ar: "نموذج واضح لتحويل المحتوى إلى منتج. بدأ كمجتمع تعليمي ثم تحول إلى منتجات مدفوعة، ثقة، مبيعات، وأثر مباشر على آلاف الطلاب.",
+        en: "A clear model for turning content into a product. Started as an education community, then became paid products, trust, sales, and direct impact on thousands of students.",
+        tags: ["Content-led Growth", "Founder", "Since 2018"],
+        href: "https://abdihqt.com",
       },
       {
         name: "SalahBreak",
         logo: "/logos/salahbreak.svg",
         cover: "/covers/salahbreak.png",
-        ar: "تطبيق يعيد تعريف الصلاة كـ«استراحة» داخل بيئة العمل، مع تكامل عبر iOS وSlack وApple Watch وغيرها.",
+        ar: "تطبيق يحوّل الصلاة إلى «استراحة» داخل بيئة العمل، مع تكامل عبر iOS وSlack وApple Watch وغيرها.",
         en: "An app reframing prayer as a workplace break, with integrations across iOS, Slack, Apple Watch and more.",
-        tags: ["iOS", "Product", "Building"],
+        tags: ["AI Product", "Product", "Building"],
         href: "https://salahbreak.com",
       },
       {
         name: "50 Tools Challenge",
         ar: "تحدٍّ شخصي لبناء 50 أداة منتج بالـ Claude API، أستكشف فيه حدود الـ Vibe Coding.",
         en: "A personal challenge to build 50 product tools with the Claude API, pushing the edges of Vibe Coding.",
-        tags: ["Claude API", "Builder", "Ongoing"],
+        tags: ["AI Product Lab", "Builder", "Ongoing"],
       },
     ],
   },
@@ -223,28 +227,28 @@ export const content = {
     title: { ar: "أين أصنع الأثر", en: "Where I make impact" },
     areas: [
       {
-        ar: "استراتيجية المنتج",
-        en: "Product Strategy",
-        arDesc: "أكتشف المشكلة الصحيحة قبل الحل، وأبني رودماب يحرّك المستخدم والإيراد مع بعض.",
-        enDesc: "I find the right problem before the solution, then build a roadmap that moves both the user and the revenue.",
+        ar: "AI Product Growth",
+        en: "AI Product Growth",
+        arDesc: "أحوّل أدوات الذكاء الاصطناعي من تجارب متفرقة إلى منتجات، عمليات، ونماذج نمو قابلة للاستخدام.",
+        enDesc: "I turn scattered AI experiments into real products, operations, and growth models you can actually use.",
       },
       {
-        ar: "الاكتساب و PLG",
-        en: "Acquisition & PLG",
-        arDesc: "أحوّل الزوار إلى مستخدمين عبر SEO/GEO ونمو مدفوع بالمنتج، ونتائج تبان على الأرقام.",
-        enDesc: "I turn visitors into users with SEO/GEO and product-led growth, results you can see in the numbers.",
+        ar: "SaaS & PLG Acquisition",
+        en: "SaaS & PLG Acquisition",
+        arDesc: "أبني صفحات وتجارب تساعد المستخدم يفهم المنتج، يبدأ أسرع، ويتحول من زائر إلى مستخدم أو عميل.",
+        enDesc: "I build pages and experiences that help users understand the product, start faster, and convert from visitor to user or customer.",
       },
       {
-        ar: "المحتوى والسرد",
-        en: "Content & Narrative",
-        arDesc: "رسائل تبيع: من صفحة الهبوط إلى قصة النجاح، محتوى يحوّل مو بس يوصف.",
-        enDesc: "Messaging that sells: from landing pages to success stories, content that converts, not just describes.",
+        ar: "Content-led Growth",
+        en: "Content-led Growth",
+        arDesc: "أستخدم المحتوى والسرد كقناة اكتساب، لا كمنشورات فقط. تعليم، ثقة، توزيع، وتحويل.",
+        enDesc: "I use content and storytelling as an acquisition channel, not just posts. Education, trust, distribution, and conversion.",
       },
       {
-        ar: "البناء السريع",
-        en: "Rapid Building",
-        arDesc: "من الفكرة لنموذج شغّال خلال أيام عبر Vibe Coding، فتختبر بسرعة وتقرّر بثقة.",
-        enDesc: "From idea to a working prototype in days with Vibe Coding, so you test fast and decide with confidence.",
+        ar: "Rapid Product Building",
+        en: "Rapid Product Building",
+        arDesc: "أبني نماذج وتجارب بسرعة عبر Vibe Coding، ثم أقيس وأكرر بناءً على الأثر.",
+        enDesc: "I build prototypes and experiments fast with Vibe Coding, then measure and iterate based on the impact.",
       },
     ],
   },
@@ -253,7 +257,7 @@ export const content = {
   strengths: {
     eyebrow: { ar: "نقاط القوة", en: "Strengths" },
     source: { ar: "CliftonStrengths® · Gallup · 2024", en: "CliftonStrengths® · Gallup · 2024" },
-    title: { ar: "أقوى 5 مواهب فطرية", en: "My top 5 natural talents" },
+    title: { ar: "كيف أشتغل", en: "How I work" },
     moreLabel: { ar: "وأيضاً ضمن العشرة الأوائل", en: "Also in my top 10" },
     domains: {
       strategic: { ar: "تفكير استراتيجي", en: "Strategic Thinking", color: "#1ef482" },
@@ -281,24 +285,39 @@ export const content = {
   techStack: {
     eyebrow: { ar: "أدواتي", en: "Tech stack" },
     title: { ar: "اللي أشتغل فيه", en: "What I work with" },
-    items: [
-      { name: "Claude", logo: null, ar: "توليد المحتوى وبناء الأدوات", en: "Content & tooling" },
-      { name: "ChatGPT", logo: null, ar: "بحث وصياغة وعصف أفكار", en: "Research & drafting" },
-      { name: "Manus AI", logo: "/logos/tools/manus.png", ar: "وكيل ذكاء ينجز المهام", en: "Agentic task runner" },
-      { name: "Antigravity", logo: "/logos/tools/antigravity.png", ar: "بيئة برمجة وكيلة", en: "Agentic coding IDE" },
-      { name: "Cursor", logo: "/logos/tools/cursor.svg", ar: "محرّر أكواد بالذكاء الاصطناعي", en: "AI-native code editor" },
-      { name: "Next.js", logo: null, ar: "تطبيقات React سريعة", en: "Fast React apps" },
-      { name: "Figma", logo: null, ar: "تصميم الواجهات وأنظمتها", en: "UI & design systems" },
-      { name: "Framer", logo: null, ar: "بناء ونشر مواقع تفاعلية", en: "Ship interactive sites" },
-      { name: "Photoshop", logo: null, ar: "معالجة الصور والأصول", en: "Imagery & assets" },
-      { name: "Notion", logo: "/logos/tools/notion.svg", ar: "توثيق ووثائق المنتج", en: "Docs & product specs" },
-      { name: "WordPress", logo: "/logos/tools/wordpress.svg", ar: "مواقع ومدوّنات المحتوى", en: "Content sites & blogs" },
-      { name: "Webflow", logo: "/logos/tools/webflow.svg", ar: "صفحات هبوط بدون كود", en: "No-code landing pages" },
-      { name: "GA4", logo: "/logos/tools/ga.svg", ar: "تحليلات المنتج والاكتساب", en: "Product & acquisition analytics" },
-      { name: "Mixpanel", logo: "/logos/tools/mixpanel.svg", ar: "قياس الإيفنتات وتقارير النمو", en: "Event analytics & growth reports" },
-      { name: "Looker", logo: null, ar: "تقارير ولوحات بيانات النمو", en: "Growth dashboards & reporting" },
-      { name: "Hotjar", logo: null, ar: "خرائط حرارية وتسجيلات المستخدم", en: "Heatmaps & session recordings" },
-      { name: "Jira", logo: null, ar: "تتبّع المهام وإدارة السبرنتات", en: "Task tracking & sprints" },
+    groups: [
+      {
+        label: { ar: "AI & Building", en: "AI & Building" },
+        items: [
+          { name: "Claude", logo: null, ar: "توليد المحتوى وبناء الأدوات", en: "Content & tooling" },
+          { name: "ChatGPT", logo: null, ar: "بحث وصياغة وعصف أفكار", en: "Research & drafting" },
+          { name: "Manus AI", logo: "/logos/tools/manus.png", ar: "وكيل ذكاء ينجز المهام", en: "Agentic task runner" },
+          { name: "Antigravity", logo: "/logos/tools/antigravity.png", ar: "بيئة برمجة وكيلة", en: "Agentic coding IDE" },
+          { name: "Cursor", logo: "/logos/tools/cursor.svg", ar: "محرّر أكواد بالذكاء الاصطناعي", en: "AI-native code editor" },
+          { name: "Next.js", logo: null, ar: "تطبيقات React سريعة", en: "Fast React apps" },
+        ],
+      },
+      {
+        label: { ar: "Growth & Analytics", en: "Growth & Analytics" },
+        items: [
+          { name: "GA4", logo: "/logos/tools/ga.svg", ar: "تحليلات المنتج والاكتساب", en: "Product & acquisition analytics" },
+          { name: "Mixpanel", logo: "/logos/tools/mixpanel.svg", ar: "قياس الإيفنتات وتقارير النمو", en: "Event analytics & growth reports" },
+          { name: "Looker", logo: null, ar: "تقارير ولوحات بيانات النمو", en: "Growth dashboards & reporting" },
+          { name: "Hotjar", logo: null, ar: "خرائط حرارية وتسجيلات المستخدم", en: "Heatmaps & session recordings" },
+          { name: "Adjust", logo: null, ar: "قياس نسب التحويل ومصادر التثبيت", en: "Attribution & install tracking" },
+          { name: "AppsFlyer", logo: null, ar: "قياس أداء الحملات والقنوات", en: "Campaign & channel measurement" },
+        ],
+      },
+      {
+        label: { ar: "Product & Delivery", en: "Product & Delivery" },
+        items: [
+          { name: "Jira", logo: null, ar: "تتبّع المهام وإدارة السبرنتات", en: "Task tracking & sprints" },
+          { name: "Figma", logo: null, ar: "تصميم الواجهات وأنظمتها", en: "UI & design systems" },
+          { name: "Framer", logo: null, ar: "بناء ونشر مواقع تفاعلية", en: "Ship interactive sites" },
+          { name: "OneSignal", logo: null, ar: "إشعارات وتفعيل المستخدمين", en: "Push notifications & activation" },
+          { name: "Braze", logo: null, ar: "رحلات تفاعل وتراسل مخصص", en: "Engagement journeys & messaging" },
+        ],
+      },
     ],
   },
 
@@ -308,19 +327,13 @@ export const content = {
     title: { ar: "علامات ومنصّات اشتغلت معها", en: "Brands & platforms I've worked with" },
     logos: [
       { name: "Salla", src: "/logos/salla.svg" },
-      { name: "Noon Academy", src: "/logos/partners/noon.png" },
       { name: "Ameen", src: "/logos/ameen.svg" },
-      { name: "Doolab", src: "/logos/doolab.svg" },
-      { name: "SalahBreak", src: "/logos/salahbreak.svg" },
-      { name: "Algooru", src: "/logos/partners/algooru.png" },
-      { name: "Najd Water", src: "/logos/partners/najd.png" },
-      { name: "Edraak", src: "/logos/partners/edraak.jpg" },
-      { name: "Alnoj Oud", src: "/logos/partners/alnoj.jpg" },
-      { name: "Lamha", src: "/logos/partners/lamha.png" },
       { name: "AbdihQT", src: "/logos/abdihqt.png" },
-      { name: "مجرة أبدع", src: "/logos/partners/majarah.png" },
-      { name: "Moamen Academy", src: "/logos/partners/moamen.jpg" },
-      { name: "Mojrm Games", src: "/logos/partners/mojrm.jpg" },
+      { name: "Algooru", src: "/logos/partners/algooru.png" },
+      { name: "SalahBreak", src: "/logos/salahbreak.svg" },
+      { name: "Doolab", src: "/logos/doolab.svg" },
+      { name: "Noon Academy", src: "/logos/partners/noon.png" },
+      { name: "Edraak", src: "/logos/partners/edraak.jpg" },
     ],
   },
 
@@ -375,17 +388,25 @@ export const content = {
       ar: "الشهادات كاملة وموثّقة على LinkedIn.",
       en: "Full list, verified on LinkedIn.",
     },
+    learning: {
+      label: { ar: "بتعلّمه حاليًا", en: "Currently Learning" },
+      items: [
+        { ar: "AI Agents for Product Teams", en: "AI Agents for Product Teams" },
+        { ar: "Growth Models for SaaS", en: "Growth Models for SaaS" },
+        { ar: "Product-led Growth Systems", en: "Product-led Growth Systems" },
+      ],
+    },
   },
 
   // ===== Goal 2028 (signature block) =====
   goal: {
-    eyebrow: { ar: "الهدف الشخصي", en: "Personal goal" },
+    eyebrow: { ar: "تفصيلة شخصية يعرفني فيها مجتمعي", en: "A personal detail my community knows me for" },
     title: { ar: "رينج روفر", en: "Range Rover" },
     year: "2028",
     image: "/rangerover.jpg",
     note: {
-      ar: "هدف واحد واضح أشتغل عليه بنظام، خطوة خطوة. لسه في البداية، بس ماشي وثابت.",
-      en: "One clear target I'm working toward with a system, step by step. Still early, but steady.",
+      ar: "بعيدًا عن الاجتماعات والجداول، عندي هدف fun يعرفه كثير من اللي حولي: رينج روفر 2028. ما هو جزء من هويتي المهنية، لكنه تفصيلة خفيفة تذكرني أن الرحلة لازم يكون فيها متعة وحلم شخصي بسيط. اللي يعرفني يعرف أن هذا الهدف صار ميم لطيف بيني وبين مجتمعي.",
+      en: "Away from meetings and roadmaps, I have a fun goal a lot of people around me know about: a Range Rover by 2028. It's not part of my professional identity, just a light personal detail that reminds me the journey should have some fun and a simple dream in it too. If you know me, you know this one turned into a running joke between me and my community.",
     },
     // baseline % as of baselineDate (YYYY-MM); auto-grows +1% every 2 full months from there
     baselineProgress: 13,
@@ -396,12 +417,13 @@ export const content = {
   // ===== Work process =====
   process: {
     eyebrow: { ar: "طريقة العمل", en: "Work process" },
-    title: { ar: "من المشكلة إلى الأثر", en: "From problem to impact" },
+    title: { ar: "نظامي في بناء النمو", en: "My system for building growth" },
     steps: [
-      { ar: "اكتشاف المشكلة", en: "Discover", arDesc: "أفهم الهدف والمستخدم قبل أي حل، بالبيانات والإشارات.", enDesc: "Understand the goal and user before any solution. Data and signal first." },
-      { ar: "التحقق والتأطير", en: "Validate & frame", arDesc: "أصيغ المشكلة وأحدّد المقاييس اللي تحرّك القرار.", enDesc: "Frame the problem and define the metrics that drive the decision." },
-      { ar: "البناء السريع", en: "Build fast", arDesc: "نماذج وإطلاق سريع عبر Vibe Coding بدون هدر.", enDesc: "Prototypes and fast shipping with Vibe Coding, no waste." },
-      { ar: "القياس والتكرار", en: "Measure & iterate", arDesc: "أتابع الأثر بالأرقام وأكرّر بحلقات قصيرة.", enDesc: "Track impact on the numbers and iterate in tight loops." },
+      { ar: "Signal", en: "Signal", arDesc: "ألتقط إشارات السوق والمستخدمين قبل أي قرار.", enDesc: "I capture market and user signals before any decision." },
+      { ar: "Position", en: "Position", arDesc: "أصيغ الرسالة والقيمة بشكل واضح لا يحتاج شرح إضافي.", enDesc: "I shape the message and the value clearly, with no extra explanation needed." },
+      { ar: "Build", en: "Build", arDesc: "أبني تجربة أو نموذج سريع عبر Vibe Coding بدون هدر.", enDesc: "I build a fast experience or prototype with Vibe Coding, no waste." },
+      { ar: "Launch", en: "Launch", arDesc: "أطلق بقناة توزيع واضحة، لا مجرد نشر وانتظار.", enDesc: "I launch through a clear distribution channel, not just publish and wait." },
+      { ar: "Measure", en: "Measure", arDesc: "أقيس التحويل والتبنّي والأثر، وأكرّر بحلقات قصيرة.", enDesc: "I measure conversion, adoption, and impact, then iterate in tight loops." },
     ],
   },
 
@@ -410,24 +432,24 @@ export const content = {
     eyebrow: { ar: "أسئلة شائعة", en: "FAQs" },
     items: [
       {
-        q: { ar: "ليش أشتغل معك؟", en: "Why work with you?" },
-        a: { ar: "لأني باني فعلي مو مستشار نظري. أرقامي تتكلم: ملايين المستخدمين ومنتجات أطلقتها بيدي، وأشتغل بعقلية مالك يهمّه النتيجة قبل أي شي.", en: "Because I'm a builder, not a theorist. The numbers speak for themselves: millions of users and products I shipped myself, with an owner's mindset focused on the result." },
+        q: { ar: "وش تشتغل عليه بالضبط؟", en: "What do you actually work on?" },
+        a: { ar: "أعمل على تقاطع Product Growth، SaaS، AI، والمحتوى. أساعد المنتجات الرقمية على النمو عبر تحسين التجربة، الرسالة، القنوات، وسرعة التجريب.", en: "I work at the intersection of Product Growth, SaaS, AI, and content. I help digital products grow by improving the experience, the message, the channels, and the speed of experimentation." },
       },
       {
-        q: { ar: "وش تشتغل عليه بالضبط؟", en: "What do you actually work on?" },
-        a: { ar: "إدارة المنتجات والاكتساب واستراتيجية الموقع في سلة، وأبني منتجات وأدوات شخصية على الجنب.", en: "Product management, acquisition and website strategy at Salla, plus building personal products and tools on the side." },
+        q: { ar: "هل أنت Product Manager أو Growth؟", en: "Are you a Product Manager or Growth?" },
+        a: { ar: "أنا في المنطقة بين الاثنين: Product Growth. أفكر كمدير منتج، أقرأ السوق كمسوق، وأنفذ كباني.", en: "I sit in between the two: Product Growth. I think like a PM, read the market like a marketer, and execute like a builder." },
+      },
+      {
+        q: { ar: "هل تشتغل على مشاريع AI؟", en: "Do you work on AI projects?" },
+        a: { ar: "نعم، أستخدم AI في بناء النماذج، تسريع التجارب، تحليل الإشارات، وتحويل الأفكار إلى أدوات قابلة للاستخدام.", en: "Yes. I use AI to build prototypes, speed up experiments, read signals, and turn ideas into usable tools." },
       },
       {
         q: { ar: "تاخذ مشاريع جانبية؟", en: "Do you take side projects?" },
-        a: { ar: "نعم، استشارات منتج فقط، يوم واحد في الأسبوع، ولمشاريع لها أثر واضح.", en: "Yes, product advisory only, one day a week, for work with clear impact." },
-      },
-      {
-        q: { ar: "كيف أتواصل معك؟", en: "How do I reach you?" },
-        a: { ar: "عبر LinkedIn أو الإيميل تحت، وأرد بأسرع وقت.", en: "Via LinkedIn or the email below, and I reply fast." },
+        a: { ar: "نعم، فقط إذا كانت في SaaS، AI Products، Product Growth، أو Content-led Growth.", en: "Yes, only if it's in SaaS, AI products, Product Growth, or content-led growth." },
       },
       {
         q: { ar: "وش هدفك المهني؟", en: "What's your career goal?" },
-        a: { ar: "أطمح أكون CPO، على مسار واضح خطوة بخطوة.", en: "Becoming a CPO, on a clear step-by-step track." },
+        a: { ar: "أبغى أكون قائد منتج يبني أنظمة نمو، مو مجرد ميزات. الاتجاه طويل المدى هو قيادة منتجات SaaS و AI على مستوى تنفيذي.", en: "I want to be a product leader who builds growth systems, not just features. The long-term direction is leading SaaS and AI products at an executive level." },
       },
     ],
   },
@@ -435,10 +457,10 @@ export const content = {
   // ===== Contact =====
   contact: {
     eyebrow: { ar: "تواصل", en: "Get in touch" },
-    title: { ar: "خلنا نبني شي يصنع أثر", en: "Let's build something with impact" },
+    title: { ar: "خلنا نبني نمو واضح", en: "Let's build clear growth" },
     note: {
-      ar: "متاح لاستشارات المنتج فقط، يوم واحد في الأسبوع. تجيك خبرة باني وأرقام حقيقية، مو نظريات. اكتب لي وأرد بسرعة.",
-      en: "Available for product advisory only, one day a week. You get a builder's experience and real numbers, not theory. Drop me a line and I'll reply fast.",
+      ar: "متاح لعدد محدود من استشارات Product Growth و AI Product Strategy. أساعدك في فهم المشكلة، تحسين التموضع، بناء تجربة أولية، أو تحويل موقعك أو منتجك إلى قناة اكتساب أوضح. مناسب أكثر لـ SaaS، EdTech، AI Products، وتطبيقات المحتوى أو المجتمعات.",
+      en: "Available for a limited number of Product Growth and AI Product Strategy consultations. I can help you understand the problem, sharpen the positioning, build a first experience, or turn your site or product into a clearer acquisition channel. Best fit for SaaS, EdTech, AI products, and content or community apps.",
     },
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },

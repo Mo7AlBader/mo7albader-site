@@ -29,7 +29,7 @@ export default function Contact() {
             }}
             className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 font-medium text-white transition-colors hover:bg-accent2"
           >
-            {lang === "ar" ? "احجز مكالمة" : "Book a call"}
+            {lang === "ar" ? "احجز نقاش Product Growth" : "Book a Growth Chat"}
             <svg
               width="15"
               height="15"

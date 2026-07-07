@@ -94,20 +94,25 @@ export default function TechStack() {
         <h2 className="font-display mt-3 text-2xl font-bold tracking-tight md:text-4xl">{t.title[lang]}</h2>
       </Reveal>
 
-      <Reveal delay={0.08} y={16}>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {t.items.map((item, i) => (
-            <span
-              key={i}
-              title={item[lang]}
-              className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white/[0.03] px-3 py-1.5 text-sm text-white/80"
-            >
-              <ToolLogo name={item.name} logo={item.logo} />
-              {item.name}
-            </span>
-          ))}
-        </div>
-      </Reveal>
+      <div className="mt-6 flex flex-col gap-5">
+        {t.groups.map((group, gi) => (
+          <Reveal key={gi} delay={0.08 + gi * 0.05} y={16}>
+            <p className="mb-2 text-xs uppercase tracking-wide text-faint">{group.label[lang]}</p>
+            <div className="flex flex-wrap gap-2">
+              {group.items.map((item, i) => (
+                <span
+                  key={i}
+                  title={item[lang]}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-line bg-white/[0.03] px-3 py-1.5 text-sm text-white/80"
+                >
+                  <ToolLogo name={item.name} logo={item.logo} />
+                  {item.name}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }
