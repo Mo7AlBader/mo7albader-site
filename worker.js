@@ -11,6 +11,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // the note briefly shipped under /notes/work-of-islam
+    if (url.pathname.replace(/\/$/, "") === "/notes/work-of-islam") {
+      url.pathname = "/notes/work-in-islam";
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === "/api/track" && request.method === "POST") {
       try {
         const { name, props } = await request.json();

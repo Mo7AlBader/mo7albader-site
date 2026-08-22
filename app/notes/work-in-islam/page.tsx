@@ -7,12 +7,12 @@ const description =
 export const metadata: Metadata = {
   title: "العمل في الإسلام",
   description,
-  alternates: { canonical: "/notes/work-of-islam" },
+  alternates: { canonical: "/notes/work-in-islam" },
   openGraph: {
     type: "article",
     title: "العمل في الإسلام · سلسلة عَدي خضر",
     description,
-    url: "/notes/work-of-islam",
+    url: "/notes/work-in-islam",
     locale: "ar_SA",
   },
   twitter: {
