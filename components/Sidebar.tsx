@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 
@@ -72,6 +73,31 @@ export default function Sidebar() {
           </a>
         );
       })}
+
+      {/* the blog is a route, not a section, so it sits below a divider and
+          stays out of the scroll-spy above */}
+      <span aria-hidden className="mx-auto my-0.5 h-px w-6 bg-line" />
+
+      <Link
+        href="/blog"
+        aria-label={lang === "ar" ? "المدونة" : "Blog"}
+        className="group relative grid place-items-center w-11 h-11 rounded-full
+                   text-muted transition-colors hover:text-white hover:bg-white/5"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 4h11l3 3v13H5z" />
+          <path d="M8.5 10h7M8.5 14h4.5" />
+        </svg>
+        <span
+          className="pointer-events-none absolute ltr:right-full rtl:left-full ltr:mr-3 rtl:ml-3
+                     whitespace-nowrap rounded-md bg-surface2 border border-line px-2.5 py-1
+                     text-xs text-white opacity-0 -translate-x-1 rtl:translate-x-1
+                     group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+        >
+          {lang === "ar" ? "المدونة" : "Blog"}
+        </span>
+      </Link>
     </nav>
   );
 }

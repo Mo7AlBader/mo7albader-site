@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 
@@ -64,6 +65,14 @@ export default function MobileNav() {
               {item[lang]}
             </a>
           ))}
+
+          <Link
+            href="/blog"
+            onClick={() => setOpen(false)}
+            className="font-display text-2xl py-3 border-b border-line text-white/90 hover:text-white"
+          >
+            {lang === "ar" ? "المدونة" : "Blog"}
+          </Link>
 
           <button
             onClick={toggle}

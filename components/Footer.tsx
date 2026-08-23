@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
 import CalModal from "./CalModal";
@@ -106,6 +107,16 @@ export default function Footer() {
               <SocialIcon label={s.label} />
             </a>
           ))}
+        </div>
+
+        {/* the blog lives on its own route, so it needs an entry point here */}
+        <div className="mt-8">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-5 py-2 text-sm text-white/80 transition-colors hover:border-accent hover:text-white"
+          >
+            {lang === "ar" ? "المدونة" : "Blog"}
+          </Link>
         </div>
 
         <p className="mt-10 text-sm text-faint">
