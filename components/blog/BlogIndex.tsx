@@ -2,9 +2,11 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import BlogNav from "./BlogNav";
-import BlogFooter from "./BlogFooter";
 import PostCard from "./PostCard";
+import PageNav from "@/components/shared/PageNav";
+import PageFooter from "@/components/shared/PageFooter";
+import FilterBar from "@/components/shared/FilterBar";
+import Pagination from "@/components/shared/Pagination";
 import CoverArt from "./CoverArt";
 import Reveal from "@/components/Reveal";
 import { useLang } from "@/components/LangContext";
@@ -20,15 +22,6 @@ import {
 } from "@/lib/blog";
 
 type Filter = CategoryId | "all";
-
-function SearchIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden>
-      <circle cx="11" cy="11" r="7" />
-      <path d="m20 20-3.5-3.5" strokeLinecap="round" />
-    </svg>
-  );
-}
 
 function Arrow({ flip }: { flip?: boolean }) {
   return (
@@ -108,7 +101,7 @@ export default function BlogIndex() {
 
   return (
     <>
-      <BlogNav />
+      <PageNav section={{ label: blogUI.blog, href: "/blog" }} />
 
       <main>
         {/* ===== featured post ===== */}
@@ -166,44 +159,17 @@ export default function BlogIndex() {
 
         {/* ===== filters + search ===== */}
         <section id="posts" className="mx-auto w-full max-w-[1120px] scroll-mt-24 px-5 py-8 md:px-8">
-          <div className="rounded-3xl border border-line bg-surface p-4 md:p-5" style={{ boxShadow: "var(--glass)" }}>
-            <div className="flex flex-wrap gap-2">
-              {([{ id: "all" as Filter, label: blogUI.allPosts }] as { id: Filter; label: { ar: string; en: string } }[])
-                .concat(categories.map((c) => ({ id: c.id as Filter, label: c.label })))
-                .map((c) => {
-                  const active = filter === c.id;
-                  return (
-                    <button
-                      key={c.id}
-                      onClick={() => apply(c.id)}
-                      aria-pressed={active}
-                      className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
-                        active
-                          ? "border-accent bg-accent/10 text-accent"
-                          : "border-line bg-white/[0.03] text-white/75 hover:border-white/25 hover:text-white"
-                      }`}
-                    >
-                      {c.label[lang]}
-                    </button>
-                  );
-                })}
-            </div>
-
-            <div className="mt-4 flex items-center gap-3 border-t border-line pt-4 text-muted focus-within:text-white">
-              <SearchIcon />
-              <input
-                type="search"
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                  setPage(1);
-                }}
-                placeholder={blogUI.searchPlaceholder[lang]}
-                aria-label={blogUI.searchPlaceholder[lang]}
-                className="w-full bg-transparent text-sm text-white outline-none placeholder:text-faint"
-              />
-            </div>
-          </div>
+          <FilterBar
+            options={[{ id: "all", label: blogUI.allPosts }, ...categories.map((c) => ({ id: c.id, label: c.label }))]}
+            active={filter}
+            onFilter={(id) => apply(id as Filter)}
+            query={query}
+            onQuery={(q) => {
+              setQuery(q);
+              setPage(1);
+            }}
+            searchPlaceholder={blogUI.searchPlaceholder}
+          />
 
           {/* ===== grid ===== */}
           {visible.length > 0 ? (
@@ -231,47 +197,7 @@ export default function BlogIndex() {
             </div>
           )}
 
-          {/* ===== pagination ===== */}
-          {pageCount > 1 && (
-            <nav className="mt-10 flex items-center justify-center gap-2" aria-label="Pagination">
-              <button
-                onClick={() => goTo(current - 1)}
-                disabled={current === 1}
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-4 py-2 text-sm text-white/80 transition-colors hover:border-accent hover:text-white disabled:pointer-events-none disabled:opacity-35"
-              >
-                <span className="rtl:rotate-180">
-                  <Arrow flip />
-                </span>
-                <span className="hidden sm:inline">{blogUI.previous[lang]}</span>
-              </button>
-
-              {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
-                <button
-                  key={n}
-                  onClick={() => goTo(n)}
-                  aria-current={n === current ? "page" : undefined}
-                  className={`h-10 w-10 rounded-full border text-sm transition-colors ${
-                    n === current
-                      ? "border-accent bg-accent/10 text-accent"
-                      : "border-line bg-white/[0.03] text-white/75 hover:border-white/25 hover:text-white"
-                  }`}
-                >
-                  {n}
-                </button>
-              ))}
-
-              <button
-                onClick={() => goTo(current + 1)}
-                disabled={current === pageCount}
-                className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-4 py-2 text-sm text-white/80 transition-colors hover:border-accent hover:text-white disabled:pointer-events-none disabled:opacity-35"
-              >
-                <span className="hidden sm:inline">{blogUI.next[lang]}</span>
-                <span className="rtl:rotate-180">
-                  <Arrow />
-                </span>
-              </button>
-            </nav>
-          )}
+          <Pagination page={current} pageCount={pageCount} onGo={goTo} />
         </section>
 
         {/* ===== closing CTA ===== */}
@@ -302,7 +228,7 @@ export default function BlogIndex() {
         </section>
       </main>
 
-      <BlogFooter />
+      <PageFooter />
     </>
   );
 }

@@ -2,21 +2,22 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import BlogNav from "./BlogNav";
-import BlogFooter from "./BlogFooter";
 import CoverArt from "./CoverArt";
+import PageNav from "@/components/shared/PageNav";
+import PageFooter from "@/components/shared/PageFooter";
 import Prose from "./Prose";
 import PostCard from "./PostCard";
 import TableOfContents from "./TableOfContents";
 import ShareRow from "./ShareRow";
-import SummarizeWithAI from "./SummarizeWithAI";
 import FAQList from "./FAQList";
+import OpenInAI from "@/components/shared/OpenInAI";
 import { useLang } from "@/components/LangContext";
 import {
   author,
   blogUI,
   categoryLabel,
   formatDate,
+  postUrl,
   relatedPosts,
   tableOfContents,
   type BlogPost,
@@ -35,9 +36,14 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
   const toc = useMemo(() => tableOfContents(post, lang), [post, lang]);
   const related = useMemo(() => relatedPosts(post), [post]);
 
+  const summaryPrompt =
+    lang === "ar"
+      ? `اقرأ هذا المقال: ${postUrl(post.slug)} — اكتب لي فقرة قصيرة عن موضوعه، ثم اذكر أهم الأفكار فيه.`
+      : `Read this article: ${postUrl(post.slug)} - in a short paragraph, tell me what it is about, then list the key insights.`;
+
   return (
     <>
-      <BlogNav />
+      <PageNav section={{ label: blogUI.blog, href: "/blog" }} />
 
       <main>
         <div className="mx-auto w-full max-w-[1120px] px-5 py-8 md:px-8 md:py-12">
@@ -88,7 +94,7 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
                 </div>
 
                 <div className="mt-6">
-                  <SummarizeWithAI slug={post.slug} />
+                  <OpenInAI prompt={summaryPrompt} label={blogUI.summarizeWithAI} event="blog_summarize" />
                 </div>
 
                 {post.placeholder && (
@@ -170,7 +176,7 @@ export default function BlogArticle({ post }: { post: BlogPost }) {
         </div>
       </main>
 
-      <BlogFooter />
+      <PageFooter />
     </>
   );
 }

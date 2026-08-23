@@ -1,4 +1,7 @@
 import type { Lang } from "@/lib/data";
+import type { Bi } from "@/lib/i18n";
+
+export type { Bi };
 
 /* ============================================================================
    Blog data layer
@@ -11,8 +14,6 @@ import type { Lang } from "@/lib/data";
    They exist so the layout, filters, search and pagination can be seen working
    end to end. Replace them one by one with real writing and drop the flag.
    ========================================================================== */
-
-export type Bi = { ar: string; en: string };
 
 export type Block =
   | { t: "p"; text: string }

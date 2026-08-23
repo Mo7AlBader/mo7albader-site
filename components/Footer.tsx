@@ -109,13 +109,20 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* the blog lives on its own route, so it needs an entry point here */}
-        <div className="mt-8">
+        {/* the blog and the prompt library live on their own routes, so they
+            need an entry point here */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-5 py-2 text-sm text-white/80 transition-colors hover:border-accent hover:text-white"
           >
             {lang === "ar" ? "المدونة" : "Blog"}
+          </Link>
+          <Link
+            href="/prompts"
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-5 py-2 text-sm text-white/80 transition-colors hover:border-accent hover:text-white"
+          >
+            {lang === "ar" ? "مكتبة البرومبتات" : "Prompt library"}
           </Link>
         </div>
 

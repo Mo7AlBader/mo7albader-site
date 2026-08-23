@@ -74,8 +74,8 @@ export default function Sidebar() {
         );
       })}
 
-      {/* the blog is a route, not a section, so it sits below a divider and
-          stays out of the scroll-spy above */}
+      {/* these are routes, not sections, so they sit below a divider and stay
+          out of the scroll-spy above */}
       <span aria-hidden className="mx-auto my-0.5 h-px w-6 bg-line" />
 
       <Link
@@ -96,6 +96,27 @@ export default function Sidebar() {
                      group-hover:opacity-100 group-hover:translate-x-0 transition-all"
         >
           {lang === "ar" ? "المدونة" : "Blog"}
+        </span>
+      </Link>
+
+      <Link
+        href="/prompts"
+        aria-label={lang === "ar" ? "مكتبة البرومبتات" : "Prompt library"}
+        className="group relative grid place-items-center w-11 h-11 rounded-full
+                   text-muted transition-colors hover:text-white hover:bg-white/5"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 3l1.8 4.9L18.7 9l-4.9 1.8L12 15.7l-1.8-4.9L5.3 9l4.9-1.2L12 3Z" />
+          <path d="M18 15.5l.6 1.7 1.7.6-1.7.6-.6 1.7-.6-1.7-1.7-.6 1.7-.6.6-1.7Z" />
+        </svg>
+        <span
+          className="pointer-events-none absolute ltr:right-full rtl:left-full ltr:mr-3 rtl:ml-3
+                     whitespace-nowrap rounded-md bg-surface2 border border-line px-2.5 py-1
+                     text-xs text-white opacity-0 -translate-x-1 rtl:translate-x-1
+                     group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+        >
+          {lang === "ar" ? "مكتبة البرومبتات" : "Prompt library"}
         </span>
       </Link>
     </nav>

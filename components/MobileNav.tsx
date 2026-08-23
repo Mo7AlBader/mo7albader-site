@@ -74,6 +74,14 @@ export default function MobileNav() {
             {lang === "ar" ? "المدونة" : "Blog"}
           </Link>
 
+          <Link
+            href="/prompts"
+            onClick={() => setOpen(false)}
+            className="font-display text-2xl py-3 border-b border-line text-white/90 hover:text-white"
+          >
+            {lang === "ar" ? "مكتبة البرومبتات" : "Prompt library"}
+          </Link>
+
           <button
             onClick={toggle}
             className="mt-6 self-start rounded-full border border-line px-4 py-2 text-sm text-muted hover:text-white"

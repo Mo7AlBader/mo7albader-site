@@ -1,11 +1,11 @@
 "use client";
 
 import { useLang } from "@/components/LangContext";
-import { blogUI, postUrl } from "@/lib/blog";
 import { trackClick } from "@/lib/track";
+import type { Bi } from "@/lib/i18n";
 
-/* Hands the article URL to an assistant with a ready-made prompt, so a reader
-   in a hurry can get the gist without leaving the decision to them. */
+/* Hands a ready-made prompt to an assistant. The blog sends "summarise this
+   article"; the prompt library sends the prompt itself, already filled in. */
 const TARGETS = [
   { id: "chatgpt", label: "ChatGPT", base: "https://chatgpt.com/?prompt=" },
   { id: "claude", label: "Claude", base: "https://claude.ai/new?q=" },
@@ -21,20 +21,23 @@ function Sparkle() {
   );
 }
 
-export default function SummarizeWithAI({ slug }: { slug: string }) {
+export default function OpenInAI({
+  prompt,
+  label,
+  event,
+}: {
+  prompt: string;
+  label: Bi;
+  event: string;
+}) {
   const { lang } = useLang();
-  const url = postUrl(slug);
-
-  const prompt =
-    lang === "ar"
-      ? `اقرأ هذا المقال: ${url} — اكتب لي فقرة قصيرة عن موضوعه، ثم اذكر أهم الأفكار فيه.`
-      : `Read this article: ${url} - in a short paragraph, tell me what it is about, then list the key insights.`;
+  const openIn = lang === "ar" ? "افتحه في" : "Open in";
 
   return (
     <div className="flex flex-wrap items-center gap-3">
       <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-faint">
         <Sparkle />
-        {blogUI.summarizeWithAI[lang]}
+        {label[lang]}
       </span>
 
       <div className="flex flex-wrap gap-2">
@@ -44,10 +47,10 @@ export default function SummarizeWithAI({ slug }: { slug: string }) {
             href={`${t.base}${encodeURIComponent(prompt)}`}
             target="_blank"
             rel="noreferrer"
-            onClick={() => trackClick("blog_summarize", { label: t.id })}
+            onClick={() => trackClick(event, { label: t.id })}
             className="rounded-full border border-line bg-white/[0.03] px-4 py-1.5 text-sm text-white/80 transition-colors hover:border-accent hover:text-white"
           >
-            {blogUI.openIn[lang]} {t.label}
+            {openIn} {t.label}
           </a>
         ))}
       </div>
