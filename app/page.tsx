@@ -20,6 +20,7 @@ import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import MobileCTA from "@/components/MobileCTA";
+import { goalProgress } from "@/lib/goal";
 
 export default function Page() {
   return (
@@ -47,7 +48,7 @@ export default function Page() {
           <FAQ />
           <TickerBand which="cta" />
           <Contact />
-          <Goal2028 />
+          <Goal2028 initialProgress={goalProgress()} />
           <Footer />
         </div>
       </main>

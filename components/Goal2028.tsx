@@ -1,23 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { content } from "@/lib/data";
+import { goalProgress, formatGoalProgress } from "@/lib/goal";
 import { useLang } from "./LangContext";
 import Reveal from "./Reveal";
 
-// +1% for every 2 full months elapsed since baselineDate, capped at 100%
-function computeProgress(baselineDate: string, baselineProgress: number) {
-  const [y, m] = baselineDate.split("-").map(Number);
-  const now = new Date();
-  const monthsElapsed = (now.getFullYear() - y) * 12 + (now.getMonth() - (m - 1));
-  const grown = baselineProgress + Math.max(0, Math.floor(monthsElapsed / 2));
-  return Math.min(100, grown);
-}
-
-export default function Goal2028() {
+export default function Goal2028({ initialProgress }: { initialProgress: number }) {
   const { lang } = useLang();
   const g = content.goal;
-  const pct = computeProgress(g.baselineDate, g.baselineProgress);
+
+  // the page is statically exported, so the prerendered HTML carries the value
+  // from build time. Start there so hydration matches, then move to today's
+  // value once the browser is running — that is what keeps the bar current
+  // between deploys.
+  const [pct, setPct] = useState(initialProgress);
+  useEffect(() => setPct(goalProgress()), []);
 
   return (
     <section id="goal" className="container py-12 md:py-14">
@@ -58,7 +57,7 @@ export default function Goal2028() {
               <div className="mb-2 flex items-center justify-between text-sm">
                 <span className="text-white/70">{g.progressLabel[lang]}</span>
                 <span className="font-display text-base font-bold tabular-nums" style={{ color: "var(--accent)" }}>
-                  {pct}%
+                  {formatGoalProgress(pct)}%
                 </span>
               </div>
               <div className="h-2.5 overflow-hidden rounded-full border border-white/10 bg-black/40">

@@ -408,9 +408,11 @@ export const content = {
       ar: "بعيدًا عن الاجتماعات والجداول، عندي هدف خفيف يعرفه مجتمعي: رينج روفر 2028. صار مزحة لطيفة بيني وبينهم، وأخليها هنا كتفصيلة شخصية بس.",
       en: "Away from meetings and schedules, I have a light goal my community knows about: a Range Rover by 2028. It became a nice running joke between us, and I'm keeping it here as just a personal detail.",
     },
-    // baseline % as of baselineDate (YYYY-MM); auto-grows +1% every 2 full months from there
+    // baseline % as of baselineDate (YYYY-MM-DD); the day is the monthly tick
+    // day, so the bar grows by monthlyIncrement on the 15th of every month
     baselineProgress: 13,
-    baselineDate: "2026-07",
+    baselineDate: "2026-07-15",
+    monthlyIncrement: 1.5,
     progressLabel: { ar: "التقدّم نحو الهدف", en: "Progress to goal" },
   },
 

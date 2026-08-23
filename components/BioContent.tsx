@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "@/components/Reveal";
 import CalModal from "@/components/CalModal";
 import { trackClick } from "@/lib/track";
+import { goalProgress, formatGoalProgress } from "@/lib/goal";
 
 const AMAZON_TAG = "z7dart-21";
 function amazonSearch(query: string) {
@@ -14,15 +15,6 @@ function amazonSearch(query: string) {
 // exact product page (real ASIN), used once we know precisely which item it is
 function amazonProduct(asin: string) {
   return `https://www.amazon.sa/dp/${asin}?tag=${AMAZON_TAG}`;
-}
-
-// +1% for every 2 full months elapsed since baselineDate, capped at 100% — same logic as the homepage goal card
-function computeProgress(baselineDate: string, baselineProgress: number) {
-  const [y, m] = baselineDate.split("-").map(Number);
-  const now = new Date();
-  const monthsElapsed = (now.getFullYear() - y) * 12 + (now.getMonth() - (m - 1));
-  const grown = baselineProgress + Math.max(0, Math.floor(monthsElapsed / 2));
-  return Math.min(100, grown);
 }
 
 const SOCIALS = [
@@ -88,12 +80,6 @@ const BOOKS = [
     blurb: "تغييرات صغيرة يومية تبني نتائج ضخمة على المدى الطويل",
   },
 ];
-
-// Range Rover goal — same numbers as the homepage's Goal2028 card
-const GOAL = {
-  baselineDate: "2026-07",
-  baselineProgress: 13,
-};
 
 function SocialIcon({ label }: { label: string }) {
   if (label === "LinkedIn") {
@@ -226,11 +212,14 @@ function ProductRow({
   );
 }
 
-export default function BioContent() {
+export default function BioContent({ initialProgress }: { initialProgress: number }) {
   const [productsOpen, setProductsOpen] = useState(false);
   const [booksOpen, setBooksOpen] = useState(false);
   const [calOpen, setCalOpen] = useState(false);
-  const pct = computeProgress(GOAL.baselineDate, GOAL.baselineProgress);
+
+  // same handoff as the homepage card: build-time value first, today's after mount
+  const [pct, setPct] = useState(initialProgress);
+  useEffect(() => setPct(goalProgress()), []);
 
   return (
     <main className="min-h-screen py-14">
@@ -421,7 +410,7 @@ export default function BioContent() {
                   <span className="text-xs text-muted">الهدف الشخصي · 2028</span>
                 </span>
                 <span className="font-display text-sm font-bold tabular-nums" style={{ color: "var(--accent)" }}>
-                  {pct}%
+                  {formatGoalProgress(pct)}%
                 </span>
               </div>
               <div className="h-1.5 overflow-hidden rounded-full border border-line bg-black/40">

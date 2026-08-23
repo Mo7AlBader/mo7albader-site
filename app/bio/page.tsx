@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BioContent from "@/components/BioContent";
+import { goalProgress } from "@/lib/goal";
 
 export const metadata: Metadata = {
   title: "روابطي",
@@ -8,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function BioPage() {
-  return <BioContent />;
+  return <BioContent initialProgress={goalProgress()} />;
 }
