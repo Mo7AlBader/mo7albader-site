@@ -28,6 +28,11 @@ export default function PostCard({ post }: { post: BlogPost }) {
         <span className="absolute start-4 top-4 rounded-full border border-line bg-black/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white/85 backdrop-blur">
           {categoryLabel(post.category, lang)}
         </span>
+        {post.placeholder && (
+          <span className="absolute end-4 top-4 rounded-full border border-line bg-black/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white/60 backdrop-blur">
+            {blogUI.wip[lang]}
+          </span>
+        )}
       </div>
 
       <div className="flex flex-1 flex-col p-5">

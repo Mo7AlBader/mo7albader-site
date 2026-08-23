@@ -128,9 +128,16 @@ export default function BlogIndex() {
               </div>
 
               <div className="flex flex-col justify-center gap-4 p-6 md:p-10">
-                <span className="w-fit rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-accent">
-                  {categoryLabel(featured.category, lang)}
-                </span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="w-fit rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-accent">
+                    {categoryLabel(featured.category, lang)}
+                  </span>
+                  {featured.placeholder && (
+                    <span className="w-fit rounded-full border border-line bg-white/[0.04] px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-faint">
+                      {blogUI.wip[lang]}
+                    </span>
+                  )}
+                </div>
 
                 <h2 className="font-display text-2xl font-bold leading-tight tracking-tight transition-colors group-hover:text-accent md:text-4xl">
                   {featured.title[lang]}

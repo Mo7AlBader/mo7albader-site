@@ -107,6 +107,7 @@ export const blogUI = {
     ar: "هذا المقال محتوى تجريبي موضوع لعرض التصميم، وسيُستبدل بمحتوى حقيقي.",
     en: "This post is placeholder content used to demo the layout. Real writing will replace it.",
   },
+  wip: { ar: "قيد الكتابة", en: "In progress" },
 } as const;
 
 /* ===== Placeholder body builder ==========================================

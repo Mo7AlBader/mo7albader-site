@@ -17,6 +17,8 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title,
     description,
+    // placeholder posts stay out of the index until real writing replaces them
+    robots: post.placeholder ? { index: false, follow: true } : undefined,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",

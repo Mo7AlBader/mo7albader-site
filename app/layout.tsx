@@ -50,7 +50,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Mohammed AlBader" }],
   creator: "Mohammed AlBader",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": "/feed.xml" },
+  },
   openGraph: {
     type: "website",
     siteName: "Mohammed AlBader",
