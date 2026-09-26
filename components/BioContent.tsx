@@ -176,6 +176,7 @@ function Thumb({ image, fallback }: { image?: string; fallback?: React.ReactNode
 function ProductRow({
   name,
   eventKey,
+  section,
   query,
   asin,
   comingSoon,
@@ -183,6 +184,7 @@ function ProductRow({
 }: {
   name: string;
   eventKey: string;
+  section: "productivity" | "entertainment";
   query?: string;
   asin?: string;
   comingSoon?: boolean;
@@ -202,7 +204,7 @@ function ProductRow({
       href={asin ? amazonProduct(asin) : amazonSearch(query!)}
       target="_blank"
       rel="noopener sponsored"
-      onClick={() => trackClick("bio_product_click", { label: eventKey })}
+      onClick={() => trackClick("bio_product_click", { label: eventKey, title: name, section })}
       className="flex items-center gap-3 rounded-xl border border-line bg-white/[0.02] px-3 py-3 transition-colors hover:border-accent"
     >
       <Thumb image={image} fallback={<MousepadIcon />} />
@@ -281,7 +283,7 @@ export default function BioContent({ initialProgress }: { initialProgress: numbe
                 onClick={() => {
                   const next = !productsOpen;
                   setProductsOpen(next);
-                  if (next) trackClick("bio_products_expand");
+                  if (next) trackClick("bio_card_click", { label: "products", title: "منتجاتي" });
                 }}
                 aria-expanded={productsOpen}
                 className="flex w-full items-center justify-between gap-4 p-5 text-start"
@@ -303,7 +305,7 @@ export default function BioContent({ initialProgress }: { initialProgress: numbe
                         <p className="mb-2 text-xs uppercase tracking-wide text-faint">الإنتاجية</p>
                         <div className="flex flex-col gap-2">
                           {PRODUCTIVITY_PRODUCTS.map((p) => (
-                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} asin={p.asin} comingSoon={p.comingSoon} image={p.image} />
+                            <ProductRow key={p.key} name={p.name} eventKey={p.key} section="productivity" query={p.query} asin={p.asin} comingSoon={p.comingSoon} image={p.image} />
                           ))}
                         </div>
                       </div>
@@ -311,7 +313,7 @@ export default function BioContent({ initialProgress }: { initialProgress: numbe
                         <p className="mb-2 text-xs uppercase tracking-wide text-faint">الترفيهية</p>
                         <div className="flex flex-col gap-2">
                           {ENTERTAINMENT_PRODUCTS.map((p) => (
-                            <ProductRow key={p.key} name={p.name} eventKey={p.key} query={p.query} asin={p.asin} image={p.image} />
+                            <ProductRow key={p.key} name={p.name} eventKey={p.key} section="entertainment" query={p.query} asin={p.asin} image={p.image} />
                           ))}
                         </div>
                       </div>
@@ -326,7 +328,7 @@ export default function BioContent({ initialProgress }: { initialProgress: numbe
           <Reveal delay={0.1} y={16}>
             <a
               href="https://mo7albader.com"
-              onClick={() => trackClick("bio_website_click")}
+              onClick={() => trackClick("bio_card_click", { label: "website", title: "موقعي الشخصي" })}
               className="card flex items-center gap-3 p-3 transition-colors hover:border-accent"
             >
               <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-line">
@@ -352,7 +354,7 @@ export default function BioContent({ initialProgress }: { initialProgress: numbe
                 onClick={() => {
                   const next = !booksOpen;
                   setBooksOpen(next);
-                  if (next) trackClick("bio_books_expand");
+                  if (next) trackClick("bio_card_click", { label: "books", title: "مكتبتي للقراءة" });
                 }}
                 aria-expanded={booksOpen}
                 className="flex w-full items-center justify-between gap-4 p-5 text-start"
@@ -376,7 +378,7 @@ export default function BioContent({ initialProgress }: { initialProgress: numbe
                           href={amazonProduct(b.asin)}
                           target="_blank"
                           rel="noopener sponsored"
-                          onClick={() => trackClick("bio_book_click", { label: b.key })}
+                          onClick={() => trackClick("bio_book_click", { label: b.key, title: b.title })}
                           className="flex items-center gap-3 rounded-xl border border-line bg-white/[0.02] px-3 py-3 transition-colors hover:border-accent"
                         >
                           <span className="relative h-14 w-11 shrink-0 overflow-hidden rounded-md border border-line">
@@ -431,7 +433,7 @@ export default function BioContent({ initialProgress }: { initialProgress: numbe
               type="button"
               onClick={() => {
                 setCalOpen(true);
-                trackClick("bio_cal_open");
+                trackClick("bio_card_click", { label: "book_call", title: "احجز مكالمة" });
               }}
               className="mt-2 flex w-full flex-col items-center gap-1 rounded-full bg-accent px-6 py-3.5 text-center font-medium text-white transition-colors hover:bg-accent2"
             >

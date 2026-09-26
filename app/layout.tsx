@@ -22,6 +22,8 @@ const arabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ar",
 });
 
+const GA_ID = "G-FVMYSHQ115";
+
 // cursive signature mark used on the hero portrait (latin only)
 const signature = Waterfall({
   subsets: ["latin"],
@@ -76,6 +78,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ar" dir="rtl" className={`${display.variable} ${body.variable} ${arabic.variable} ${signature.variable}`}>
       <body className="font-ar">
         <LangProvider>{children}</LangProvider>
+        {/* GA4: only the live domain reports, so localhost and preview hosts stay out of the data */}
+        <Script id="ga4" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+if (/(^|\\.)mo7albader\\.com$/.test(location.hostname)) {
+  gtag('js', new Date());
+  gtag('config', '${GA_ID}');
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
+  document.head.appendChild(s);
+}`}
+        </Script>
         <Script
           strategy="afterInteractive"
           src="https://static.cloudflareinsights.com/beacon.min.js"
