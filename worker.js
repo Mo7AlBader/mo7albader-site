@@ -32,6 +32,19 @@ export default {
       return new Response(null, { status: 204 });
     }
 
+    // nightly token totals for /tokens, written to KV by scripts/tokens/update.py
+    if (url.pathname === "/api/tokens" && request.method === "GET") {
+      const body = await env.ANALYTICS_KV.get("tokens:latest");
+      if (!body) return new Response("Not Found", { status: 404 });
+      return new Response(body, {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": "public, max-age=300, s-maxage=900",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    }
+
     if (url.pathname === "/api/stats" && request.method === "GET") {
       const auth = (request.headers.get("Authorization") || "").trim();
       const expected = `Bearer ${(env.STATS_TOKEN || "").trim()}`;

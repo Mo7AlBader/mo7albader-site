@@ -1,0 +1,17 @@
+{
+  "_note": "Claude Code /stats remembers sessions whose transcripts were cleaned up, so the lifetime total is anchored to the /stats screen on anchorDate and moves with ledger.json from there. To re-anchor, run update.py --seed right after reading /stats, then set statsTotal/statsSessions/statsActiveDays/statsStreak from that screen.",
+  "claude": {
+    "anchorDate": "2026-10-14",
+    "statsTotal": 61600000000,
+    "statsSessions": 815,
+    "statsActiveDays": 115,
+    "statsStreak": 61,
+    "longestSession": "47d 9h",
+    "since": "since May 2026",
+    "ledgerTotalAtAnchor": 58262817160,
+    "ledgerSessionsAtAnchor": 208
+  },
+  "gpt": {
+    "since": "since May 2026"
+  }
+}

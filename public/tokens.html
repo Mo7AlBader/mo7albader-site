@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Token Meter · Mohammed AlBader</title>
+<meta name="description" content="Every token Mohammed AlBader has run through Claude Code and GPT, counted live. Refreshed nightly from his own session files and ChatGPT profile.">
+<link rel="canonical" href="https://mo7albader.com/tokens">
+<meta name="theme-color" content="#050506">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Token Meter · Mohammed AlBader">
+<meta property="og:description" content="Lifetime AI tokens, counted live. Claude Code and GPT, refreshed nightly.">
+<meta property="og:url" content="https://mo7albader.com/tokens">
+<meta property="og:image" content="https://mo7albader.com/opengraph-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/icon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: black cinematic stage. A fixed WebGL scene (figure between two lit laptops, halo behind) sits under a 6-column editorial grid; sections scroll over it. */
+:root{
+  --bg:#050506; --fg:#F3F1EC; --mute:#8E8C88; --dim:#4A4947; --line:rgba(255,255,255,.075);
+  --claude:#F08A5D; --gpt:#5FE3C0; --halo:#FFF6EA;
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:clamp(16px,4vw,56px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:12px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+#gl{position:fixed;inset:0;z-index:0;display:block;width:100%;height:100%}
+.lines{position:fixed;inset:0;z-index:1;pointer-events:none}
+.lines i{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.lines i:nth-child(1){left:16.666%}.lines i:nth-child(2){left:33.333%}.lines i:nth-child(3){left:50%}.lines i:nth-child(4){left:66.666%}.lines i:nth-child(5){left:83.333%}
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:calc(18px + env(safe-area-inset-top,0px)) var(--gut) 14px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+.nav .mark{font-family:var(--serif);font-size:15px;letter-spacing:.08em;color:var(--fg);text-transform:none}
+.nav ul{display:flex;gap:34px;list-style:none;margin:0;padding:0}
+.nav li a{position:relative;padding-bottom:6px}
+.nav li a.on{color:var(--fg)}
+.nav li a.on::after{content:"";position:absolute;left:0;right:40%;bottom:0;height:1px;background:var(--fg)}
+.nav .home{color:var(--mute)}
+.nav .home:hover{color:var(--fg)}
+.dots{position:fixed;left:var(--gut);top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:14px}
+.dots a{width:3px;height:3px;border-radius:50%;background:var(--dim);transition:all .4s}
+.dots a.on{height:22px;border-radius:2px;background:var(--fg)}
+
+main{position:relative;z-index:2}
+section{min-height:100vh;min-height:100svh;position:relative;display:grid;grid-template-columns:repeat(6,1fr);padding:0 var(--gut);align-content:center}
+.eyebrow{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:10px}
+.eyebrow i{width:5px;height:5px;border-radius:50%;background:var(--c,var(--fg));box-shadow:0 0 10px var(--c,var(--fg))}
+h1,h2{font-family:var(--serif);font-weight:400;margin:0;line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
+h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+h2{font-size:clamp(38px,5vw,78px)}
+h2 em{font-style:italic}
+p{margin:0;color:var(--mute);max-width:34ch}
+
+.hero{min-height:100vh;min-height:100svh;grid-template-rows:auto 1fr auto;align-content:stretch;padding-top:96px;padding-bottom:36px;row-gap:28px}
+.hero .top{grid-column:1/-1;display:flex;flex-direction:column;gap:16px}
+.hero .mid{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr);align-items:end;gap:0}
+.hero .bot{grid-column:1/-1;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center}
+.counter{min-width:0}
+.counter.total{--c:var(--fg)}
+.counter.total .num{font-size:clamp(44px,7vw,120px)}
+.counter.claude{grid-column:1/4;--c:var(--claude)}
+.counter.gpt{grid-column:4/7;--c:var(--gpt);justify-self:end;text-align:right}
+.counter.claude .num,.counter.gpt .num{font-size:clamp(26px,3.3vw,54px)}
+.counter .eyebrow{margin-bottom:14px}
+.counter.gpt .eyebrow{justify-content:flex-end}
+.num{display:inline-flex;direction:ltr;font-family:var(--serif);font-weight:400;font-size:clamp(36px,5.3vw,86px);line-height:1;letter-spacing:-.02em;color:var(--fg);font-variant-numeric:tabular-nums lining-nums;font-feature-settings:"tnum" 1,"lnum" 1;text-shadow:0 2px 40px rgba(0,0,0,.8)}
+.ch{display:inline-block;width:.58em;height:1em;overflow:hidden;position:relative;text-align:center}
+.ch.sep{width:.22em}
+.reel{display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.ch.fast .reel{transition-duration:.14s}
+.reel span{display:block;height:1em;line-height:1}
+.counter .sub{margin-top:14px;font-size:11px;color:var(--mute);letter-spacing:.04em}
+.counter .sub b{color:var(--fg);font-weight:500}
+.counter .sub span+span::before{content:"·";margin:0 10px;color:var(--dim)}
+.upd{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute)}
+.upd b{color:var(--fg);font-weight:500}
+.bar{width:min(320px,60vw);height:1px;background:var(--line);position:relative}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--fg);width:0}
+
+.story::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,5,6,.82) 0%,rgba(5,5,6,.45) 38%,transparent 60%)}
+.story.right::before{background:linear-gradient(270deg,rgba(5,5,6,.82) 0%,rgba(5,5,6,.45) 38%,transparent 60%)}
+.story .txt{position:relative;grid-column:1/4;display:flex;flex-direction:column;gap:26px;padding-block:120px}
+.story.right .txt{grid-column:4/7;text-align:right;align-items:flex-end}
+.story.right .eyebrow{justify-content:flex-end}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px;margin-top:10px}
+.story.right .facts{direction:rtl}
+.story.right .facts>div{direction:ltr;text-align:right}
+.facts b{display:block;font-family:var(--serif);font-size:clamp(24px,2.4vw,34px);font-weight:400;line-height:1;color:var(--fg);font-feature-settings:"lnum" 1,"tnum" 1}
+.facts small{display:block;margin-top:8px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.method{padding-block:140px 120px;align-content:center}
+.method h2{grid-column:1/4;font-size:clamp(30px,3.6vw,52px);margin-bottom:46px}
+.method .cols{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr)}
+.method .cols div{grid-column:span 2;padding-right:28px}
+.method .cols div+div{border-left:1px solid var(--line);padding-left:28px}
+.method .cols small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+.method .cols p{max-width:30ch;line-height:1.75}
+.foot{grid-column:1/-1;margin-top:90px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.foot a:hover{color:var(--fg)}
+
+@media (max-width:860px){
+  .nav ul,.dots{display:none}
+  .lines i:nth-child(odd){display:none}
+  .hero{padding-top:80px}
+  .hero .mid{grid-template-columns:1fr;row-gap:32px}
+  .counter.claude,.counter.gpt{grid-column:1/-1;justify-self:start;text-align:left}
+  .counter.gpt .eyebrow{justify-content:flex-start}
+  .counter.total .num{font-size:clamp(38px,10.5vw,64px)}
+  .counter.claude .num,.counter.gpt .num{font-size:clamp(24px,7vw,40px)}
+  .story .txt,.story.right .txt{grid-column:1/-1;text-align:left;align-items:flex-start;padding-block:80px}
+  .story.right .eyebrow{justify-content:flex-start}
+  .story.right .facts{direction:ltr}
+  .story.right .facts>div{text-align:left}
+  .method h2{grid-column:1/-1}
+  .method .cols{grid-template-columns:1fr;gap:28px}
+  .method .cols div{grid-column:auto;padding:0}
+  .method .cols div+div{border-left:0;border-top:1px solid var(--line);padding:28px 0 0}
+}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .reel{transition:none} }
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<nav class="nav">
+  <a class="mark" href="/">Mo7albader</a>
+  <ul><li><a href="#tokens" class="on">Tokens</a></li><li><a href="#claude">Claude</a></li><li><a href="#gpt">GPT</a></li><li><a href="#method">Method</a></li></ul>
+  <a class="home" href="/">Home</a>
+</nav>
+<div class="dots" aria-hidden="true"><a href="#tokens" class="on"></a><a href="#claude"></a><a href="#gpt"></a><a href="#method"></a></div>
+
+<main>
+  <h1>Token Meter: lifetime AI tokens of Mohammed AlBader</h1>
+  <section class="hero" id="tokens">
+    <div class="top">
+      <div class="eyebrow"><i style="--c:var(--fg)"></i> Lifetime tokens, live estimate</div>
+      <div class="counter total">
+        <div class="num" id="nTotal" aria-live="off">66,660,285,206</div>
+        <div class="sub"><span><b data-k="claude.short">61.6B</b> Claude + <b data-k="gpt.short">5.06B</b> GPT</span><span>+<span data-k="total.perDay">1.08B</span> a day</span><span data-k="claude.since">since May 2026</span></div>
+      </div>
+    </div>
+    <div class="mid">
+      <div class="counter claude">
+        <div class="eyebrow"><i></i> Claude Code</div>
+        <div class="num" id="nClaude" aria-live="off">61,600,000,000</div>
+        <div class="sub"><span>+<span data-k="claude.perDay">791M</span> a day</span><span><span data-k="claude.share">92</span>% of the total</span></div>
+      </div>
+      <div class="counter gpt">
+        <div class="eyebrow"><i></i> GPT · Codex</div>
+        <div class="num" id="nGpt" aria-live="off">5,060,285,206</div>
+        <div class="sub"><span>+<span data-k="gpt.perDay">292M</span> a day</span><span><span data-k="gpt.share">8</span>% of the total</span></div>
+      </div>
+    </div>
+    <div class="bot">
+      <div class="upd">Updated <b id="updatedAt">14 Oct 2026 · 21:00 AST</b> &nbsp;·&nbsp; next refresh in <b id="nextIn">--:--:--</b></div>
+      <div class="bar"><i id="bar"></i></div>
+    </div>
+  </section>
+
+  <section class="story" id="claude">
+    <div class="txt">
+      <div class="eyebrow" style="--c:var(--claude)"><i></i> Claude Code</div>
+      <h2><span data-k="claude.words">Sixty-one</span> billion tokens, <em>one</em> keyboard.</h2>
+      <p>Every session leaves a transcript on my Mac. The counter reads them all, including the sessions Claude Code has already cleaned up.</p>
+      <div class="facts" data-facts="claude">
+        <div><b>815</b><small>sessions</small></div>
+        <div><b>115</b><small>active days</small></div>
+        <div><b>61 days</b><small>current streak</small></div>
+        <div><b>3.05B</b><small>peak day · Sep 26</small></div>
+        <div><b>Opus 5</b><small>favorite model</small></div>
+        <div><b>47d 9h</b><small>longest session</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story right" id="gpt">
+    <div class="txt">
+      <div class="eyebrow" style="--c:var(--gpt)"><i></i> GPT · Codex</div>
+      <h2><span data-k="gpt.words">Five</span> billion with Codex, <em>counted</em> by OpenAI.</h2>
+      <p>These numbers come from my ChatGPT profile, so they include Codex on the Mac, in the cloud, and in the app. Checked every night.</p>
+      <div class="facts" data-facts="gpt">
+        <div><b>187</b><small>threads</small></div>
+        <div><b>86</b><small>active days</small></div>
+        <div><b>40 days</b><small>current streak</small></div>
+        <div><b>556M</b><small>peak day</small></div>
+        <div><b>7h 26m</b><small>longest task</small></div>
+        <div><b>1,337</b><small>skill runs</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="method" id="method">
+    <h2>How the numbers move</h2>
+    <div class="cols">
+      <div><small>Nightly, 21:00 AST</small><p>An agent on my Mac reads the Claude Code session files and my ChatGPT profile, then writes one small JSON file. That is the anchor.</p></div>
+      <div><small>Between refreshes</small><p>The page extrapolates from the last seven days: about <span data-k="claude.perDay">791M</span> tokens a day for Claude and <span data-k="gpt.perDay">292M</span> for GPT. The last digits are an estimate, the billions are not.</p></div>
+      <div><small>What a token is here</small><p>Input, output and cache reads, as each vendor counts them. Cache reads are most of the volume. Nothing on this page is money.</p></div>
+    </div>
+    <div class="foot"><span><a href="/">mo7albader.com</a> · Token Meter</span><span>Data as of <span data-k="updatedDate">14 Oct 2026</span></span></div>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- data: embedded snapshot first, /api/tokens when it answers ---------- */
+  var DATA = {
+    updatedAt: '2026-10-14T18:00:00Z',
+    claude: { total: 61600000000, perDay: 791000000, since: 'since May 2026', facts: null },
+    gpt:    { total: 5060285206,  perDay: 292000000, since: 'since May 2026', facts: null }
+  };
+  var anchorAt = Date.parse(DATA.updatedAt);
+  var WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
+  var TENS = ['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+  function words(n){ n = Math.floor(n); if (n < 20) return WORDS[n]; var t = TENS[Math.floor(n / 10)], o = n % 10; return o ? t + '-' + WORDS[o].toLowerCase() : t; }
+  function short(n){ return n >= 1e9 ? (n / 1e9).toFixed(n >= 1e10 ? 1 : 2) + 'B' : Math.round(n / 1e6) + 'M'; }
+  function setK(k, v){ document.querySelectorAll('[data-k="' + k + '"]').forEach(function(el){ el.textContent = v; }); }
+  function fmtRiyadh(iso){
+    var d = new Date(iso), r = new Date(d.getTime() + 3 * 3600000);  // AST is UTC+3, no DST
+    var M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return { date: r.getUTCDate() + ' ' + M[r.getUTCMonth()] + ' ' + r.getUTCFullYear(), time: pad(r.getUTCHours()) + ':' + pad(r.getUTCMinutes()) };
+  }
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function apply(d){
+    DATA = d; anchorAt = Date.parse(d.updatedAt);
+    var sum = d.claude.total + d.gpt.total;
+    setK('total.perDay', short(d.claude.perDay + d.gpt.perDay));
+    ['claude', 'gpt'].forEach(function(k){
+      var s = d[k];
+      setK(k + '.short', short(s.total)); setK(k + '.perDay', short(s.perDay)); setK(k + '.since', s.since || '');
+      setK(k + '.words', words(s.total / 1e9)); setK(k + '.share', Math.round(s.total / sum * 100));
+      if (s.facts && s.facts.length){
+        var box = document.querySelector('[data-facts="' + k + '"]'); box.textContent = '';
+        s.facts.forEach(function(f){ var div = document.createElement('div'), b = document.createElement('b'), sm = document.createElement('small'); b.textContent = f[0]; sm.textContent = f[1]; div.appendChild(b); div.appendChild(sm); box.appendChild(div); });
+      }
+    });
+    var t = fmtRiyadh(d.updatedAt);
+    document.getElementById('updatedAt').textContent = t.date + ' · ' + t.time + ' AST';
+    setK('updatedDate', t.date);
+  }
+  fetch('/api/tokens', { cache: 'no-cache' }).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if (j && j.claude && j.gpt) apply(j); }).catch(function(){});
+
+  /* ---------- rolling digits ---------- */
+  function Counter(el){ this.el = el; this.chars = []; this.len = -1; }
+  Counter.prototype.render = function(v){
+    var s = Math.floor(v).toLocaleString('en-US');
+    if (s.length !== this.len) this.build(s);
+    for (var i = 0; i < s.length; i++){
+      var ch = this.chars[i]; if (ch.sep) continue;
+      if (ch.d !== s[i]){ ch.d = s[i]; ch.reel.style.transform = 'translateY(-' + s[i] + 'em)'; }
+    }
+  };
+  Counter.prototype.build = function(s){
+    this.el.textContent = ''; this.chars = []; this.len = s.length;
+    for (var i = 0; i < s.length; i++){
+      var c = s[i], span = document.createElement('span');
+      if (c === ','){ span.className = 'ch sep'; span.textContent = ','; this.chars.push({sep: true}); }
+      else {
+        span.className = 'ch' + (i >= s.length - 3 ? ' fast' : '');
+        var reel = document.createElement('span'); reel.className = 'reel';
+        for (var d = 0; d < 10; d++){ var x = document.createElement('span'); x.textContent = d; reel.appendChild(x); }
+        reel.style.transform = 'translateY(-' + c + 'em)';
+        span.appendChild(reel); this.chars.push({reel: reel, d: c});
+      }
+      this.el.appendChild(span);
+    }
+  };
+  var counters = { total: new Counter(document.getElementById('nTotal')), claude: new Counter(document.getElementById('nClaude')), gpt: new Counter(document.getElementById('nGpt')) };
+  function estimate(k, now){ var d = DATA[k]; return d.total + d.perDay * Math.max(0, now - anchorAt) / 86400000; }
+  function tick(){
+    var now = Date.now(), c = estimate('claude', now), g = estimate('gpt', now);
+    counters.total.render(c + g); counters.claude.render(c); counters.gpt.render(g);
+  }
+  tick(); setInterval(tick, 160);
+
+  var nextIn = document.getElementById('nextIn'), bar = document.getElementById('bar');
+  function clock(){
+    var now = Date.now(), day = 86400000;
+    var since = (now - Date.UTC(2026, 0, 1, 18, 0, 0)) % day;          // 21:00 AST = 18:00 UTC
+    var left = Math.floor((day - since) / 1000);
+    nextIn.textContent = pad(Math.floor(left / 3600)) + ':' + pad(Math.floor(left % 3600 / 60)) + ':' + pad(left % 60);
+    bar.style.width = (since / day * 100) + '%';
+  }
+  clock(); setInterval(clock, 1000);
+
+  /* ---------- scene ---------- */
+  if (!window.THREE) return;
+  var canvas = document.getElementById('gl');
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: 'high-performance' }); } catch (e) { return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  var scene = new THREE.Scene(); scene.background = new THREE.Color(0x050506); scene.fog = new THREE.Fog(0x050506, 7, 15);
+  var camera = new THREE.PerspectiveCamera(27, 1, 0.1, 60);
+
+  var C = { claude: new THREE.Color(0xF08A5D), gpt: new THREE.Color(0x5FE3C0), halo: new THREE.Color(0xFFF6EA) };
+  var matBody = new THREE.MeshStandardMaterial({ color: 0x0e0e12, roughness: 0.32, metalness: 0.18 });
+  var matDark = new THREE.MeshStandardMaterial({ color: 0x0b0b0e, roughness: 0.55, metalness: 0.25 });
+  var matChair = new THREE.MeshStandardMaterial({ color: 0x08080b, roughness: 0.7, metalness: 0.1 });
+
+  var floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.MeshStandardMaterial({ color: 0x060608, roughness: 0.95 }));
+  floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+  var top = new THREE.Mesh(new THREE.BoxGeometry(4.4, 0.06, 1.55), matDark); top.position.y = 0.95; top.castShadow = top.receiveShadow = true; scene.add(top);
+
+  function glowTex(){
+    var c = document.createElement('canvas'); c.width = c.height = 128; var g = c.getContext('2d');
+    var r = g.createRadialGradient(64, 64, 0, 64, 64, 64); r.addColorStop(0, 'rgba(255,255,255,1)'); r.addColorStop(0.25, 'rgba(255,255,255,.45)'); r.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = r; g.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c);
+  }
+  var GLOW = glowTex();
+  function sprite(color, scale, opacity){
+    var s = new THREE.Sprite(new THREE.SpriteMaterial({ map: GLOW, color: color, transparent: true, opacity: opacity, blending: THREE.AdditiveBlending, depthWrite: false }));
+    s.scale.set(scale, scale, 1); return s;
+  }
+
+  function Screen(color, lines){
+    var c = document.createElement('canvas'); c.width = 512; c.height = 320; this.g = c.getContext('2d');
+    this.tex = new THREE.CanvasTexture(c); this.tex.encoding = THREE.sRGBEncoding;
+    this.color = color; this.pool = lines; this.rows = []; this.last = 0;
+    for (var i = 0; i < 12; i++) this.push();
+    this.draw();
+  }
+  Screen.prototype.push = function(){ this.rows.push({ t: this.pool[Math.floor(Math.random() * this.pool.length)], a: 0.45 + Math.random() * 0.5 }); if (this.rows.length > 13) this.rows.shift(); };
+  Screen.prototype.draw = function(){
+    var g = this.g, col = this.color;
+    g.fillStyle = '#0a0a0c'; g.fillRect(0, 0, 512, 320);
+    g.fillStyle = 'rgba(255,255,255,.04)'; g.fillRect(0, 0, 512, 26);
+    [14, 30, 46].forEach(function(x, i){ g.fillStyle = col; g.globalAlpha = 0.8 - i * 0.25; g.beginPath(); g.arc(x, 13, 4, 0, 7); g.fill(); });
+    g.globalAlpha = 1; g.font = '500 17px "IBM Plex Mono", Menlo, monospace'; g.textBaseline = 'top';
+    for (var i = 0; i < this.rows.length; i++){
+      var r = this.rows[i]; g.fillStyle = col; g.globalAlpha = r.a * (i === this.rows.length - 1 ? 1 : 0.85);
+      g.fillText(r.t, 16, 36 + i * 21);
+    }
+    g.globalAlpha = 0.9; g.fillStyle = col; g.fillRect(16 + this.rows[this.rows.length - 1].t.length * 10.2 + 6, 36 + (this.rows.length - 1) * 21 + 2, 9, 15);
+    g.globalAlpha = 1; this.tex.needsUpdate = true;
+  };
+  Screen.prototype.update = function(t){ if (t - this.last > 260 + Math.random() * 400){ this.last = t; this.push(); this.draw(); } };
+  var CL = ['> claude --model opus', '"usage": { "input_tokens": 2104,', '  "cache_read_input_tokens": 56942538113 }', 'Read  lib/blog.ts', 'Edit  app/page.tsx  +41 -9', 'Bash  npm run build', '✓ compiled in 2.3s', 'streak: 61 days', 'tokens_total += 791_000_000', 'session 815 · opus-5', 'Thinking…', 'Write  public/data/tokens.json', 'git push origin main'];
+  var GP = ['codex> implement the fix', 'reasoning_effort: xhigh', 'thread 01a139d6 · codex-app', 'tokens_used += 118_130_958', 'exec  pnpm test', 'all 48 tests passed', 'peak_day: 556_403_087', 'skills used: 1,337', 'computer-use: click(412, 288)', 'apply_patch  src/worker.ts', 'streak: 40 days', 'profile.lifetime_tokens = 5.06B', 'done.'];
+  var screens = { claude: new Screen('#F08A5D', CL), gpt: new Screen('#5FE3C0', GP) };
+
+  function laptop(key, x, rotY){
+    var g = new THREE.Group(); g.position.set(x, 0.98, -0.12); g.rotation.y = rotY; scene.add(g);
+    var base = new THREE.Mesh(new THREE.BoxGeometry(1.06, 0.03, 0.72), matBody); base.castShadow = true; g.add(base);
+    var keys = new THREE.Mesh(new THREE.PlaneGeometry(0.88, 0.36), new THREE.MeshStandardMaterial({ color: 0x050507, roughness: 0.9 })); keys.rotation.x = -Math.PI / 2; keys.position.set(0, 0.016, 0.02); g.add(keys);
+    var pad = new THREE.Mesh(new THREE.PlaneGeometry(0.32, 0.2), new THREE.MeshStandardMaterial({ color: 0x0a0a0d, roughness: 0.5 })); pad.rotation.x = -Math.PI / 2; pad.position.set(0, 0.016, 0.26); g.add(pad);
+    var hinge = new THREE.Group(); hinge.position.set(0, 0.015, -0.36); hinge.rotation.x = -0.17; g.add(hinge);
+    var lid = new THREE.Mesh(new THREE.BoxGeometry(1.06, 0.7, 0.016), matBody); lid.position.set(0, 0.35, 0); lid.castShadow = true; hinge.add(lid);
+    var scr = new THREE.Mesh(new THREE.PlaneGeometry(0.96, 0.6), new THREE.MeshBasicMaterial({ map: screens[key].tex, toneMapped: false })); scr.position.set(0, 0.36, 0.0095); hinge.add(scr);
+    var light = new THREE.PointLight(C[key], 2.2, 4.6, 2); light.position.set(0, 0.5, 0.55); hinge.add(light);
+    var gl = sprite(C[key], 1.9, 0.32); gl.position.set(0, 0.36, 0.06); hinge.add(gl);
+    return { group: g, light: light, glow: gl };
+  }
+  var lapL = laptop('claude', -1.22, 0.42), lapR = laptop('gpt', 1.22, -0.42);
+
+  function tube(a, b, r0, r1){
+    var d = new THREE.Vector3().subVectors(b, a), len = d.length();
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(r1, r0, len, 20), matBody);
+    m.position.copy(a).add(b).multiplyScalar(0.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); m.castShadow = true; return m;
+  }
+  var fig = new THREE.Group(); fig.position.set(0, 0, 0.55); scene.add(fig);
+  var torsoPts = [new THREE.Vector2(0.14, 0), new THREE.Vector2(0.3, 0.08), new THREE.Vector2(0.33, 0.4), new THREE.Vector2(0.38, 0.66), new THREE.Vector2(0.37, 0.76), new THREE.Vector2(0.2, 0.83), new THREE.Vector2(0.1, 0.86), new THREE.Vector2(0.09, 0.9)];
+  var torso = new THREE.Mesh(new THREE.LatheGeometry(torsoPts, 40), matBody); torso.position.y = 1.0; torso.scale.set(1.08, 1, 0.78); torso.castShadow = true; fig.add(torso);
+  var head = new THREE.Group(); head.position.set(0, 2.0, 0); fig.add(head);
+  var skull = new THREE.Mesh(new THREE.SphereGeometry(0.2, 40, 32), matBody); skull.scale.set(0.92, 1.08, 1); skull.castShadow = true; head.add(skull);
+  var band = new THREE.Mesh(new THREE.TorusGeometry(0.205, 0.016, 12, 60, Math.PI), matDark); band.position.y = 0.02; head.add(band);
+  [-1, 1].forEach(function(s){ var cup = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.035, 24), matDark); cup.rotation.z = Math.PI / 2; cup.position.set(s * 0.205, -0.02, 0); head.add(cup); });
+  [-1, 1].forEach(function(s){
+    var sh = new THREE.Vector3(s * 0.4, 1.74, 0), el = new THREE.Vector3(s * 0.5, 1.4, -0.3), hd = new THREE.Vector3(s * 0.62, 1.04, -0.68);
+    fig.add(tube(sh, el, 0.085, 0.07)); fig.add(tube(el, hd, 0.07, 0.055));
+    var hand = new THREE.Mesh(new THREE.SphereGeometry(0.07, 20, 16), matBody); hand.position.copy(hd); hand.scale.set(1, 0.6, 1.3); fig.add(hand);
+    var shoulder = new THREE.Mesh(new THREE.SphereGeometry(0.12, 24, 18), matBody); shoulder.position.copy(sh); fig.add(shoulder);
+  });
+  var chairBack = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.36, 0.06), matChair); chairBack.position.set(0, 1.12, 0.3); chairBack.castShadow = true; fig.add(chairBack);
+  var seat = new THREE.Mesh(new THREE.BoxGeometry(0.86, 0.07, 0.7), matChair); seat.position.set(0, 0.95, 0.02); fig.add(seat);
+
+  var halo = new THREE.Group(); halo.position.set(0, 1.9, -1.7); scene.add(halo);
+  var ring = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.016, 16, 180), new THREE.MeshBasicMaterial({ color: C.halo, toneMapped: false })); halo.add(ring);
+  var ring2 = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.05, 16, 180), new THREE.MeshBasicMaterial({ color: C.halo, transparent: true, opacity: 0.18, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false })); halo.add(ring2);
+  var haloGlow = sprite(C.halo, 5.2, 0.28); halo.add(haloGlow);
+  var haloLight = new THREE.PointLight(C.halo, 2.4, 9, 2); haloLight.position.set(0, 0, 0.4); halo.add(haloLight);
+
+  scene.add(new THREE.AmbientLight(0x1a1a22, 0.6));
+  var key = new THREE.SpotLight(0xffffff, 0.35, 20, 0.6, 0.6, 1.5); key.position.set(0, 6, 4); key.castShadow = true; key.shadow.mapSize.set(1024, 1024); key.shadow.bias = -0.0005; scene.add(key);
+  var rimCam = new THREE.PointLight(0x8a9bff, 0.25, 10, 2); rimCam.position.set(0, 2.5, 5); scene.add(rimCam);
+
+  var N = 260, pos = new Float32Array(N * 3), col = new Float32Array(N * 3), vel = new Float32Array(N), seed = new Float32Array(N);
+  function resetP(i, init){
+    var left = i % 2 === 0, c = left ? C.claude : C.gpt;
+    pos[i * 3] = (left ? -1.22 : 1.22) + (Math.random() - 0.5) * 0.9;
+    pos[i * 3 + 1] = 1.2 + (init ? Math.random() * 2.2 : Math.random() * 0.3);
+    pos[i * 3 + 2] = -0.3 + (Math.random() - 0.5) * 0.5;
+    col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+    vel[i] = 0.12 + Math.random() * 0.25; seed[i] = Math.random() * 6.28;
+  }
+  for (var i = 0; i < N; i++) resetP(i, true);
+  var pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pos, 3)); pg.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  scene.add(new THREE.Points(pg, new THREE.PointsMaterial({ size: 0.045, map: GLOW, vertexColors: true, transparent: true, opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true })));
+
+  var STATES = [
+    { cam: [0, 2.0, 7.6],    look: [0, 1.35, 0],    yaw: 0,     gl: [1, 1],     halo: 1 },
+    { cam: [-2.4, 1.9, 6.8], look: [-0.25, 1.3, 0], yaw: 0.6,   gl: [1.4, .3],  halo: .8 },
+    { cam: [2.4, 1.9, 6.8],  look: [0.25, 1.3, 0],  yaw: -0.6,  gl: [.3, 1.4],  halo: .8 },
+    { cam: [0, 3.2, 10],     look: [0, 1.25, 0],    yaw: 0,     gl: [.7, .7],   halo: 1.5 }
+  ];
+  var cur = { cam: new THREE.Vector3(0, 2.0, 7.6), look: new THREE.Vector3(0, 1.35, 0), yaw: 0, gl: [1, 1], halo: 1 };
+  var target = STATES[0], mouse = { x: 0, y: 0 }, mobile = false;
+  function setState(i){
+    target = STATES[i];
+    document.querySelectorAll('.nav li a').forEach(function(a, j){ a.classList.toggle('on', j === i); });
+    document.querySelectorAll('.dots a').forEach(function(a, j){ a.classList.toggle('on', j === i); });
+  }
+  if (window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+    ['#tokens', '#claude', '#gpt', '#method'].forEach(function(sel, i){
+      ScrollTrigger.create({ trigger: sel, start: 'top 50%', end: 'bottom 50%', onToggle: function(self){ if (self.isActive) setState(i); } });
+    });
+    if (!reduce){
+      document.querySelectorAll('.story .txt, .method h2').forEach(function(el){
+        gsap.fromTo(el, { y: 60 }, { y: -40, ease: 'none', scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true } });
+      });
+    }
+  }
+  window.addEventListener('pointermove', function(e){ mouse.x = (e.clientX / innerWidth - 0.5) * 2; mouse.y = (e.clientY / innerHeight - 0.5) * 2; }, { passive: true });
+
+  function resize(){
+    var w = innerWidth, h = innerHeight; mobile = w / h < 0.85;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 1.75));
+  }
+  resize(); window.addEventListener('resize', resize);
+
+  var tmpV = new THREE.Vector3(), lastT = 0;
+  function frame(t){
+    requestAnimationFrame(frame);
+    var dt = Math.min(0.05, (t - lastT) / 1000) || 0.016; lastT = t;
+    var k = 1 - Math.pow(0.0015, dt);
+    var sway = reduce ? 0 : Math.sin(t * 0.00035) * 0.18;
+    tmpV.set(target.cam[0] + mouse.x * 0.35 + sway, target.cam[1] + mouse.y * 0.12, target.cam[2] + (mobile ? 4.2 : 0));
+    cur.cam.lerp(tmpV, k); camera.position.copy(cur.cam);
+    tmpV.set(target.look[0], target.look[1] + (mobile ? 0.25 : 0), target.look[2]); cur.look.lerp(tmpV, k); camera.lookAt(cur.look);
+    cur.yaw += (target.yaw - cur.yaw) * k;
+    head.rotation.y = cur.yaw + (reduce ? 0 : Math.sin(t * 0.0007) * 0.08);
+    head.rotation.x = reduce ? 0.1 : 0.1 + Math.sin(t * 0.0011) * 0.03;
+    torso.rotation.y = cur.yaw * 0.25;
+    if (!reduce) torso.scale.y = 1 + Math.sin(t * 0.0012) * 0.006;
+    cur.gl[0] += (target.gl[0] - cur.gl[0]) * k; cur.gl[1] += (target.gl[1] - cur.gl[1]) * k; cur.halo += (target.halo - cur.halo) * k;
+    lapL.light.intensity = 2.2 * cur.gl[0]; lapL.glow.material.opacity = 0.32 * cur.gl[0];
+    lapR.light.intensity = 2.2 * cur.gl[1]; lapR.glow.material.opacity = 0.32 * cur.gl[1];
+    haloLight.intensity = 2.4 * cur.halo; haloGlow.material.opacity = 0.28 * cur.halo; ring2.material.opacity = 0.18 * cur.halo;
+    screens.claude.update(t); screens.gpt.update(t);
+    if (!reduce){
+      for (var i = 0; i < N; i++){
+        pos[i * 3 + 1] += vel[i] * dt; pos[i * 3] += Math.sin(t * 0.001 + seed[i]) * 0.0015;
+        if (pos[i * 3 + 1] > 3.6) resetP(i, false);
+      }
+      pg.attributes.position.needsUpdate = true;
+    }
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('js', new Date());
+gtag('config', 'G-FVMYSHQ115');
+(function(){ var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-FVMYSHQ115'; document.head.appendChild(s); })();
+</script>
+</body>
+</html>

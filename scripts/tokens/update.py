@@ -1,0 +1,224 @@
+#!/usr/bin/env python3
+"""Nightly refresh for mo7albader.com/tokens.
+
+Reads Claude Code transcripts on this Mac, merges the GPT numbers passed in from
+the ChatGPT profile, and writes the result to the ANALYTICS_KV key `tokens:latest`
+that the Worker serves at /api/tokens.
+
+Claude Code deletes old transcripts, so per-day totals are kept in ledger.json
+(a day only ever grows) and the lifetime total is anchored to the /stats screen.
+
+Usage:
+  python3 scripts/tokens/update.py --gpt-json '{"lifetime_total":..., "sum_last7":..., ...}'
+  python3 scripts/tokens/update.py --gpt-skip            # Claude only, keep last GPT values
+  python3 scripts/tokens/update.py ... --dry-run         # print the payload, no KV write
+  python3 scripts/tokens/update.py --seed                # (re)build the ledger from disk, no KV write
+
+The GPT JSON is what this snippet returns in a logged-in chatgpt.com tab:
+  fetch('/backend-api/profiles/mo7albader/page?personal=false').then(r=>r.json()).then(j=>{
+    const p=j.page, d=p.activity_graph.daily_usage_buckets, s=a=>a.reduce((t,b)=>t+(b.tokens||0),0);
+    return {lifetime_total:p.stats.agentic.lifetime_tokens, peak_day:p.stats.agentic.peak_daily_tokens,
+      longest_turn_sec:p.stats.agentic.longest_running_turn_sec, streak:p.stats.current_streak_days,
+      sum_last7:s(d.slice(-7)), active_days:d.filter(b=>b.tokens>0).length,
+      threads:p.insights.agentic.total_threads, skills_used:p.insights.total_skills_used}})
+"""
+import argparse, collections, datetime as dt, glob, json, os, subprocess, sys, tempfile
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(os.path.dirname(HERE))
+ANCHORS = os.path.join(HERE, "anchors.json")
+LEDGER = os.path.join(HERE, "ledger.json")
+KV_NAMESPACE = "d6bcf6c83f934720a9866e5b95e990f5"
+KV_KEY = "tokens:latest"
+NODE22 = os.path.expanduser("~/.nvm/versions/node/v22.23.2/bin")
+RIYADH = dt.timezone(dt.timedelta(hours=3))
+
+
+def fmt_short(n):
+    if n >= 1e9: return f"{n/1e9:.2f}B"
+    if n >= 1e6: return f"{n/1e6:.0f}M"
+    return f"{n:,}"
+
+
+def today():
+    return dt.datetime.now(RIYADH).date()
+
+
+def scan_claude():
+    """Per-day token totals (Riyadh days), session ids and per-model totals from every transcript on disk."""
+    root = os.path.expanduser("~/.claude/projects")
+    days, sessions, models = collections.Counter(), set(), collections.Counter()
+    for path in glob.glob(root + "/**/*.jsonl", recursive=True):
+        with open(path, errors="ignore") as fh:
+            for line in fh:
+                if '"usage"' not in line: continue
+                try: e = json.loads(line)
+                except ValueError: continue
+                if e.get("type") != "assistant": continue
+                m = e.get("message") or {}; u = m.get("usage") or {}
+                s = sum(u.get(k) or 0 for k in ("input_tokens", "output_tokens", "cache_read_input_tokens", "cache_creation_input_tokens"))
+                if not s: continue
+                try: day = dt.datetime.fromisoformat((e.get("timestamp") or "").replace("Z", "+00:00")).astimezone(RIYADH).date()
+                except ValueError: continue
+                days[day.isoformat()] += s
+                sessions.add(e.get("sessionId") or path)
+                models[m.get("model") or ""] += s
+    return days, sessions, models
+
+
+def load_ledger():
+    if os.path.exists(LEDGER):
+        return json.load(open(LEDGER))
+    return {"days": {}, "sessions": [], "models": {}}
+
+
+def merge_ledger(ledger, days, sessions, models):
+    """A day's total only grows; a deleted transcript must not shrink it."""
+    for d, v in days.items():
+        ledger["days"][d] = max(ledger["days"].get(d, 0), v)
+    ledger["sessions"] = sorted(set(ledger["sessions"]) | sessions)
+    for m, v in models.items():
+        ledger["models"][m] = max(ledger["models"].get(m, 0), v)
+    ledger["scannedAt"] = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return ledger
+
+
+def save_ledger(ledger):
+    json.dump(ledger, open(LEDGER, "w"), indent=1, sort_keys=True)
+
+
+def streak(days_map):
+    """Consecutive Riyadh days with usage, ending today or yesterday."""
+    d = today()
+    if not days_map.get(d.isoformat()): d -= dt.timedelta(days=1)
+    run = 0
+    while days_map.get(d.isoformat()): run += 1; d -= dt.timedelta(days=1)
+    return run
+
+
+def build_claude(a, ledger):
+    days = ledger["days"]
+    ledger_total = sum(days.values())
+    anchor_date = dt.date.fromisoformat(a["anchorDate"])
+    cutoff = (today() - dt.timedelta(days=7)).isoformat()
+    last7 = sum(v for d, v in days.items() if d > cutoff)
+    peak_day, peak_val = max(days.items(), key=lambda kv: kv[1])
+    fav_raw = max(ledger["models"].items(), key=lambda kv: kv[1])[0] if ledger["models"] else ""
+    fav = next((n for k, n in (("opus", "Opus 5"), ("sonnet", "Sonnet 5"), ("fable", "Fable 5"), ("haiku", "Haiku 5")) if k in fav_raw), fav_raw or "Opus 5")
+    chain_ok = streak(days) >= (today() - anchor_date).days  # unbroken since the anchor day
+    cur_streak = a["statsStreak"] + (today() - anchor_date).days if chain_ok else streak(days)
+    active_after = len([d for d, v in days.items() if d > a["anchorDate"] and v])
+    return {
+        "total": int(a["statsTotal"] + (ledger_total - a["ledgerTotalAtAnchor"])),
+        "perDay": int(last7 / 7),
+        "facts": [
+            [f"{a['statsSessions'] + (len(ledger['sessions']) - a['ledgerSessionsAtAnchor']):,}", "sessions"],
+            [f"{a['statsActiveDays'] + active_after:,}", "active days"],
+            [f"{cur_streak} days", "current streak"],
+            [fmt_short(peak_val), "peak day · " + dt.date.fromisoformat(peak_day).strftime("%b %-d")],
+            [fav, "favorite model"],
+            [a["longestSession"], "longest session"],
+        ],
+        "since": a["since"],
+    }
+
+
+def build_gpt(g, a):
+    sec = int(g.get("longest_turn_sec") or 0)
+    return {
+        "total": int(g["lifetime_total"]),
+        "perDay": int(g["sum_last7"] / 7),
+        "facts": [
+            [f"{g['threads']:,}", "threads"],
+            [f"{g['active_days']:,}", "active days"],
+            [f"{g['streak']} days", "current streak"],
+            [fmt_short(g["peak_day"]), "peak day"],
+            [f"{sec // 3600}h {sec % 3600 // 60}m", "longest task"],
+            [f"{g['skills_used']:,}", "skill runs"],
+        ],
+        "since": a["since"],
+    }
+
+
+def env22():
+    e = dict(os.environ); e["PATH"] = NODE22 + ":" + e.get("PATH", ""); return e
+
+
+def wrangler(*args, timeout=120):
+    return subprocess.run(["npx", "wrangler", *args], cwd=REPO, capture_output=True, text=True, timeout=timeout, env=env22())
+
+
+def kv_get():
+    r = wrangler("kv", "key", "get", KV_KEY, "--namespace-id", KV_NAMESPACE, "--remote")
+    try: return json.loads(r.stdout) if r.returncode == 0 else None
+    except ValueError: return None
+
+
+def kv_put(payload):
+    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as fh:
+        json.dump(payload, fh); path = fh.name
+    r = wrangler("kv", "key", "put", KV_KEY, "--namespace-id", KV_NAMESPACE, "--remote", "--path", path)
+    os.unlink(path)
+    if r.returncode != 0:
+        sys.exit("wrangler kv put failed:\n" + r.stderr[-800:])
+
+
+def seed(anchors):
+    """Build the ledger from what is on disk now and re-anchor to it, keeping the /stats-based total consistent."""
+    days, sessions, models = scan_claude()
+    ledger = merge_ledger(load_ledger(), days, sessions, models)
+    a = anchors["claude"]
+    total_now = sum(ledger["days"].values())
+    if "ledgerTotalAtAnchor" in a:
+        a["statsTotal"] += total_now - a["ledgerTotalAtAnchor"]
+        a["statsSessions"] += len(ledger["sessions"]) - a["ledgerSessionsAtAnchor"]
+    a["ledgerTotalAtAnchor"] = total_now
+    a["ledgerSessionsAtAnchor"] = len(ledger["sessions"])
+    save_ledger(ledger)
+    json.dump(anchors, open(ANCHORS, "w"), indent=2, ensure_ascii=False)
+    print(f"ledger: {len(ledger['days'])} days, {len(ledger['sessions'])} sessions, {total_now:,} tokens on disk")
+    print(f"anchor: statsTotal {a['statsTotal']:,} · statsSessions {a['statsSessions']}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gpt-json", help="JSON from the ChatGPT profile endpoint (see module docstring)")
+    ap.add_argument("--gpt-skip", action="store_true", help="keep the GPT numbers already in KV")
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--seed", action="store_true", help="rebuild the ledger from disk and re-anchor; writes nothing to KV")
+    args = ap.parse_args()
+
+    anchors = json.load(open(ANCHORS))
+    if args.seed:
+        return seed(anchors)
+    if not args.gpt_json and not args.gpt_skip:
+        ap.error("pass --gpt-json or --gpt-skip")
+    if "ledgerTotalAtAnchor" not in anchors["claude"]:
+        sys.exit("run --seed once first")
+
+    days, sessions, models = scan_claude()
+    ledger = merge_ledger(load_ledger(), days, sessions, models)
+    if not args.dry_run: save_ledger(ledger)
+
+    payload = {"updatedAt": dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+               "claude": build_claude(anchors["claude"], ledger)}
+    if args.gpt_json:
+        payload["gpt"] = build_gpt(json.loads(args.gpt_json), anchors["gpt"])
+    else:
+        prev = kv_get()
+        if not prev or "gpt" not in prev:
+            sys.exit("no previous GPT numbers in KV; pass --gpt-json")
+        payload["gpt"] = prev["gpt"]; payload["gptStale"] = True
+
+    print(json.dumps(payload, indent=2, ensure_ascii=False))
+    if args.dry_run:
+        print("\n(dry run, nothing written)"); return
+    prev = kv_get()
+    kv_put(payload)
+    print(f"\nKV {KV_KEY} updated. Claude {payload['claude']['total']:,} · GPT {payload['gpt']['total']:,}")
+    if prev and "claude" in prev and "gpt" in prev:
+        print(f"since last update ({prev.get('updatedAt')}): Claude +{payload['claude']['total'] - prev['claude']['total']:,} · GPT +{payload['gpt']['total'] - prev['gpt']['total']:,}")
+
+
+if __name__ == "__main__":
+    main()
