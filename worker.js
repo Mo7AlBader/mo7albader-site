@@ -32,17 +32,18 @@ export default {
       return new Response(null, { status: 204 });
     }
 
-    // nightly token totals for /tokens, written to KV by scripts/tokens/update.py
+    // token totals for /tokens, written to KV by scripts/tokens/update.py.
+    // Projected to "now" here so the response never reveals when the snapshot was taken.
     if (url.pathname === "/api/tokens" && request.method === "GET") {
-      const body = await env.ANALYTICS_KV.get("tokens:latest");
-      if (!body) return new Response("Not Found", { status: 404 });
-      return new Response(body, {
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "Cache-Control": "public, max-age=300, s-maxage=900",
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
+      const snap = await env.ANALYTICS_KV.get("tokens:latest", "json");
+      if (!snap || !snap.claude || !snap.gpt) return new Response("Not Found", { status: 404 });
+      const now = Date.now();
+      const days = Math.max(0, now - (Date.parse(snap.updatedAt) || now)) / 864e5;
+      const project = (s) => ({ total: Math.round(s.total + s.perDay * days), perDay: s.perDay });
+      return Response.json(
+        { at: new Date(now).toISOString(), claude: project(snap.claude), gpt: project(snap.gpt) },
+        { headers: { "Cache-Control": "public, max-age=60", "Access-Control-Allow-Origin": "*" } }
+      );
     }
 
     if (url.pathname === "/api/stats" && request.method === "GET") {

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Nightly refresh for mo7albader.com/tokens.
+"""Refresh the totals behind mo7albader.com/tokens.
 
 Reads Claude Code transcripts on this Mac, merges the GPT numbers passed in from
 the ChatGPT profile, and writes the result to the ANALYTICS_KV key `tokens:latest`
