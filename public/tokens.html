@@ -173,6 +173,9 @@ a{color:inherit}
   .facts{gap:12px 14px;margin-top:14px;padding-top:14px}
   .facts b{font-size:21px}
   .btn{height:48px;padding:0 20px;font-size:14px}
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:360px}
+  .actions .btn{justify-content:center;padding:0 12px}
+  .actions .home{grid-column:1/-1;height:36px;background:none;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;color:var(--muted);font-size:13px}
   .finale .pin{padding-bottom:calc(92px + var(--bot))}
   .cue{bottom:calc(86px + var(--bot))}
   .cue i{height:34px}
@@ -286,7 +289,11 @@ a{color:inherit}
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9V9Z"/></svg>
           تابعني في LinkedIn
         </a>
-        <a class="btn ghost" href="/" data-cta="home">ارجع للموقع</a>
+        <a class="btn ghost" href="https://x.com/mo7albader" target="_blank" rel="noopener" data-cta="x">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.64 8.73L23 22h-6.8l-5.02-6.56L5.4 22H2.3l8.17-9.34L1.5 2h6.97l4.54 6 5.89-6Zm-1.19 18h1.71L7.39 3.9H5.55L17.71 20Z"/></svg>
+          تابعني في X
+        </a>
+        <a class="btn ghost home" href="/" data-cta="home">ارجع للموقع</a>
       </div>
     </div>
   </section>
