@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Rajdhani:wght@500;600;700&family=Waterfall&display=swap">
 <style>
-/* Layout: a scroll film. One fixed WebGL set (figure, two laptops, orange halo) under four sticky chapters; GSAP ScrollTrigger drives the camera between them. mo7albader identity: black, orange, mint, Rajdhani numerals, framed column. */
+/* Layout: a scroll film. One fixed WebGL set (figure, two laptops, orange halo) under four sticky chapters; the model chapters have two beats (the count, then the streak card). One GSAP timeline drives camera and copy. mo7albader identity: black, orange, mint, Rajdhani numerals, framed column. */
 :root{
   --bg:#000; --surface:#111; --accent:#f3500f; --accent-2:#ff6a2b; --mint:#1ef482;
   --fg:#fff; --soft:rgba(255,255,255,.86); --muted:rgba(255,255,255,.6); --faint:#666; --line:rgba(255,255,255,.1);
@@ -32,11 +32,12 @@
   --ease:cubic-bezier(.16,1,.3,1);
   --gut:clamp(20px,5vw,48px);
   --top:calc(76px + env(safe-area-inset-top,0px));
+  --bot:env(safe-area-inset-bottom,0px);
   color-scheme:dark;
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--fg)}
-body{font-family:var(--ar);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--ar);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-tap-highlight-color:transparent}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
 a{color:inherit}
 
@@ -47,22 +48,32 @@ a{color:inherit}
 .rules{position:fixed;inset:0;z-index:2;pointer-events:none;max-width:850px;margin-inline:auto;box-shadow:inset 1px 0 0 var(--line),inset -1px 0 0 var(--line)}
 .rules::before,.rules::after{content:"";position:absolute;top:var(--top);width:6px;height:6px;background:var(--faint)}
 .rules::before{left:-3px}.rules::after{right:-3px}
-.track{position:fixed;right:18px;top:50%;z-index:5;width:2px;height:120px;margin-top:-60px;border-radius:2px;background:var(--line);overflow:hidden;pointer-events:none}
-.track i{display:block;width:100%;height:100%;background:var(--accent);transform-origin:top;transform:scaleY(0);box-shadow:0 0 10px var(--accent)}
+.grain{position:fixed;inset:-50%;z-index:4;pointer-events:none;opacity:.06;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:grain 1s steps(5) infinite}
 
-.bar{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;height:var(--top);padding:env(safe-area-inset-top,0px) var(--gut) 0;pointer-events:none}
+.bar{position:fixed;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:space-between;height:var(--top);padding:env(safe-area-inset-top,0px) var(--gut) 0;pointer-events:none}
 .bar a,.bar span{pointer-events:auto}
 .sig{font-family:var(--sig);font-size:40px;line-height:1;text-decoration:none;direction:ltr;padding-top:6px}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--muted);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .pill i{position:relative;width:8px;height:8px;border-radius:50%;background:var(--mint)}
 .pill i::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--mint);animation:ping 2.4s var(--ease) infinite}
 
+/* chapter nav: vertical on desktop, a bottom pill on phones */
+.nav{position:fixed;z-index:6;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:4px;padding:0;margin:0;list-style:none}
+.nav button{appearance:none;border:0;background:none;padding:8px;cursor:pointer;display:flex;align-items:center;gap:10px;color:var(--muted);font:500 12px var(--ar)}
+.nav button i{display:block;width:2px;height:22px;border-radius:2px;background:var(--line);transition:background .4s,height .4s var(--ease),box-shadow .4s}
+.nav button span{opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s var(--ease)}
+.nav button:hover span,.nav button.on span{opacity:1;transform:none}
+.nav button.on i{height:36px;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.nav button.on{color:var(--fg)}
+
 .story{position:relative;z-index:3;overflow-x:clip}
-.chapter{position:relative;height:175vh}
-.chapter.hero{height:125vh}
+.chapter{position:relative;height:125vh}
+.chapter.model{height:260vh}
 .chapter.finale{height:160vh}
-.pin{position:sticky;top:0;height:100vh;height:100svh;max-width:1180px;margin-inline:auto;padding-inline:var(--gut);display:flex;pointer-events:none}
+.pin{position:sticky;top:0;height:100vh;height:100svh;max-width:1180px;margin-inline:auto;padding:calc(var(--top) + 6vh) var(--gut) calc(30px + var(--bot));display:flex;pointer-events:none}
 .pin a,.pin button{pointer-events:auto}
+.pin.beats{display:grid;grid-template:1fr/1fr}
+.beat{grid-area:1/1;min-width:0}
 .copy{position:relative;isolation:isolate;display:flex;flex-direction:column;gap:18px;max-width:560px;text-shadow:0 2px 30px rgba(0,0,0,.8)}
 .copy::before{content:"";position:absolute;inset:-28% -18%;z-index:-1;background:radial-gradient(closest-side,rgba(0,0,0,.55),rgba(0,0,0,0));pointer-events:none}
 .copy .num{text-shadow:none}
@@ -87,21 +98,45 @@ a{color:inherit}
 .split .g{background:var(--mint)}
 
 /* hero */
-.hero .pin{flex-direction:column;align-items:center;padding-top:calc(var(--top) + 5vh)}
+.hero .pin{flex-direction:column;align-items:center}
 .hero .copy{align-items:center;text-align:center;max-width:none}
-.cue{position:absolute;left:50%;bottom:calc(26px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.cue{position:absolute;left:50%;bottom:calc(26px + var(--bot));transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
 .cue i{position:relative;width:1px;height:46px;background:var(--line);overflow:hidden}
 .cue i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--accent);animation:drip 1.8s var(--ease) infinite}
 
-/* model chapters: copy sits opposite the laptop the camera is on */
+/* model chapters: beat A (the count) above the laptop in focus, beat B (the card) on the other side */
 .claude{--c:var(--accent)}
 .gpt{--c:var(--mint)}
-/* the copy sits above the laptop in focus, clear of the person */
-.claude .pin{align-items:flex-start;justify-content:flex-end;padding-top:calc(var(--top) + 7vh)}
-.gpt .pin{align-items:flex-start;justify-content:flex-start;padding-top:calc(var(--top) + 7vh)}
+.claude .beatA{justify-self:end;align-self:start}
+.gpt .beatA{justify-self:start;align-self:start}
+.claude .beatB{justify-self:start;align-self:center}
+.gpt .beatB{justify-self:end;align-self:center}
+
+.card{width:min(410px,100%);padding:20px 22px 18px;border-radius:24px;background:rgba(12,12,12,.62);border:1px solid var(--line);box-shadow:var(--glass),0 40px 90px -50px var(--c);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2)}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-top .eyebrow{font-size:13px}
+.card-top small{font-size:12px;color:var(--faint)}
+.streak{display:flex;align-items:flex-end;gap:12px;margin:16px 0 18px}
+.streak b{font-family:var(--display);font-weight:700;font-size:72px;line-height:.82;color:var(--fg);direction:ltr}
+.streak span{display:flex;flex-direction:column;gap:2px;font-size:15px;color:var(--soft);padding-bottom:2px}
+.streak span small{font-size:12px;color:var(--muted)}
+.flame{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 0 0 var(--c);animation:beat 1.6s var(--ease) infinite;margin-inline-start:2px;vertical-align:middle}
+.heat{display:grid;grid-template-columns:repeat(14,1fr);grid-template-rows:repeat(7,1fr);grid-auto-flow:column;gap:4px;direction:ltr;width:100%;aspect-ratio:14/7}
+.heat i{border-radius:3px;background:rgba(255,255,255,.07);opacity:0;transform:scale(.3);transition:opacity .45s,transform .6s var(--ease)}
+.heat.lit i{opacity:1;transform:none}
+.heat i.l1{background:color-mix(in srgb,var(--c) 28%,transparent)}
+.heat i.l2{background:color-mix(in srgb,var(--c) 50%,transparent)}
+.heat i.l3{background:color-mix(in srgb,var(--c) 76%,transparent)}
+.heat i.l4{background:var(--c);box-shadow:0 0 10px color-mix(in srgb,var(--c) 55%,transparent)}
+.heat i.today{outline:1px solid rgba(255,255,255,.7);outline-offset:1px}
+.heat-cap{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--faint)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.facts div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.facts b{font-family:var(--display);font-weight:600;font-size:24px;line-height:1;color:var(--fg);direction:ltr;text-align:right}
+.facts small{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* finale */
-.finale .pin{flex-direction:column;align-items:center;justify-content:space-between;padding-block:calc(var(--top) + 4vh) calc(30px + env(safe-area-inset-bottom,0px))}
+.finale .pin{flex-direction:column;align-items:center;justify-content:space-between}
 .finale .copy{align-items:center;text-align:center;max-width:none}
 .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
 .btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font:500 15px var(--ar);text-decoration:none;transition:transform .4s var(--ease),background .3s,border-color .3s}
@@ -112,24 +147,50 @@ a{color:inherit}
 .btn svg{width:18px;height:18px}
 
 @keyframes ping{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.6);opacity:0}}
+@keyframes beat{0%{box-shadow:0 0 0 0 var(--c)}70%,100%{box-shadow:0 0 0 7px transparent}}
 @keyframes drip{0%{top:-40%}100%{top:100%}}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,2%)}80%{transform:translate(5%,4%)}}
 .rise{animation:rise 1s var(--ease) both;animation-delay:var(--d,0s)}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.nogsap .beatB{display:none}
 
 @media (max-width:760px),(max-aspect-ratio:9/10){
-  .rules,.track{display:none}
+  .rules{display:none}
   .sig{font-size:34px}
   .pill{font-size:13px;padding:5px 12px}
-  .claude .pin,.gpt .pin{align-items:flex-start;justify-content:center;padding-top:calc(var(--top) + 4vh)}
-  .claude .copy,.gpt .copy{align-items:center;text-align:center}
+  .pin{padding-top:calc(var(--top) + 3vh);padding-bottom:calc(84px + var(--bot))}
+  .claude .beatA,.gpt .beatA,.claude .beatB,.gpt .beatB{justify-self:stretch;align-self:start}
+  .beatA{align-items:center;text-align:center}
+  .beatB{display:flex;justify-content:center}
   .num.lg{font-size:clamp(40px,11.6vw,72px)}
+  .line{font-size:18px}
   .split{width:min(100%,280px)}
   .copy{gap:14px}
+  .card{padding:16px 16px 14px;border-radius:22px}
+  .streak{margin:12px 0 14px}
+  .streak b{font-size:56px}
+  .heat{gap:3px}
+  .facts{gap:12px 14px;margin-top:14px;padding-top:14px}
+  .facts b{font-size:21px}
   .btn{height:48px;padding:0 20px;font-size:14px}
+  .finale .pin{padding-bottom:calc(92px + var(--bot))}
+  .cue{bottom:calc(86px + var(--bot))}
+  .cue i{height:34px}
+  .nav{top:auto;right:50%;bottom:calc(16px + var(--bot));transform:translateX(50%);flex-direction:row;gap:0;padding:4px 6px;border-radius:999px;border:1px solid var(--line);background:rgba(10,10,10,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--glass);direction:rtl}
+  .nav button{padding:12px 8px}
+  .nav button i{width:20px;height:3px}
+  .nav button.on i{width:34px;height:3px}
+  .nav button span{display:none}
+}
+@media (max-width:760px) and (max-height:700px){
+  .streak b{font-size:46px}
+  .heat-cap{display:none}
+  .facts b{font-size:19px}
+  .line{font-size:16px}
 }
 @media (prefers-reduced-motion:reduce){
-  .rise,.pill i::after,.cue i::after{animation:none}
-  .reel,.split i{transition:none}
+  .rise,.pill i::after,.cue i::after,.grain,.flame{animation:none}
+  .reel,.split i,.heat i{transition:none}
 }
 </style>
 </head>
@@ -138,41 +199,76 @@ a{color:inherit}
 <canvas id="gl" aria-hidden="true"></canvas>
 <div class="shade" aria-hidden="true"></div>
 <div class="rules" aria-hidden="true"></div>
-<div class="track" aria-hidden="true"><i id="prog"></i></div>
+<div class="grain" aria-hidden="true"></div>
 
 <header class="bar rise" style="--d:.1s">
   <a class="sig" href="/" aria-label="محمد البدر، الصفحة الرئيسية">Mohammed</a>
   <span class="pill"><i></i>مباشر</span>
 </header>
 
+<nav class="nav rise" style="--d:1.2s" aria-label="الفصول">
+  <button type="button" data-go="0"><i></i><span>الإجمالي</span></button>
+  <button type="button" data-go="1"><i></i><span>Claude</span></button>
+  <button type="button" data-go="2"><i></i><span>GPT</span></button>
+  <button type="button" data-go="3"><i></i><span>مع بعض</span></button>
+</nav>
+
 <main class="story">
   <section class="chapter hero" id="c0">
     <div class="pin">
       <div class="copy">
         <h1 class="eyebrow rise" style="--d:.25s">إجمالي التوكنز</h1>
-        <div class="num xl rise" id="nTotal" style="--d:.35s" role="img" aria-label="66,878,124,999 توكن">66,878,124,999</div>
+        <div class="num xl rise" id="nTotal" style="--d:.35s" role="img" aria-label="68,527,362,816 توكن">68,527,362,816</div>
         <div class="split rise" style="--d:.5s" aria-hidden="true"><i class="c"></i><i class="g"></i></div>
       </div>
       <div class="cue rise" style="--d:1.4s" aria-hidden="true"><span>مرّر</span><i></i></div>
     </div>
   </section>
 
-  <section class="chapter claude" id="c1" aria-labelledby="h-claude">
-    <div class="pin">
-      <div class="copy">
+  <section class="chapter model claude" id="c1" data-k="claude" aria-labelledby="h-claude">
+    <div class="pin beats">
+      <div class="beat beatA copy">
         <h2 class="eyebrow" id="h-claude">Claude Code <em class="share-c">92%</em></h2>
-        <div class="num lg" id="nClaude" role="img" aria-label="61,817,839,794 توكن">61,817,839,794</div>
+        <div class="num lg" id="nClaude" role="img" aria-label="63,032,281,454 توكن">63,032,281,454</div>
         <p class="line">هنا ينبني أغلب شغلي اليومي.</p>
+      </div>
+      <div class="beat beatB">
+        <article class="card" aria-label="ستريك Claude Code">
+          <div class="card-top"><span class="eyebrow">Claude Code</span><small>الستريك</small></div>
+          <div class="streak"><b data-streak>62</b><span><span>يوم ورا يوم <i class="flame"></i></span><small>بدون انقطاع</small></span></div>
+          <div class="heat" data-heat aria-hidden="true"></div>
+          <div class="heat-cap"><span>اليوم</span><span>آخر 14 أسبوع</span></div>
+          <div class="facts">
+            <div><b data-f="activeDays">116</b><small>يوم نشط</small></div>
+            <div><b data-f="sessions">818</b><small>جلسة</small></div>
+            <div><b data-f="peak">2.90B</b><small data-f="peakDate">أعلى يوم · 26 سبتمبر</small></div>
+            <div><b data-f="longest">47d 9h</b><small>أطول جلسة</small></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="chapter gpt" id="c2" aria-labelledby="h-gpt">
-    <div class="pin">
-      <div class="copy">
+  <section class="chapter model gpt" id="c2" data-k="gpt" aria-labelledby="h-gpt">
+    <div class="pin beats">
+      <div class="beat beatA copy">
         <h2 class="eyebrow" id="h-gpt">GPT · Codex <em class="share-g">8%</em></h2>
-        <div class="num lg" id="nGpt" role="img" aria-label="5,060,285,206 توكن">5,060,285,206</div>
+        <div class="num lg" id="nGpt" role="img" aria-label="5,495,081,362 توكن">5,495,081,362</div>
         <p class="line">وهنا المهام الطويلة والتجارب.</p>
+      </div>
+      <div class="beat beatB">
+        <article class="card" aria-label="ستريك GPT">
+          <div class="card-top"><span class="eyebrow">GPT · Codex</span><small>الستريك</small></div>
+          <div class="streak"><b data-streak>41</b><span><span>يوم ورا يوم <i class="flame"></i></span><small>بدون انقطاع</small></span></div>
+          <div class="heat" data-heat aria-hidden="true"></div>
+          <div class="heat-cap"><span>اليوم</span><span>آخر 14 أسبوع</span></div>
+          <div class="facts">
+            <div><b data-f="activeDays">87</b><small>يوم نشط</small></div>
+            <div><b data-f="threads">198</b><small>مهمة</small></div>
+            <div><b data-f="peak">556M</b><small data-f="peakDate">أعلى يوم · 8 أكتوبر</small></div>
+            <div><b data-f="longest">7h 26m</b><small>أطول مهمة</small></div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -180,12 +276,12 @@ a{color:inherit}
   <section class="chapter finale" id="c3" aria-labelledby="h-fin">
     <div class="pin">
       <div class="copy">
-        <h2 class="eyebrow" id="h-fin">مع بعض</h2>
-        <div class="num xl" id="nTotal2" role="img" aria-label="66,878,124,999 توكن">66,878,124,999</div>
-        <div class="split" aria-hidden="true"><i class="c"></i><i class="g"></i></div>
-        <p class="line">والعدّاد ما يوقف.</p>
+        <h2 class="eyebrow fin" id="h-fin">مع بعض</h2>
+        <div class="num xl fin" id="nTotal2" role="img" aria-label="68,527,362,816 توكن">68,527,362,816</div>
+        <div class="split fin" aria-hidden="true"><i class="c"></i><i class="g"></i></div>
+        <p class="line fin">والعدّاد ما يوقف.</p>
       </div>
-      <div class="actions">
+      <div class="actions fin">
         <a class="btn primary" href="https://www.linkedin.com/in/mo7albader/" target="_blank" rel="noopener" data-cta="linkedin">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9V9Z"/></svg>
           تابعني في LinkedIn
@@ -204,19 +300,29 @@ a{color:inherit}
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var MOBILE_Q = '(max-width: 760px), (max-aspect-ratio: 9/10)';
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!window.gsap || !window.ScrollTrigger) document.documentElement.classList.add('nogsap');
 
-  /* ---------- numbers ---------- */
+  /* ---------- data (embedded snapshot, replaced by /api/tokens) ---------- */
+  function lv(s){ return s.split('').map(Number); }
   var DATA = {
-    at: Date.parse('2026-10-14T20:43:15Z'),
-    claude: { total: 61817839794, perDay: 822226416 },
-    gpt:    { total: 5060285206,  perDay: 292264238 }
+    at: Date.parse('2026-10-14T22:40:00Z'),
+    claude: { total: 63032281454, perDay: 966046484,
+      stats: { streak: 62, activeDays: 116, sessions: 818, peak: 2896027889, peakDate: '2026-09-26', longest: '47d 9h' },
+      heat: lv('31111000001111330010222122233133200000323342121344240110132422332324333144424444444223113411224344') },
+    gpt: { total: 5495081362, perDay: 331808564,
+      stats: { streak: 41, activeDays: 87, threads: 198, peak: 556403087, peakDate: '2026-10-08', longest: '7h 26m' },
+      heat: lv('00100000011121112332344443331323303001133212111222430010122323223322211121431322324434444444444440') }
   };
   function value(k, now){
     if (k === 'total' || k === 'total2') return value('claude', now) + value('gpt', now);
     var d = DATA[k]; return d.total + d.perDay * Math.max(0, now - DATA.at) / 864e5;
   }
   function fmt(v){ return Math.floor(v).toLocaleString('en-US'); }
+  function short(n){ return n >= 1e9 ? (n / 1e9).toFixed(2) + 'B' : Math.round(n / 1e6) + 'M'; }
+  var MONTHS = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+  function arDate(iso){ if (!iso) return ''; var p = iso.split('-'); return +p[2] + ' ' + MONTHS[+p[1] - 1]; }
 
+  /* ---------- rolling digits ---------- */
   var REEL = 31, ROLL = 1200;
   function place(cell, idx, animate, delay, dur){
     var r = cell.reel;
@@ -265,21 +371,63 @@ a{color:inherit}
     CNT[p[0]].build(fmt(value(p[0], Date.now())), true);
   });
   function roll(k){ var c = CNT[k]; if (c.live) return; c.live = true; c.set(value(k, Date.now()), !reduce); }
-  function shares(){
+
+  /* ---------- streak cards ---------- */
+  function fill(){
     var now = Date.now(), c = value('claude', now), g = value('gpt', now), pc = c / (c + g) * 100;
     document.querySelectorAll('.share-c').forEach(function(e){ e.textContent = Math.round(pc) + '%'; });
     document.querySelectorAll('.share-g').forEach(function(e){ e.textContent = (100 - Math.round(pc)) + '%'; });
     document.querySelectorAll('.split').forEach(function(s){ s.children[0].style.width = pc + '%'; s.children[1].style.width = (100 - pc) + '%'; });
+    ['claude', 'gpt'].forEach(function(k){
+      var sec = document.querySelector('.chapter[data-k="' + k + '"]'), d = DATA[k], st = d.stats;
+      if (!st) return;
+      var sb = sec.querySelector('[data-streak]'); if (!sb.dataset.done) sb.textContent = st.streak;
+      sec.querySelectorAll('[data-f]').forEach(function(el){
+        var f = el.getAttribute('data-f'), v = st[f];
+        if (f === 'peak') el.textContent = short(v);
+        else if (f === 'peakDate') el.textContent = 'أعلى يوم' + (st.peakDate ? ' · ' + arDate(st.peakDate) : '');
+        else if (v != null) el.textContent = typeof v === 'number' ? v.toLocaleString('en-US') : v;
+      });
+      var heat = sec.querySelector('[data-heat]'), lit = heat.classList.contains('lit');
+      heat.textContent = '';
+      (d.heat || []).forEach(function(l, i, a){
+        var cell = document.createElement('i'); cell.className = 'l' + l + (i === a.length - 1 ? ' today' : '');
+        cell.style.transitionDelay = (Math.floor(i / 7) * 45 + (i % 7) * 12) + 'ms';
+        heat.appendChild(cell);
+      });
+      if (lit) heat.classList.add('lit');
+    });
   }
-  var started = false;
+  var shown = {};
+  function reveal(k){
+    if (shown[k]) return; shown[k] = true;
+    var sec = document.querySelector('.chapter[data-k="' + k + '"]');
+    sec.querySelector('[data-heat]').classList.add('lit');
+    var sb = sec.querySelector('[data-streak]'), target = (DATA[k].stats || {}).streak || +sb.textContent;
+    sb.dataset.done = '1';
+    if (reduce || !window.gsap){ sb.textContent = target; return; }
+    var o = { v: 0 };
+    gsap.to(o, { v: target, duration: 1.4, ease: 'power3.out', onUpdate: function(){ sb.textContent = Math.round(o.v); } });
+  }
+  fill();
+
+  var pulse = 0, started = false;
   function start(){
     if (started) return; started = true;
-    shares(); roll('total');
-    setInterval(function(){ var now = Date.now(); Object.keys(CNT).forEach(function(k){ if (CNT[k].live) CNT[k].set(value(k, now), false); }); }, 4000);
+    roll('total');
+    setInterval(function(){
+      var now = Date.now(); pulse = 1;
+      Object.keys(CNT).forEach(function(k){ if (CNT[k].live) CNT[k].set(value(k, now), false); });
+    }, 4000);
   }
   fetch('/api/tokens', { cache: 'no-store' })
     .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(j){ if (j && j.claude && j.gpt){ DATA = { at: Date.parse(j.at) || Date.now(), claude: j.claude, gpt: j.gpt }; if (started) shares(); } })
+    .then(function(j){
+      if (j && j.claude && j.gpt){
+        ['claude', 'gpt'].forEach(function(k){ if (!j[k].stats) j[k].stats = DATA[k].stats; if (!j[k].heat) j[k].heat = DATA[k].heat; });
+        DATA = { at: Date.parse(j.at) || Date.now(), claude: j.claude, gpt: j.gpt }; fill();
+      }
+    })
     .catch(function(){})
     .then(function(){ setTimeout(start, 250); });
   setTimeout(start, 1100);
@@ -316,25 +464,40 @@ a{color:inherit}
     addEventListener('resize', function(){ if (innerWidth !== lastW){ lastW = innerWidth; size(); } });
   })();
 
-  /* ---------- camera rig: GSAP tweens these, the render loop reads them ---------- */
+  /* ---------- camera rig: the timeline tweens these, the render loop reads them ---------- */
   // cam/look in world units; sx/sy push the subject off-centre (fraction of the viewport); L/Rg = laptop light; swirl = tokens gather into the halo
-  var KD = [
-    { cx: 0,    cy: 2.45, cz: 8.8, lx: 0,     ly: 1.75, lz: 0,    sx: 0,    sy: .13, yaw: 0,    L: 1,   Rg: 1,   sun: 1,    swirl: 0, ringS: 1 },
-    { cx: -1.05, cy: 2.0, cz: 3.05, lx: -1.22, ly: 1.32, lz: -.28, sx: -.1, sy: .16, yaw: .62,  L: 1.8, Rg: .2,  sun: .55,  swirl: 0, ringS: 1 },
-    { cx: 1.05,  cy: 2.0, cz: 3.05, lx: 1.22,  ly: 1.32, lz: -.28, sx: .1,  sy: .16, yaw: -.62, L: .2,  Rg: 1.8, sun: .55,  swirl: 0, ringS: 1 },
-    { cx: 0,    cy: 3.1,  cz: 12.6, lx: 0,     ly: 1.9, lz: -.6,  sx: 0,    sy: .04, yaw: 0,    L: .9,  Rg: .9,  sun: 1.35, swirl: 1, ringS: 1.14 }
-  ];
-  var KM = [
-    { cx: 0,    cy: 2.6,  cz: 10.8, lx: 0,     ly: 1.8, lz: 0,    sx: 0, sy: .15, yaw: 0,    L: 1,   Rg: 1,   sun: 1,    swirl: 0, ringS: 1 },
-    { cx: -.3,  cy: 1.85, cz: 2.75, lx: -1.25, ly: 1.3, lz: -.28, sx: 0, sy: .19, yaw: .62,  L: 1.8, Rg: .2,  sun: .55,  swirl: 0, ringS: 1 },
-    { cx: .3,   cy: 1.85, cz: 2.75, lx: 1.25,  ly: 1.3, lz: -.28, sx: 0, sy: .19, yaw: -.62, L: .2,  Rg: 1.8, sun: .55,  swirl: 0, ringS: 1 },
-    { cx: 0,    cy: 3.2,  cz: 14.2, lx: 0,     ly: 1.9, lz: -.6,  sx: 0, sy: .02, yaw: 0,    L: .9,  Rg: .9,  sun: 1.35, swirl: 1, ringS: 1.14 }
-  ];
+  var KD = {
+    hero: { cx: 0,    cy: 2.45, cz: 8.8,  lx: 0,     ly: 1.75, lz: 0,   sx: 0,   sy: .13, yaw: 0,    L: 1,   Rg: 1,   sun: 1,    swirl: 0, ringS: 1 },
+    c1a:  { cx: -1.05, cy: 2.0, cz: 3.05, lx: -1.22, ly: 1.32, lz: -.28, sx: -.1, sy: .16, yaw: .62,  L: 1.8, Rg: .2,  sun: .55,  swirl: 0, ringS: 1 },
+    c1b:  { cx: -.4,  cy: 1.62, cz: 1.85, lx: -1.22, ly: 1.3,  lz: -.3,  sx: -.2, sy: .04, yaw: .55,  L: 2,   Rg: .15, sun: .4,   swirl: 0, ringS: 1 },
+    c2a:  { cx: 1.05, cy: 2.0,  cz: 3.05, lx: 1.22,  ly: 1.32, lz: -.28, sx: .1,  sy: .16, yaw: -.62, L: .2,  Rg: 1.8, sun: .55,  swirl: 0, ringS: 1 },
+    c2b:  { cx: .4,   cy: 1.62, cz: 1.85, lx: 1.22,  ly: 1.3,  lz: -.3,  sx: .2,  sy: .04, yaw: -.55, L: .15, Rg: 2,   sun: .4,   swirl: 0, ringS: 1 },
+    fin:  { cx: 0,    cy: 3.1,  cz: 12.6, lx: 0,     ly: 1.9,  lz: -.6,  sx: 0,   sy: .04, yaw: 0,    L: .9,  Rg: .9,  sun: 1.35, swirl: 1, ringS: 1.14 }
+  };
+  var KM = {
+    hero: { cx: 0,    cy: 2.6,  cz: 10.8, lx: 0,     ly: 1.8,  lz: 0,    sx: 0, sy: .15, yaw: 0,    L: 1,   Rg: 1,   sun: 1,    swirl: 0, ringS: 1 },
+    c1a:  { cx: -.3,  cy: 1.85, cz: 2.75, lx: -1.25, ly: 1.3,  lz: -.28, sx: 0, sy: .19, yaw: .62,  L: 1.8, Rg: .2,  sun: .55,  swirl: 0, ringS: 1 },
+    c1b:  { cx: -.05, cy: 1.55, cz: 2.36, lx: -1.22, ly: 1.28, lz: -.3,  sx: 0, sy: .3,  yaw: .55,  L: 2,   Rg: .15, sun: .4,   swirl: 0, ringS: 1 },
+    c2a:  { cx: .3,   cy: 1.85, cz: 2.75, lx: 1.25,  ly: 1.3,  lz: -.28, sx: 0, sy: .19, yaw: -.62, L: .2,  Rg: 1.8, sun: .55,  swirl: 0, ringS: 1 },
+    c2b:  { cx: .05,  cy: 1.55, cz: 2.36, lx: 1.22,  ly: 1.28, lz: -.3,  sx: 0, sy: .3,  yaw: -.55, L: .15, Rg: 2,   sun: .4,   swirl: 0, ringS: 1 },
+    fin:  { cx: 0,    cy: 3.2,  cz: 14.2, lx: 0,     ly: 1.9,  lz: -.6,  sx: 0, sy: .02, yaw: 0,    L: .9,  Rg: .9,  sun: 1.35, swirl: 1, ringS: 1.14 }
+  };
   var mobile = matchMedia(MOBILE_Q).matches;
-  var rig = Object.assign({}, (mobile ? KM : KD)[0]);
+  var rig = Object.assign({}, (mobile ? KM : KD).hero);
+  var setFov = function(){};   // replaced once the camera exists
 
   var chapters = [].slice.call(document.querySelectorAll('.chapter'));
-  var setFov = function(){};   // replaced once the camera exists
+  var navBtns = [].slice.call(document.querySelectorAll('.nav button'));
+  var stops = [0, 0, 0, 0], master = null;   // scroll position (0..1) of each chapter's resting point
+  function setNav(i){ navBtns.forEach(function(b, j){ b.classList.toggle('on', i === j); if (i === j) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); }); }
+  setNav(0);
+  navBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var p = stops[+b.getAttribute('data-go')], max = document.documentElement.scrollHeight - innerHeight;
+      window.scrollTo({ top: p * max, behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+
   if (window.gsap && window.ScrollTrigger){
     gsap.registerPlugin(ScrollTrigger);
     ScrollTrigger.config({ ignoreMobileResize: true });
@@ -342,34 +505,49 @@ a{color:inherit}
     var mm = gsap.matchMedia();
     mm.add({ m: MOBILE_Q, d: '(min-width: 761px) and (min-aspect-ratio: 901/1000)' }, function(ctx){
       mobile = !!ctx.conditions.m;
-      var K = mobile ? KM : KD;
+      var K = mobile ? KM : KD, B = mobile ? 0 : 8;
       setFov(mobile ? 42 : 30);
-      gsap.set(rig, K[0]);
-      // one master timeline in vh units: chapter heights are in vh, so each camera move spans the
-      // 100vh while its chapter scrolls in, and any jump in scroll lands on the right shot
-      var tl = gsap.timeline({ defaults: { ease: 'power2.inOut' },
-        scrollTrigger: { trigger: '.story', start: 'top top', end: 'bottom bottom', scrub: 1.2 } });
-      var at = 0;
-      chapters.forEach(function(sec, i){
-        var h = parseFloat(getComputedStyle(sec).height) / innerHeight * 100;
-        if (i > 0) tl.to(rig, Object.assign({ duration: 100 }, K[i]), at - 100);
-        at += h;
-      });
-      tl.set({}, {}, at - 100);
-    });
+      gsap.set(rig, K.hero);
 
-    // copy: hero fades as the camera leaves, each chapter rises in near its stop and lifts away after
-    gsap.to('.hero .copy, .cue', { opacity: 0, y: -60, ease: 'power1.in', scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=48%', scrub: 1 } });
-    chapters.slice(1).forEach(function(sec){
-      var items = [].slice.call(sec.querySelectorAll('.copy > *, .actions'));
-      gsap.fromTo(items, { opacity: 0, y: 46 }, { opacity: 1, y: 0, stagger: .14, ease: 'power3.out', scrollTrigger: { trigger: sec, start: 'top 42%', end: 'top 2%', scrub: 1 } });
-      if (!sec.classList.contains('finale'))
-        gsap.to(sec.querySelector('.copy'), { opacity: 0, y: -70, ease: 'power2.in', scrollTrigger: { trigger: sec, start: 'bottom 118%', end: 'bottom 78%', scrub: 1 } });
+      // everything on one timeline in vh units, so it follows the scroll exactly
+      var T = [], at = 0;
+      chapters.forEach(function(sec){ T.push(at); at += sec.offsetHeight / innerHeight * 100; });
+      var total = at - 100;
+      function inS(y){ return { opacity: 0, y: y, filter: 'blur(' + B + 'px)' }; }
+      var shown1 = { opacity: 1, y: 0, filter: 'blur(0px)' };
+      var outS = function(y){ return { opacity: 0, y: y, filter: 'blur(' + (B * .75) + 'px)' }; };
+
+      var tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+      tl.to('.hero .copy, .cue', Object.assign({ duration: 45, ease: 'power1.in' }, outS(-60)), 5);
+
+      [['claude', 1, K.c1a, K.c1b], ['gpt', 2, K.c2a, K.c2b]].forEach(function(m){
+        var k = m[0], t = T[m[1]], sec = chapters[m[1]];
+        tl.to(rig, Object.assign({ duration: 100 }, m[2]), t - 100);
+        tl.fromTo(sec.querySelectorAll('.beatA > *'), inS(46), Object.assign({ duration: 30, stagger: 5, ease: 'power3.out' }, shown1), t - 50);
+        tl.call(roll, [k], t - 30);
+        tl.to(sec.querySelector('.beatA'), Object.assign({ duration: 25, ease: 'power2.in' }, outS(-50)), t + 55);
+        tl.to(rig, Object.assign({ duration: 60 }, m[3]), t + 50);
+        tl.fromTo(sec.querySelector('.beatB'), inS(40), Object.assign({ duration: 30, ease: 'power3.out' }, shown1), t + 80);
+        tl.call(reveal, [k], t + 92);
+        tl.to(sec.querySelector('.beatB'), Object.assign({ duration: 30, ease: 'power2.in' }, outS(-50)), t + 160);
+      });
+
+      tl.to(rig, Object.assign({ duration: 100 }, K.fin), T[3] - 100);
+      tl.fromTo('.finale .fin', inS(46), Object.assign({ duration: 30, stagger: 6, ease: 'power3.out' }, shown1), T[3] - 55);
+      tl.call(roll, ['total2'], T[3] - 30);
+      tl.set({}, {}, total);
+
+      // resting points: hero, each beat's dwell, the end
+      stops = [0, (T[1] + 25) / total, (T[2] + 25) / total, 1];
+      var snaps = [0, (T[1] + 25) / total, (T[1] + 135) / total, (T[2] + 25) / total, (T[2] + 135) / total, 1];
+      var bounds = [(T[1] - 50) / total, (T[2] - 50) / total, (T[3] - 50) / total];
+
+      master = ScrollTrigger.create({
+        trigger: '.story', start: 'top top', end: 'bottom bottom', animation: tl, scrub: mobile ? .8 : 1.2,
+        snap: reduce ? false : { snapTo: snaps, directional: false, inertia: false, duration: { min: .35, max: .9 }, delay: .12, ease: 'power2.inOut' },
+        onUpdate: function(self){ var p = self.progress, i = p < bounds[0] ? 0 : p < bounds[1] ? 1 : p < bounds[2] ? 2 : 3; setNav(i); }
+      });
     });
-    [['#c1', 'claude'], ['#c2', 'gpt'], ['#c3', 'total2']].forEach(function(p){
-      ScrollTrigger.create({ trigger: p[0], start: 'top 25%', once: true, onEnter: function(){ roll(p[1]); } });
-    });
-    gsap.to('#prog', { scaleY: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: .4 } });
   } else {
     ['claude', 'gpt', 'total2'].forEach(function(k){ setTimeout(function(){ roll(k); }, 1600); });
   }
@@ -378,7 +556,7 @@ a{color:inherit}
   if (!window.THREE) return;
   var canvas = document.getElementById('gl'), renderer;
   var small = Math.min(innerWidth, innerHeight) < 600;
-  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: 'high-performance' }); } catch (e) { return; }
+  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !small || (devicePixelRatio || 1) < 2, alpha: true, powerPreference: 'high-performance' }); } catch (e) { return; }
   renderer.setClearColor(0x000000, 0);
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
@@ -409,7 +587,7 @@ a{color:inherit}
     s.scale.set(scale, scale, 1); return s;
   }
 
-  // screens: a log that keeps writing, with the live count in the status bar
+  // screens: a log that keeps writing, with the streak and the live count in the status bar
   function Screen(color, key, lines){
     var c = document.createElement('canvas'); c.width = 1024; c.height = 640; this.g = c.getContext('2d');
     this.tex = new THREE.CanvasTexture(c); this.tex.encoding = THREE.sRGBEncoding; this.tex.anisotropy = 4;
@@ -419,7 +597,7 @@ a{color:inherit}
   }
   Screen.prototype.push = function(){ this.rows.push(this.pool[this.i++ % this.pool.length]); if (this.rows.length > 10) this.rows.shift(); };
   Screen.prototype.draw = function(){
-    var g = this.g, col = this.color, i;
+    var g = this.g, col = this.color, i, st = DATA[this.key].stats || {};
     g.fillStyle = '#050505'; g.fillRect(0, 0, 1024, 640);
     g.fillStyle = 'rgba(255,255,255,.05)'; g.fillRect(0, 0, 1024, 52);
     for (i = 0; i < 3; i++){ g.globalAlpha = .85 - i * .25; g.fillStyle = col; g.beginPath(); g.arc(28 + i * 30, 26, 8, 0, 7); g.fill(); }
@@ -432,7 +610,8 @@ a{color:inherit}
     var lw = g.measureText(this.rows[this.rows.length - 1]).width;
     g.globalAlpha = 1; g.fillStyle = col; g.fillRect(44 + lw, 80 + (this.rows.length - 1) * 44, 16, 28);
     g.fillStyle = 'rgba(255,255,255,.08)'; g.fillRect(0, 534, 1024, 2);
-    g.fillStyle = 'rgba(255,255,255,.5)'; g.font = '500 26px Menlo, monospace'; g.fillText('tokens', 32, 572);
+    g.fillStyle = 'rgba(255,255,255,.5)'; g.font = '500 26px Menlo, monospace';
+    g.fillText(st.streak ? 'streak ' + st.streak + 'd' : 'tokens', 32, 572);
     g.fillStyle = col; g.font = '700 46px Menlo, monospace'; g.textAlign = 'right';
     g.fillText(fmt(value(this.key, Date.now())), 992, 562); g.textAlign = 'left';
     this.tex.needsUpdate = true;
@@ -506,10 +685,10 @@ a{color:inherit}
   scene.add(new THREE.AmbientLight(0x1c1410, .75));
   var key = new THREE.SpotLight(0xffe2d0, .45, 22, .6, .7, 1.5); key.position.set(0, 6, 5); key.castShadow = !small; key.shadow.mapSize.set(1024, 1024); key.shadow.bias = -.0005; scene.add(key);
   var rims = [-1, 1].map(function(s){ var l = new THREE.PointLight(COL.claude, 0, 4.2, 2); l.position.set(s * .85, 2.15, -.35); scene.add(l); return l; });
-  var fill = new THREE.PointLight(0xffc6a8, .22, 12, 2); fill.position.set(0, 2.6, 6); scene.add(fill);
+  var fill2 = new THREE.PointLight(0xffc6a8, .22, 12, 2); fill2.position.set(0, 2.6, 6); scene.add(fill2);
 
   // tokens: they rise off the screens, and in the finale they gather into the halo
-  var N = small ? 180 : 320, P = [], pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+  var N = small ? 150 : 320, P = [], pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
   function resetP(p, init){
     p.x = (p.left ? -1.22 : 1.22) + (Math.random() - .5) * .8;
     p.y = 1.25 + (init ? Math.random() * 2 : Math.random() * .25);
@@ -527,7 +706,7 @@ a{color:inherit}
 
   function resize(){
     var w = innerWidth, h = innerHeight;
-    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 1.6 : 1.8));
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 1.5 : 1.8));
     renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
   }
   resize(); addEventListener('resize', resize);
@@ -538,12 +717,12 @@ a{color:inherit}
     ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera);
     var h = ray.intersectObjects([lap.claude.group, lap.gpt.group], true)[0]; if (!h) return null;
     var o = h.object; while (o && o !== lap.claude.group && o !== lap.gpt.group) o = o.parent;
-    return o === lap.claude.group ? 'c1' : 'c2';
+    return o === lap.claude.group ? 1 : 2;
   }
   addEventListener('click', function(e){
     if (e.target.closest && e.target.closest('a,button')) return;
-    var id = hit(e); if (!id) return;
-    window.scrollTo({ top: document.getElementById(id).offsetTop + innerHeight * .4, behavior: reduce ? 'auto' : 'smooth' });
+    var i = hit(e); if (!i) return;
+    window.scrollTo({ top: stops[i] * (document.documentElement.scrollHeight - innerHeight), behavior: reduce ? 'auto' : 'smooth' });
   });
   var mouse = { x: 0, y: 0 };
   addEventListener('pointermove', function(e){
@@ -561,17 +740,19 @@ a{color:inherit}
   function frame(now){
     requestAnimationFrame(frame);
     var t = reduce ? 1e5 : now - T0, dt = Math.min(.05, (now - lastT) / 1000); lastT = now;
+    pulse *= Math.exp(-dt * 2.2);
 
     var ringP = ease(clamp((t - 250) / 1500));
     setArc(ringP * Math.PI * 2);
-    ringG.scale.setScalar(rig.ringS);
-    sun.material.opacity = .5 * rig.sun * ease(clamp((t - 80) / 1800));
+    ringG.scale.setScalar(rig.ringS * (1 + pulse * .015));
+    ringGlowMat.opacity = .28 + pulse * .32;
+    sun.material.opacity = (.5 * rig.sun + pulse * .1) * ease(clamp((t - 80) / 1800));
     var pL = flicker(t, 1000), pR = flicker(t, 1300);
     rims.forEach(function(l){ l.intensity = 3.2 * ringP * Math.min(1.2, rig.sun); });
 
     var k = 1 - Math.pow(.004, dt);
     sm.mx += (mouse.x - sm.mx) * k; sm.my += (mouse.y - sm.my) * k;
-    var sway = reduce ? 0 : Math.sin(now * .00032) * (mobile ? .06 : .14);
+    var sway = reduce ? 0 : Math.sin(now * .00032) * (mobile ? .05 : .14);
     camera.position.set(rig.cx + sm.mx * .28 + sway, rig.cy - sm.my * .1, rig.cz);
     tmp.set(rig.lx, rig.ly, rig.lz); camera.lookAt(tmp);
     var w = innerWidth, h = innerHeight, off = (rig.sx * w).toFixed(1) + ',' + (rig.sy * h).toFixed(1) + ',' + w + ',' + h;
@@ -583,15 +764,15 @@ a{color:inherit}
 
     lap.claude.mat.color.setScalar(pL * Math.min(1, .5 + rig.L * .5));
     lap.gpt.mat.color.setScalar(pR * Math.min(1, .5 + rig.Rg * .5));
-    lap.claude.light.intensity = 2.3 * pL * rig.L; lap.claude.glow.material.opacity = .3 * pL * Math.min(rig.L, 1.3);
-    lap.gpt.light.intensity = 2.3 * pR * rig.Rg; lap.gpt.glow.material.opacity = .3 * pR * Math.min(rig.Rg, 1.3);
+    lap.claude.light.intensity = 2.3 * pL * rig.L * (1 + pulse * .25); lap.claude.glow.material.opacity = .3 * pL * Math.min(rig.L, 1.3);
+    lap.gpt.light.intensity = 2.3 * pR * rig.Rg * (1 + pulse * .25); lap.gpt.glow.material.opacity = .3 * pR * Math.min(rig.Rg, 1.3);
     if (pL > 0) screens.claude.update(now);
     if (pR > 0) screens.gpt.update(now);
 
     var sw = rig.swirl, spin = now * .00022, rr = rig.ringS;
     for (var i = 0; i < N; i++){
       var p = P[i], s = smooth(clamp(sw * 1.5 - p.delay * .5));
-      if (!reduce && s < .6){ p.y += p.v * dt; p.x += Math.sin(now * .0008 + p.seed) * .0012; if (p.y > 3.3) resetP(p, false); }
+      if (!reduce && s < .6){ p.y += p.v * dt * (1 + pulse * 1.5); p.x += Math.sin(now * .0008 + p.seed) * .0012; if (p.y > 3.3) resetP(p, false); }
       var x = p.x, y = p.y, z = p.z;
       if (s > 0){
         var a = p.ang + spin, r = (R + p.rj) * rr;

@@ -20,7 +20,8 @@ The GPT JSON is what this snippet returns in a logged-in chatgpt.com tab:
     return {lifetime_total:p.stats.agentic.lifetime_tokens, peak_day:p.stats.agentic.peak_daily_tokens,
       longest_turn_sec:p.stats.agentic.longest_running_turn_sec, streak:p.stats.current_streak_days,
       sum_last7:s(d.slice(-7)), active_days:d.filter(b=>b.tokens>0).length,
-      threads:p.insights.agentic.total_threads, skills_used:p.insights.total_skills_used}})
+      threads:p.insights.agentic.total_threads, skills_used:p.insights.total_skills_used,
+      days:d.map(b=>[b.start_date,b.tokens])}})
 """
 import argparse, collections, datetime as dt, glob, json, os, subprocess, sys, tempfile
 
@@ -96,6 +97,19 @@ def streak(days_map):
     return run
 
 
+HEAT_DAYS = 98   # 14 weeks, ending today (Riyadh)
+
+
+def heat(day_values):
+    """Levels 0-4 for the last HEAT_DAYS days, oldest first. Non-zero days are split into quartiles."""
+    end = today()
+    vals = [day_values.get((end - dt.timedelta(days=HEAT_DAYS - 1 - i)).isoformat(), 0) for i in range(HEAT_DAYS)]
+    nz = sorted(v for v in vals if v > 0)
+    if not nz: return [0] * HEAT_DAYS
+    q = [nz[int(len(nz) * f)] for f in (.25, .5, .75)]
+    return [0 if v <= 0 else 1 + sum(v > t for t in q) for v in vals]
+
+
 def build_claude(a, ledger):
     days = ledger["days"]
     ledger_total = sum(days.values())
@@ -103,40 +117,41 @@ def build_claude(a, ledger):
     cutoff = (today() - dt.timedelta(days=7)).isoformat()
     last7 = sum(v for d, v in days.items() if d > cutoff)
     peak_day, peak_val = max(days.items(), key=lambda kv: kv[1])
-    fav_raw = max(ledger["models"].items(), key=lambda kv: kv[1])[0] if ledger["models"] else ""
-    fav = next((n for k, n in (("opus", "Opus 5"), ("sonnet", "Sonnet 5"), ("fable", "Fable 5"), ("haiku", "Haiku 5")) if k in fav_raw), fav_raw or "Opus 5")
     chain_ok = streak(days) >= (today() - anchor_date).days  # unbroken since the anchor day
     cur_streak = a["statsStreak"] + (today() - anchor_date).days if chain_ok else streak(days)
     active_after = len([d for d, v in days.items() if d > a["anchorDate"] and v])
     return {
         "total": int(a["statsTotal"] + (ledger_total - a["ledgerTotalAtAnchor"])),
         "perDay": int(last7 / 7),
-        "facts": [
-            [f"{a['statsSessions'] + (len(ledger['sessions']) - a['ledgerSessionsAtAnchor']):,}", "sessions"],
-            [f"{a['statsActiveDays'] + active_after:,}", "active days"],
-            [f"{cur_streak} days", "current streak"],
-            [fmt_short(peak_val), "peak day · " + dt.date.fromisoformat(peak_day).strftime("%b %-d")],
-            [fav, "favorite model"],
-            [a["longestSession"], "longest session"],
-        ],
-        "since": a["since"],
+        "stats": {
+            "streak": cur_streak,
+            "activeDays": a["statsActiveDays"] + active_after,
+            "sessions": a["statsSessions"] + (len(ledger["sessions"]) - a["ledgerSessionsAtAnchor"]),
+            "peak": int(peak_val),
+            "peakDate": peak_day,
+            "longest": a["longestSession"],
+        },
+        "heat": heat(days),
     }
 
 
 def build_gpt(g, a):
     sec = int(g.get("longest_turn_sec") or 0)
+    series = {d: int(v or 0) for d, v in (g.get("days") or [])}
+    peak_date = max(series.items(), key=lambda kv: kv[1])[0] if series else None
     return {
         "total": int(g["lifetime_total"]),
         "perDay": int(g["sum_last7"] / 7),
-        "facts": [
-            [f"{g['threads']:,}", "threads"],
-            [f"{g['active_days']:,}", "active days"],
-            [f"{g['streak']} days", "current streak"],
-            [fmt_short(g["peak_day"]), "peak day"],
-            [f"{sec // 3600}h {sec % 3600 // 60}m", "longest task"],
-            [f"{g['skills_used']:,}", "skill runs"],
-        ],
-        "since": a["since"],
+        "stats": {
+            "streak": int(g["streak"]),
+            "activeDays": int(g["active_days"]),
+            "threads": int(g["threads"]),
+            "peak": int(g["peak_day"]),
+            "peakDate": peak_date,
+            "longest": f"{sec // 3600}h {sec % 3600 // 60}m",
+            "skills": int(g.get("skills_used") or 0),
+        },
+        "heat": heat(series),
     }
 
 

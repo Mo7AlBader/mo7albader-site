@@ -39,7 +39,12 @@ export default {
       if (!snap || !snap.claude || !snap.gpt) return new Response("Not Found", { status: 404 });
       const now = Date.now();
       const days = Math.max(0, now - (Date.parse(snap.updatedAt) || now)) / 864e5;
-      const project = (s) => ({ total: Math.round(s.total + s.perDay * days), perDay: s.perDay });
+      const project = (s) => ({
+        total: Math.round(s.total + s.perDay * days),
+        perDay: s.perDay,
+        stats: s.stats || null,
+        heat: s.heat || null,
+      });
       return Response.json(
         { at: new Date(now).toISOString(), claude: project(snap.claude), gpt: project(snap.gpt) },
         { headers: { "Cache-Control": "public, max-age=60", "Access-Control-Allow-Origin": "*" } }
