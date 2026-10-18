@@ -98,6 +98,15 @@ def streak(days_map):
 
 
 HEAT_DAYS = 98   # 14 weeks, ending today (Riyadh)
+RATE_DAYS = 14   # the page projects between refreshes at half the median day of the last two weeks,
+RATE_SHARE = .5  # so the next real number is almost always above what the page was showing
+
+
+def rate(day_values, end):
+    """Conservative tokens/day: RATE_SHARE x the median of the RATE_DAYS complete days before `end`."""
+    vals = sorted(day_values.get((end - dt.timedelta(days=i)).isoformat(), 0) for i in range(1, RATE_DAYS + 1))
+    mid = len(vals) // 2
+    return int(RATE_SHARE * (vals[mid] if len(vals) % 2 else (vals[mid - 1] + vals[mid]) / 2))
 
 
 def heat(day_values):
@@ -114,15 +123,13 @@ def build_claude(a, ledger):
     days = ledger["days"]
     ledger_total = sum(days.values())
     anchor_date = dt.date.fromisoformat(a["anchorDate"])
-    cutoff = (today() - dt.timedelta(days=7)).isoformat()
-    last7 = sum(v for d, v in days.items() if d > cutoff)
     peak_day, peak_val = max(days.items(), key=lambda kv: kv[1])
     chain_ok = streak(days) >= (today() - anchor_date).days  # unbroken since the anchor day
     cur_streak = a["statsStreak"] + (today() - anchor_date).days if chain_ok else streak(days)
     active_after = len([d for d, v in days.items() if d > a["anchorDate"] and v])
     return {
         "total": int(a["statsTotal"] + (ledger_total - a["ledgerTotalAtAnchor"])),
-        "perDay": int(last7 / 7),
+        "perDay": rate(days, today()),
         "stats": {
             "streak": cur_streak,
             "activeDays": a["statsActiveDays"] + active_after,
@@ -141,7 +148,7 @@ def build_gpt(g, a):
     peak_date = max(series.items(), key=lambda kv: kv[1])[0] if series else None
     return {
         "total": int(g["lifetime_total"]),
-        "perDay": int(g["sum_last7"] / 7),
+        "perDay": rate(series, dt.datetime.now(dt.timezone.utc).date()),   # profile days are UTC
         "stats": {
             "streak": int(g["streak"]),
             "activeDays": int(g["active_days"]),

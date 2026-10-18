@@ -38,10 +38,12 @@ export default {
       const snap = await env.ANALYTICS_KV.get("tokens:latest", "json");
       if (!snap || !snap.claude || !snap.gpt) return new Response("Not Found", { status: 404 });
       const now = Date.now();
+      // full rate for the first day after a snapshot, then 15% so a missed refresh can't run away
       const days = Math.max(0, now - (Date.parse(snap.updatedAt) || now)) / 864e5;
+      const elapsed = Math.min(days, 1) + Math.max(0, days - 1) * 0.15;
       const project = (s) => ({
-        total: Math.round(s.total + s.perDay * days),
-        perDay: s.perDay,
+        total: Math.round(s.total + s.perDay * elapsed),
+        perDay: Math.round(days < 1 ? s.perDay : s.perDay * 0.15),
         stats: s.stats || null,
         heat: s.heat || null,
       });
