@@ -11,3 +11,6 @@ mohammed Alanazi.png
 
 # Ameen landing-page source (cover lives in public/covers/)
 Landing-Page-ameenapp.png
+
+# private course-card sources (plaintext + password); only the encrypted public/learn/index.html is committed
+learn-src/
