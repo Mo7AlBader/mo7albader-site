@@ -45,10 +45,14 @@ def today():
     return dt.datetime.now(RIYADH).date()
 
 
-def scan_claude():
-    """Per-day token totals (Riyadh days), session ids and per-model totals from every transcript on disk."""
+def scan_messages():
+    """Every Claude response on disk: {message id: (earliest timestamp, tokens, model)} plus session ids.
+
+    A response is written once per content block and resumed sessions copy earlier lines,
+    so usage counts once per message id, never once per line.
+    """
     root = os.path.expanduser("~/.claude/projects")
-    days, sessions, models = collections.Counter(), set(), collections.Counter()
+    msgs, sessions = {}, set()
     for path in glob.glob(root + "/**/*.jsonl", recursive=True):
         with open(path, errors="ignore") as fh:
             for line in fh:
@@ -59,11 +63,23 @@ def scan_claude():
                 m = e.get("message") or {}; u = m.get("usage") or {}
                 s = sum(u.get(k) or 0 for k in ("input_tokens", "output_tokens", "cache_read_input_tokens", "cache_creation_input_tokens"))
                 if not s: continue
-                try: day = dt.datetime.fromisoformat((e.get("timestamp") or "").replace("Z", "+00:00")).astimezone(RIYADH).date()
+                try: ts = dt.datetime.fromisoformat((e.get("timestamp") or "").replace("Z", "+00:00"))
                 except ValueError: continue
-                days[day.isoformat()] += s
+                if ts.tzinfo is None: ts = ts.replace(tzinfo=dt.timezone.utc)
                 sessions.add(e.get("sessionId") or path)
-                models[m.get("model") or ""] += s
+                key = m.get("id") or (path, e.get("uuid"))
+                cur = msgs.get(key)
+                msgs[key] = (min(ts, cur[0]), max(s, cur[1]), cur[2]) if cur else (ts, s, m.get("model") or "")
+    return msgs, sessions
+
+
+def scan_claude():
+    """Per-day token totals (Riyadh days), session ids and per-model totals."""
+    msgs, sessions = scan_messages()
+    days, models = collections.Counter(), collections.Counter()
+    for ts, s, model in msgs.values():
+        days[ts.astimezone(RIYADH).date().isoformat()] += s
+        models[model] += s
     return days, sessions, models
 
 

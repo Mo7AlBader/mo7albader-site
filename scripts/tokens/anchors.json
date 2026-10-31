@@ -8,8 +8,9 @@
     "statsStreak": 61,
     "longestSession": "47d 9h",
     "since": "since May 2026",
-    "ledgerTotalAtAnchor": 58262817160,
-    "ledgerSessionsAtAnchor": 208
+    "ledgerTotalAtAnchor": 27464025120,
+    "ledgerSessionsAtAnchor": 208,
+    "anchorAt": "2026-10-14T19:52:00Z"
   },
   "gpt": {
     "since": "since May 2026"
