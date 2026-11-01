@@ -49,7 +49,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     datePublished: post.date,
     dateModified: post.date,
     inLanguage: "ar",
-    author: { "@type": "Person", name: "Mohammed AlBader", url: "https://mo7albader.com" },
+    author: { "@type": "Person", "@id": "https://mo7albader.com/#person", name: "محمد البدر", alternateName: "Mohammed AlBader", url: "https://mo7albader.com" },
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl(post.slug) },
     ...(post.faq && post.faq.length > 0
       ? {

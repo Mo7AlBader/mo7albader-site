@@ -33,15 +33,18 @@ const signature = Waterfall({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mo7albader.com"),
+  // Arabic name first: the site is Arabic (lang="ar") and the target query is "محمد البدر"
   title: {
-    default: "Mohammed AlBader · Product Manager",
-    template: "%s · Mohammed AlBader",
+    default: "محمد البدر | Mohammed AlBader · مدير منتج",
+    template: "%s · محمد البدر",
   },
   description:
-    "Product Manager from Riyadh, with a rare edge in growth, AI and building. I grow SaaS products through product, content, data and AI. 2M+ users, 300K+ students, 2,000+ merchants.",
+    "محمد البدر، مدير منتج في سلة من الرياض. أبني وأنمّي منتجات SaaS عبر المنتج والمحتوى والبيانات والذكاء الاصطناعي. حساباتي: لينكدإن، إكس (تويتر)، إنستقرام. Mohammed AlBader, Product Manager.",
+  applicationName: "محمد البدر",
   keywords: [
-    "Mohammed AlBader",
     "محمد البدر",
+    "Mohammed AlBader",
+    "mo7albader",
     "Product Manager",
     "SaaS Growth",
     "Product-led Growth",
@@ -50,25 +53,33 @@ export const metadata: Metadata = {
     "Riyadh",
     "AI Product Manager",
   ],
-  authors: [{ name: "Mohammed AlBader" }],
-  creator: "Mohammed AlBader",
+  authors: [{ name: "محمد البدر", url: "https://mo7albader.com" }],
+  creator: "محمد البدر",
+  publisher: "محمد البدر",
   alternates: {
     canonical: "/",
     types: { "application/rss+xml": "/feed.xml" },
   },
   openGraph: {
     type: "website",
-    siteName: "Mohammed AlBader",
-    title: "Mohammed AlBader · Product Manager",
+    siteName: "محمد البدر",
+    title: "محمد البدر | Mohammed AlBader · مدير منتج",
     description:
-      "Product Manager from Riyadh, with a rare edge in growth, AI and building. I grow SaaS products through product, content, data and AI.",
+      "محمد البدر، مدير منتج في سلة. أبني وأنمّي منتجات SaaS عبر المنتج والمحتوى والبيانات والذكاء الاصطناعي.",
     url: "/",
     locale: "ar_SA",
+    alternateLocale: ["en_US"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohammed AlBader · Product Manager",
-    description: "Product Manager from Riyadh, with a rare edge in growth, AI and building.",
+    title: "محمد البدر | Mohammed AlBader · مدير منتج",
+    description: "محمد البدر، مدير منتج في سلة. أبني وأنمّي منتجات SaaS عبر المنتج والمحتوى والبيانات والذكاء الاصطناعي.",
+    site: "@mo7albader",
     creator: "@mo7albader",
   },
 };

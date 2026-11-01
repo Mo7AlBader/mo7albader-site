@@ -22,6 +22,15 @@ function SocialIcon({ label }: { label: string }) {
       </svg>
     );
   }
+  if (label === "Instagram") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.4" cy="6.6" r="0.8" fill="currentColor" stroke="none" />
+      </svg>
+    );
+  }
   // Email / fallback
   return (
     <svg
@@ -119,7 +128,7 @@ export default function Hero() {
                 key={s.label}
                 href={s.href}
                 target={s.href.startsWith("http") ? "_blank" : undefined}
-                rel="noopener"
+                rel="me noopener"
                 aria-label={s.label}
                 onClick={() => trackClick("hero_social_click", { label: s.label })}
                 className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white/[0.03]

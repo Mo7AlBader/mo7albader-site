@@ -42,7 +42,7 @@ export default function PromptPage({ params }: { params: { slug: string } }) {
     description: prompt.summary.ar,
     inLanguage: "ar",
     dateModified: prompt.updated,
-    author: { "@type": "Person", name: "Mohammed AlBader", url: "https://mo7albader.com" },
+    author: { "@type": "Person", "@id": "https://mo7albader.com/#person", name: "محمد البدر", alternateName: "Mohammed AlBader", url: "https://mo7albader.com" },
     mainEntityOfPage: { "@type": "WebPage", "@id": promptUrl(prompt.slug) },
     ...(prompt.howTo && prompt.howTo.length > 0
       ? {

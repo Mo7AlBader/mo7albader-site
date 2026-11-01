@@ -3,8 +3,9 @@ import BioContent from "@/components/BioContent";
 import { goalProgress } from "@/lib/goal";
 
 export const metadata: Metadata = {
-  title: "روابطي",
-  description: "روابطي، منتجاتي، ومكتبتي للقراءة.",
+  title: { absolute: "محمد البدر | روابطي: لينكدإن، إكس، إنستقرام" },
+  description:
+    "كل روابط محمد البدر في مكان واحد: لينكدإن، إكس (تويتر)، إنستقرام، سناب شات، ومنتجاتي ومكتبتي للقراءة.",
   alternates: { canonical: "/bio" },
 };
 

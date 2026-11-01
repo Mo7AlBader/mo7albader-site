@@ -7,6 +7,7 @@ import Reveal from "@/components/Reveal";
 import CalModal from "@/components/CalModal";
 import { trackClick } from "@/lib/track";
 import { goalProgress, formatGoalProgress } from "@/lib/goal";
+import { PROFILES } from "@/lib/identity";
 
 const AMAZON_TAG = "z7dart-21";
 function amazonSearch(query: string) {
@@ -18,10 +19,10 @@ function amazonProduct(asin: string) {
 }
 
 const SOCIALS = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },
-  { label: "X", href: "https://x.com/mo7albader" },
-  { label: "Instagram", href: "https://instagram.com/mo7albader" },
-  { label: "Snapchat", href: "https://snapchat.com/add/mo7albader" },
+  { label: "LinkedIn", href: PROFILES.linkedin },
+  { label: "X", href: PROFILES.x },
+  { label: "Instagram", href: PROFILES.instagram },
+  { label: "Snapchat", href: PROFILES.snapchat },
 ];
 
 type ProductItem = {
@@ -260,7 +261,7 @@ export default function BioContent({ initialProgress }: { initialProgress: numbe
                   key={s.label}
                   href={s.href}
                   target="_blank"
-                  rel="noopener"
+                  rel="me noopener"
                   aria-label={s.label}
                   onClick={() => trackClick("bio_social_click", { label: s.label.toLowerCase() })}
                   className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white/[0.03]

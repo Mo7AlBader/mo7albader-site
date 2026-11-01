@@ -465,9 +465,10 @@ export const content = {
       en: "Available for a limited number of product consultations, with a special focus on growth and AI. I can help you understand the problem, build a first experience, or improve your current product. Best fit for SaaS, EdTech, and content or community products.",
     },
     links: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader" },
-      { label: "Email", href: "mailto:hello@mo7albader.com" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/mo7albader/" },
       { label: "X", href: "https://x.com/mo7albader" },
+      { label: "Instagram", href: "https://www.instagram.com/mo7albader/" },
+      { label: "Email", href: "mailto:hello@mo7albader.com" },
     ],
   },
 

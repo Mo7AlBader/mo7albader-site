@@ -21,47 +21,33 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import MobileCTA from "@/components/MobileCTA";
 import { goalProgress } from "@/lib/goal";
+import { SITE, NAME_AR, NAME_EN, PERSON_ID, personJsonLd } from "@/lib/identity";
 
-// Person + WebSite entity graph: how search and answer engines identify the
-// site owner; sameAs links tie every profile back to this one identity
+// ProfilePage + Person + WebSite entity graph: how Google identifies the site
+// owner. sameAs ties LinkedIn, X and Instagram back to this one identity, so a
+// search for "محمد البدر" can surface the site and the profiles together.
 const identityJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Person",
-      "@id": "https://mo7albader.com/#person",
-      name: "Mohammed AlBader",
-      alternateName: "محمد البدر",
-      jobTitle: "Product Manager",
-      worksFor: { "@type": "Organization", name: "Salla", url: "https://salla.com" },
-      description:
-        "Mohammed AlBader is a Product Manager at Salla. He builds and grows SaaS products through product, content, data and AI. Founder of AbdihQT, an education platform reaching 300K+ students, he started out building 100+ e-commerce stores on Salla.",
-      url: "https://mo7albader.com",
-      image: "https://mo7albader.com/mohammed.png",
-      address: { "@type": "PostalAddress", addressLocality: "Riyadh", addressCountry: "SA" },
-      alumniOf: { "@type": "CollegeOrUniversity", name: "University of Hafr AlBatin" },
-      knowsAbout: [
-        "Product Management",
-        "Product-led Growth",
-        "SaaS",
-        "AI Products",
-        "Content-led Growth",
-        "SEO",
-        "AEO",
-      ],
-      sameAs: [
-        "https://www.linkedin.com/in/mo7albader",
-        "https://x.com/mo7albader",
-        "https://abdihqt.com",
-      ],
+      "@type": "ProfilePage",
+      "@id": `${SITE}/#profilepage`,
+      url: SITE,
+      name: `${NAME_AR} | ${NAME_EN}`,
+      inLanguage: "ar",
+      about: { "@id": PERSON_ID },
+      mainEntity: { "@id": PERSON_ID },
+      isPartOf: { "@id": `${SITE}/#website` },
     },
+    personJsonLd,
     {
       "@type": "WebSite",
-      "@id": "https://mo7albader.com/#website",
-      url: "https://mo7albader.com",
-      name: "Mohammed AlBader",
+      "@id": `${SITE}/#website`,
+      url: SITE,
+      name: NAME_AR,
+      alternateName: [NAME_EN, "mo7albader"],
       inLanguage: "ar",
-      publisher: { "@id": "https://mo7albader.com/#person" },
+      publisher: { "@id": PERSON_ID },
     },
   ],
 };

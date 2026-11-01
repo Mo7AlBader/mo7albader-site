@@ -47,7 +47,7 @@ export default function Contact() {
               key={l.label}
               href={l.href}
               target={l.href.startsWith("http") ? "_blank" : undefined}
-              rel="noopener"
+              rel="me noopener"
               onClick={() => trackClick("contact_link_click", { label: l.label })}
               className="group inline-flex items-center gap-2 rounded-full border border-line bg-white/[0.03] px-6 py-3.5 font-medium text-white/90 transition-colors hover:border-accent hover:text-white"
             >

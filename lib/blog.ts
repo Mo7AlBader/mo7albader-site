@@ -61,7 +61,7 @@ export const author = {
   name: { ar: "محمد البدر", en: "Mohammed AlBader" },
   role: { ar: "مدير منتج · سلة", en: "Product Manager · Salla" },
   initials: "MA",
-  linkedin: "https://linkedin.com/in/mo7albader",
+  linkedin: "https://www.linkedin.com/in/mo7albader/",
 };
 
 /* ===== UI strings ======================================================== */
