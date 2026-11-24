@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { content } from "@/lib/data";
 import { useLang } from "./LangContext";
@@ -68,6 +69,11 @@ export default function FAQ() {
           <a href="#contact" className="text-white underline decoration-accent underline-offset-4 transition-colors hover:text-accent">
             {lang === "ar" ? "اسألني مباشرة" : "Ask me directly"}
           </a>
+        </p>
+        <p className="mt-3 text-center text-muted">
+          <Link href="/about" className="text-white underline decoration-accent underline-offset-4 transition-colors hover:text-accent">
+            {lang === "ar" ? "من هو محمد البدر؟ كل الأسئلة والأجوبة" : "Who is Mohammed AlBader? All questions and answers"}
+          </Link>
         </p>
       </Reveal>
     </section>
